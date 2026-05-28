@@ -63,25 +63,28 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  /* GS Brand — deep navy + lime green + gold */
+  --background: oklch(0.22 0.09 260);
+  --background-deep: oklch(0.17 0.08 262);
+  --foreground: oklch(0.98 0.005 250);
+  --card: oklch(0.26 0.09 260);
+  --card-foreground: oklch(0.98 0.005 250);
+  --popover: oklch(0.26 0.09 260);
+  --popover-foreground: oklch(0.98 0.005 250);
+  --primary: oklch(0.84 0.19 130);
+  --primary-foreground: oklch(0.17 0.08 262);
+  --secondary: oklch(0.32 0.08 260);
+  --secondary-foreground: oklch(0.98 0.005 250);
+  --muted: oklch(0.30 0.07 260);
+  --muted-foreground: oklch(0.78 0.03 250);
+  --accent: oklch(0.78 0.13 85);
+  --accent-foreground: oklch(0.17 0.08 262);
+  --gold: oklch(0.78 0.13 85);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.35 0.07 260);
+  --input: oklch(0.32 0.07 260);
+  --ring: oklch(0.84 0.19 130);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +143,12 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
   }
 }
