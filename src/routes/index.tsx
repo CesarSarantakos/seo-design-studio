@@ -1,29 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { Hero } from "@/components/site/Hero";
+import { MissionVisionValues } from "@/components/site/MissionVisionValues";
+import { SignificadoG } from "@/components/site/SignificadoG";
+import { Pillars } from "@/components/site/Pillars";
+import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "GS — Terceirização com presença, proteção e compromisso" },
+      { name: "description", content: "GS oferece portaria, limpeza, controle de acesso e zeladoria com pessoas comprometidas e operações organizadas. Solicite sua proposta." },
+      { property: "og:title", content: "GS — O que importa, cuidamos." },
+      { property: "og:description", content: "Terceirização com presença, proteção e compromisso. Solicite sua proposta em 2 minutos." },
+      { property: "og:url", content: "/" },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        <Hero />
+        <MissionVisionValues />
+        <SignificadoG />
+        <Pillars />
+        <ProposalSimulator />
+      </main>
+      <Footer />
     </div>
   );
 }
