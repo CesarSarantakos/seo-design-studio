@@ -77,10 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "GS: terceirização de portaria, limpeza, controle de acesso, recepção e zeladoria com presença, proteção e compromisso." },
       { name: "author", content: "GS" },
       { property: "og:title", content: "GS — O que importa, cuidamos." },
-      { property: "og:description", content: "Terceirização com presença, proteção e compromisso." },
+      { property: "og:description", content: "GS: terceirização de portaria, limpeza, controle de acesso, recepção e zeladoria com presença, proteção e compromisso." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "GS" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "GS — O que importa, cuidamos." },
+      { name: "twitter:description", content: "GS: terceirização de portaria, limpeza, controle de acesso, recepção e zeladoria com presença, proteção e compromisso." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a18e6d2f-6fb3-4cd4-9a67-9081e2e35466/id-preview-5cdb3652--cc979473-1559-493e-b785-325dfff5709b.lovable.app-1779936264344.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a18e6d2f-6fb3-4cd4-9a67-9081e2e35466/id-preview-5cdb3652--cc979473-1559-493e-b785-325dfff5709b.lovable.app-1779936264344.png" },
     ],
     links: [
       {
