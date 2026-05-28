@@ -6,7 +6,14 @@ export function Footer() {
     <footer className="bg-background-deep border-t border-border">
       <div className="container mx-auto px-6 py-12 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
-          <img src={logo} alt="GS" className="h-12 w-auto mb-4" width={180} height={60} />
+          <img
+            src={logo}
+            alt="GS"
+            className="h-14 w-auto mb-4"
+            width={200}
+            height={70}
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
           <p className="text-sm text-muted-foreground max-w-sm">
             Terceirização com presença, proteção e compromisso. Pessoas comprometidas, operações organizadas e a responsabilidade de servir com presença.
           </p>
