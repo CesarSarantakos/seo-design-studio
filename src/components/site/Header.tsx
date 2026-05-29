@@ -85,8 +85,12 @@ export function Header() {
             Fale com a GS
           </a>
         </nav>
-        <button onClick={() => setOpen(!open)} className="lg:hidden text-foreground p-2" aria-label="Abrir menu">
-          {open ? <X /> : <Menu />}
+        <button
+          onClick={() => setOpen(!open)}
+          className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground hover:bg-foreground/15 transition-colors"
+          aria-label="Abrir menu"
+        >
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
       {open && (
