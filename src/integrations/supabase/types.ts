@@ -16,31 +16,43 @@ export type Database = {
     Tables: {
       job_applications: {
         Row: {
+          area_interesse: string | null
           created_at: string
+          disponibilidade: string | null
           email: string
           id: string
           mensagem: string | null
           nome: string
+          regiao: string | null
           resume_path: string | null
           telefone: string
+          tem_experiencia: boolean | null
         }
         Insert: {
+          area_interesse?: string | null
           created_at?: string
+          disponibilidade?: string | null
           email: string
           id?: string
           mensagem?: string | null
           nome: string
+          regiao?: string | null
           resume_path?: string | null
           telefone: string
+          tem_experiencia?: boolean | null
         }
         Update: {
+          area_interesse?: string | null
           created_at?: string
+          disponibilidade?: string | null
           email?: string
           id?: string
           mensagem?: string | null
           nome?: string
+          regiao?: string | null
           resume_path?: string | null
           telefone?: string
+          tem_experiencia?: boolean | null
         }
         Relationships: []
       }

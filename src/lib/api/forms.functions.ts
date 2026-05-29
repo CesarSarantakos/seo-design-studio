@@ -40,6 +40,10 @@ const jobAppSchema = z.object({
   telefone: z.string().trim().min(6).max(30),
   email: z.string().trim().email().max(255),
   mensagem: z.string().max(2000).optional().default(""),
+  regiao: z.enum(["zona_leste", "zona_sul", "zona_norte", "zona_oeste"]),
+  areaInteresse: z.enum(["portaria", "recepcao", "limpeza", "apoio_operacional", "zeladoria", "supervisao", "outros"]),
+  temExperiencia: z.boolean(),
+  disponibilidade: z.enum(["diurno", "noturno"]),
   resumeBase64: z.string().min(1).max(8_000_000), // ~6MB base64
   resumeName: z.string().min(1).max(200),
   resumeType: z.string().min(1).max(100),
@@ -75,6 +79,10 @@ export const submitJobApplication = createServerFn({ method: "POST" })
       email: data.email,
       mensagem: data.mensagem || null,
       resume_path: path,
+      regiao: data.regiao,
+      area_interesse: data.areaInteresse,
+      tem_experiencia: data.temExperiencia,
+      disponibilidade: data.disponibilidade,
     });
     if (error) {
       console.error("job_applications insert error:", error);
