@@ -14,7 +14,6 @@ import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as SolicitarPropostaRouteImport } from './routes/solicitar-proposta'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
-import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
@@ -50,11 +49,6 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const QuemSomosRoute = QuemSomosRouteImport.update({
   id: '/quem-somos',
   path: '/quem-somos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContatoRoute = ContatoRouteImport.update({
-  id: '/contato',
-  path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ClientesRoute = ClientesRouteImport.update({
@@ -121,7 +115,6 @@ const LovableEmailQueueProcessRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/clientes': typeof ClientesRoute
-  '/contato': typeof ContatoRoute
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
@@ -140,7 +133,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/clientes': typeof ClientesRoute
-  '/contato': typeof ContatoRoute
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
@@ -159,7 +151,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/clientes': typeof ClientesRoute
-  '/contato': typeof ContatoRoute
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
@@ -180,7 +171,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/clientes'
-    | '/contato'
     | '/quem-somos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
@@ -199,7 +189,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/clientes'
-    | '/contato'
     | '/quem-somos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
@@ -217,7 +206,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/clientes'
-    | '/contato'
     | '/quem-somos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
@@ -237,7 +225,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ClientesRoute: typeof ClientesRoute
-  ContatoRoute: typeof ContatoRoute
   QuemSomosRoute: typeof QuemSomosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolicitarPropostaRoute: typeof SolicitarPropostaRoute
@@ -285,13 +272,6 @@ declare module '@tanstack/react-router' {
       path: '/quem-somos'
       fullPath: '/quem-somos'
       preLoaderRoute: typeof QuemSomosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contato': {
-      id: '/contato'
-      path: '/contato'
-      fullPath: '/contato'
-      preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/clientes': {
@@ -395,7 +375,6 @@ const SolucoesRouteWithChildren = SolucoesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClientesRoute: ClientesRoute,
-  ContatoRoute: ContatoRoute,
   QuemSomosRoute: QuemSomosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolicitarPropostaRoute: SolicitarPropostaRoute,
@@ -410,3 +389,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

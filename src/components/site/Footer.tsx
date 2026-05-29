@@ -30,7 +30,7 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">Contato</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/contato" className="hover:text-primary">Fale Conosco</Link></li>
+            
             <li>contato@gs.com.br</li>
             <li>
               <a
