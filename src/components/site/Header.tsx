@@ -15,7 +15,7 @@ const solucoesItems = [
   { to: "/solucoes/portaria-24h", label: "Portaria 24h" },
   { to: "/solucoes", label: "Controle de Acesso" },
   { to: "/solucoes/limpeza-profissional", label: "Limpeza Profissional" },
-  { to: "/solucoes", label: "Recepção e Copa" },
+  { to: "/solucoes/recepcao-e-atendimento", label: "Recepção e Atendimento" },
   { to: "/solucoes", label: "Manutenção Predial" },
   { to: "/solucoes", label: "Jardinagem" },
 ] as const;
@@ -51,7 +51,7 @@ export function Header() {
                   <ChevronDown className="w-3.5 h-3.5" />
                 </Link>
                 <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                  <div className="bg-background-deep border border-border rounded-lg shadow-xl py-2 min-w-[220px]">
+                  <div className="bg-background-deep/95 backdrop-blur-xl border border-border rounded-lg shadow-2xl py-2 min-w-[240px]">
                     {solucoesItems.map((s) => (
                       <Link
                         key={s.label}
