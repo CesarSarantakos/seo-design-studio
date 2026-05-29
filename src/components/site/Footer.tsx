@@ -32,6 +32,17 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link to="/contato" className="hover:text-primary">Fale Conosco</Link></li>
             <li>contato@gs.com.br</li>
+            <li>
+              <a
+                href="https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20terceiriza%C3%A7%C3%A3o.%20Pode%20me%20ajudar%3F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary"
+              >
+                (11) 93049-4888
+              </a>
+            </li>
+            <li>R. Carlos Meira, 32 — Penha de França, São Paulo – SP</li>
           </ul>
         </div>
       </div>
