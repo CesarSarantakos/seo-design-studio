@@ -161,6 +161,12 @@ function Page() {
 
           <form onSubmit={handleSubmit} className="relative">
             <div className="space-y-6">
+              <div className="relative space-y-6">
+                {/* Connector line linking the 4 steps (desktop only) */}
+                <div
+                  aria-hidden
+                  className="hidden md:block absolute left-14 -translate-x-1/2 top-6 bottom-6 w-px bg-gradient-to-b from-primary/40 via-border to-primary/40"
+                />
               {/* STEP 1 */}
               <StepCard step={STEPS[0]}>
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">
@@ -297,17 +303,18 @@ function Page() {
                   <ShieldIcon className="w-3 h-3" /> Suas informações estão seguras. Não compartilhamos seus dados.
                 </p>
               </StepCard>
+              </div>
 
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full h-16 text-base font-bold bg-[#0B1B3D] hover:bg-[#0B1B3D]/90 text-white rounded-xl shadow-xl flex flex-col gap-0.5"
+                className="w-full h-16 text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-xl flex flex-col gap-0.5"
               >
                 <span className="flex items-center gap-2">
-                  <Send className="w-5 h-5 text-primary" />
+                  <Send className="w-5 h-5" />
                   {loading ? "ENVIANDO..." : "RECEBER PROPOSTA"}
                 </span>
-                <span className="text-xs font-normal text-white/70">Você receberá sua proposta online.</span>
+                <span className="text-xs font-normal text-primary-foreground/80">Você receberá sua proposta online.</span>
               </Button>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
