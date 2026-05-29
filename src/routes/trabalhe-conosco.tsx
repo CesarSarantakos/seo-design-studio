@@ -50,8 +50,8 @@ const TESTIMONIALS = [
   {
     img: colab2,
     quote: "A GS cumpre o que promete e sempre dá o suporte que a gente precisa.",
-    name: "João Paulo",
-    role: "Porteiro",
+    name: "Gabriela Luz",
+    role: "Auxiliar de Limpeza",
   },
   {
     img: colab3,
