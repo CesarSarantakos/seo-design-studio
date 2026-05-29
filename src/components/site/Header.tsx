@@ -12,7 +12,7 @@ const navItems = [
 ] as const;
 
 const solucoesItems = [
-  { to: "/solucoes", label: "Portaria 24h" },
+  { to: "/solucoes/portaria-24h", label: "Portaria 24h" },
   { to: "/solucoes", label: "Controle de Acesso" },
   { to: "/solucoes", label: "Limpeza Profissional" },
   { to: "/solucoes", label: "Recepção e Copa" },
