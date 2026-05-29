@@ -14,7 +14,7 @@ const navItems = [
 const solucoesItems = [
   { to: "/solucoes/portaria-24h", label: "Portaria 24h" },
   { to: "/solucoes", label: "Controle de Acesso" },
-  { to: "/solucoes", label: "Limpeza Profissional" },
+  { to: "/solucoes/limpeza-profissional", label: "Limpeza Profissional" },
   { to: "/solucoes", label: "Recepção e Copa" },
   { to: "/solucoes", label: "Manutenção Predial" },
   { to: "/solucoes", label: "Jardinagem" },

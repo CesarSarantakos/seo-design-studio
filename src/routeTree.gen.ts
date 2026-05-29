@@ -19,6 +19,7 @@ import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
 import { Route as SolucoesPortaria24hRouteImport } from './routes/solucoes.portaria-24h'
+import { Route as SolucoesLimpezaProfissionalRouteImport } from './routes/solucoes.limpeza-profissional'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
@@ -75,6 +76,12 @@ const SolucoesPortaria24hRoute = SolucoesPortaria24hRouteImport.update({
   path: '/portaria-24h',
   getParentRoute: () => SolucoesRoute,
 } as any)
+const SolucoesLimpezaProfissionalRoute =
+  SolucoesLimpezaProfissionalRouteImport.update({
+    id: '/limpeza-profissional',
+    path: '/limpeza-profissional',
+    getParentRoute: () => SolucoesRoute,
+  } as any)
 const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   id: '/email/unsubscribe',
   path: '/email/unsubscribe',
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -130,6 +138,7 @@ export interface FileRoutesByTo {
   '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -148,6 +157,7 @@ export interface FileRoutesById {
   '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/'
     | '/lovable/email/suppression'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/solicitar-proposta'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes'
     | '/lovable/email/suppression'
@@ -200,6 +212,7 @@ export interface FileRouteTypes {
     | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/'
     | '/lovable/email/suppression'
@@ -296,6 +309,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolucoesPortaria24hRouteImport
       parentRoute: typeof SolucoesRoute
     }
+    '/solucoes/limpeza-profissional': {
+      id: '/solucoes/limpeza-profissional'
+      path: '/limpeza-profissional'
+      fullPath: '/solucoes/limpeza-profissional'
+      preLoaderRoute: typeof SolucoesLimpezaProfissionalRouteImport
+      parentRoute: typeof SolucoesRoute
+    }
     '/email/unsubscribe': {
       id: '/email/unsubscribe'
       path: '/email/unsubscribe'
@@ -335,11 +355,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface SolucoesRouteChildren {
+  SolucoesLimpezaProfissionalRoute: typeof SolucoesLimpezaProfissionalRoute
   SolucoesPortaria24hRoute: typeof SolucoesPortaria24hRoute
   SolucoesIndexRoute: typeof SolucoesIndexRoute
 }
 
 const SolucoesRouteChildren: SolucoesRouteChildren = {
+  SolucoesLimpezaProfissionalRoute: SolucoesLimpezaProfissionalRoute,
   SolucoesPortaria24hRoute: SolucoesPortaria24hRoute,
   SolucoesIndexRoute: SolucoesIndexRoute,
 }
