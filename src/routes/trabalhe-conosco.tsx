@@ -79,7 +79,7 @@ function Page() {
           <div className="absolute inset-0 bg-gradient-to-t from-background-deep via-background-deep/50 to-transparent" />
           <div className="container relative mx-auto px-6 py-32 lg:py-40">
             <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tight" style={{ textShadow: "0 2px 14px rgba(0,0,0,0.45)" }}>
                 Aqui, você
                 <br />
                 não é só mais
