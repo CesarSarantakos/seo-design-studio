@@ -9,12 +9,17 @@ import { toast } from "sonner";
 import { submitProposal } from "@/lib/api/forms.functions";
 
 const SERVICES = [
-  "Controlador de Acesso", "Jardinagem",
-  "Manutenção Predial", "Portaria Física",
-  "Ronda Patrimonial", "Posto de Monitoramento",
-  "Copeira", "Limpeza (44h semanais)",
-  "Recepcionista", "Portaria 24Hrs",
-  "Zeladoria Predial", "Outros",
+  "Controlador de Acesso",
+  "Manutenção Predial",
+  "Portaria Física",
+  "Ronda Patrimonial",
+  "Posto de Monitoramento",
+  "Copeira",
+  "Limpeza (44h semanais)",
+  "Recepcionista",
+  "Portaria 24Hrs",
+  "Zeladoria Predial",
+  "Outros",
 ];
 
 export function ProposalSimulator() {
@@ -23,8 +28,14 @@ export function ProposalSimulator() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     servicos: [] as string[],
-    cep: "", cidade: "", estado: "", endereco: "",
-    nome: "", empresa: "", email: "", telefone: "",
+    cep: "",
+    cidade: "",
+    estado: "",
+    endereco: "",
+    nome: "",
+    empresa: "",
+    email: "",
+    telefone: "",
   });
 
   const toggleService = (s: string) => {
@@ -57,7 +68,17 @@ export function ProposalSimulator() {
       await submit({ data });
       toast.success("Recebemos sua solicitação! Em breve entraremos em contato.");
       setStep(0);
-      setData({ servicos: [], cep: "", cidade: "", estado: "", endereco: "", nome: "", empresa: "", email: "", telefone: "" });
+      setData({
+        servicos: [],
+        cep: "",
+        cidade: "",
+        estado: "",
+        endereco: "",
+        nome: "",
+        empresa: "",
+        email: "",
+        telefone: "",
+      });
     } catch (err: any) {
       toast.error(err?.message ?? "Erro ao enviar");
     } finally {
@@ -97,7 +118,9 @@ export function ProposalSimulator() {
                   </label>
                 ))}
               </div>
-              <Button onClick={next} className="w-full mt-8 h-12 text-base font-semibold">Próximo</Button>
+              <Button onClick={next} className="w-full mt-8 h-12 text-base font-semibold">
+                Próximo
+              </Button>
             </>
           )}
 
@@ -105,14 +128,42 @@ export function ProposalSimulator() {
             <>
               <h3 className="font-semibold text-foreground mb-4 text-lg">Onde será o atendimento?</h3>
               <div className="grid sm:grid-cols-2 gap-4">
-                <div><Label>CEP</Label><Input value={data.cep} onChange={(e) => setData({ ...data, cep: e.target.value })} maxLength={20} /></div>
-                <div><Label>Cidade *</Label><Input value={data.cidade} onChange={(e) => setData({ ...data, cidade: e.target.value })} maxLength={120} /></div>
-                <div><Label>Estado</Label><Input value={data.estado} onChange={(e) => setData({ ...data, estado: e.target.value })} maxLength={60} /></div>
-                <div className="sm:col-span-2"><Label>Endereço</Label><Input value={data.endereco} onChange={(e) => setData({ ...data, endereco: e.target.value })} maxLength={300} /></div>
+                <div>
+                  <Label>CEP</Label>
+                  <Input value={data.cep} onChange={(e) => setData({ ...data, cep: e.target.value })} maxLength={20} />
+                </div>
+                <div>
+                  <Label>Cidade *</Label>
+                  <Input
+                    value={data.cidade}
+                    onChange={(e) => setData({ ...data, cidade: e.target.value })}
+                    maxLength={120}
+                  />
+                </div>
+                <div>
+                  <Label>Estado</Label>
+                  <Input
+                    value={data.estado}
+                    onChange={(e) => setData({ ...data, estado: e.target.value })}
+                    maxLength={60}
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <Label>Endereço</Label>
+                  <Input
+                    value={data.endereco}
+                    onChange={(e) => setData({ ...data, endereco: e.target.value })}
+                    maxLength={300}
+                  />
+                </div>
               </div>
               <div className="flex gap-3 mt-8">
-                <Button variant="outline" onClick={() => setStep(0)} className="flex-1 h-12">Voltar</Button>
-                <Button onClick={next} className="flex-1 h-12 font-semibold">Próximo</Button>
+                <Button variant="outline" onClick={() => setStep(0)} className="flex-1 h-12">
+                  Voltar
+                </Button>
+                <Button onClick={next} className="flex-1 h-12 font-semibold">
+                  Próximo
+                </Button>
               </div>
             </>
           )}
@@ -121,14 +172,50 @@ export function ProposalSimulator() {
             <form onSubmit={handleSubmit}>
               <h3 className="font-semibold text-foreground mb-4 text-lg">Como falamos com você?</h3>
               <div className="grid sm:grid-cols-2 gap-4">
-                <div><Label>Nome *</Label><Input value={data.nome} onChange={(e) => setData({ ...data, nome: e.target.value })} required maxLength={150} /></div>
-                <div><Label>Empresa</Label><Input value={data.empresa} onChange={(e) => setData({ ...data, empresa: e.target.value })} maxLength={150} /></div>
-                <div><Label>E-mail *</Label><Input type="email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} required maxLength={255} /></div>
-                <div><Label>Telefone *</Label><Input value={data.telefone} onChange={(e) => setData({ ...data, telefone: e.target.value })} required maxLength={30} /></div>
+                <div>
+                  <Label>Nome *</Label>
+                  <Input
+                    value={data.nome}
+                    onChange={(e) => setData({ ...data, nome: e.target.value })}
+                    required
+                    maxLength={150}
+                  />
+                </div>
+                <div>
+                  <Label>Empresa</Label>
+                  <Input
+                    value={data.empresa}
+                    onChange={(e) => setData({ ...data, empresa: e.target.value })}
+                    maxLength={150}
+                  />
+                </div>
+                <div>
+                  <Label>E-mail *</Label>
+                  <Input
+                    type="email"
+                    value={data.email}
+                    onChange={(e) => setData({ ...data, email: e.target.value })}
+                    required
+                    maxLength={255}
+                  />
+                </div>
+                <div>
+                  <Label>Telefone *</Label>
+                  <Input
+                    value={data.telefone}
+                    onChange={(e) => setData({ ...data, telefone: e.target.value })}
+                    required
+                    maxLength={30}
+                  />
+                </div>
               </div>
               <div className="flex gap-3 mt-8">
-                <Button type="button" variant="outline" onClick={() => setStep(1)} className="flex-1 h-12">Voltar</Button>
-                <Button type="submit" disabled={loading} className="flex-1 h-12 font-semibold">{loading ? "Enviando..." : "Enviar solicitação"}</Button>
+                <Button type="button" variant="outline" onClick={() => setStep(1)} className="flex-1 h-12">
+                  Voltar
+                </Button>
+                <Button type="submit" disabled={loading} className="flex-1 h-12 font-semibold">
+                  {loading ? "Enviando..." : "Enviar solicitação"}
+                </Button>
               </div>
             </form>
           )}

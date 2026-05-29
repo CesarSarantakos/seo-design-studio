@@ -17,7 +17,6 @@ const solucoesItems = [
   { to: "/solucoes/limpeza-profissional", label: "Limpeza Profissional" },
   { to: "/solucoes/recepcao-e-atendimento", label: "Recepção e Atendimento" },
   { to: "/solucoes", label: "Manutenção Predial" },
-  { to: "/solucoes", label: "Jardinagem" },
 ] as const;
 
 const WHATSAPP_URL =
@@ -39,7 +38,7 @@ export function Header() {
           />
         </Link>
         <nav className="hidden lg:flex items-center gap-8" aria-label="Principal">
-          {navItems.map((item) => (
+          {navItems.map((item) =>
             "hasDropdown" in item && item.hasDropdown ? (
               <div key={item.label} className="relative group">
                 <Link
@@ -74,8 +73,8 @@ export function Header() {
               >
                 {item.label}
               </Link>
-            )
-          ))}
+            ),
+          )}
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -86,11 +85,7 @@ export function Header() {
             Fale com a GS
           </a>
         </nav>
-        <button
-          onClick={() => setOpen(!open)}
-          className="lg:hidden text-foreground p-2"
-          aria-label="Abrir menu"
-        >
+        <button onClick={() => setOpen(!open)} className="lg:hidden text-foreground p-2" aria-label="Abrir menu">
           {open ? <X /> : <Menu />}
         </button>
       </div>

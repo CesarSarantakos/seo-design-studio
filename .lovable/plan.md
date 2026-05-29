@@ -1,4 +1,3 @@
-
 ## Visão geral
 
 Construir o site da GS replicando fielmente o design enviado (tema azul-marinho escuro com acentos verde-limão e dourado), com foco em SEO técnico (SSR, metadados por rota, JSON-LD, sitemap), uma página **Trabalhe Conosco** com formulário de currículo, e um **simulador de proposta em 3 etapas** na home.
@@ -19,6 +18,7 @@ Cada rota recebe `head()` próprio com title, description, og:title, og:descript
 ## Design system (src/styles.css)
 
 Tokens em oklch:
+
 - `--background`: azul-marinho profundo (~#0B1B3D)
 - `--primary`: verde-limão (~#A8D63A) para destaques/CTA
 - `--accent-gold`: dourado (~#C9A24C) para seção "Significado do G"
@@ -39,7 +39,8 @@ Tokens em oklch:
 ## Simulador de proposta (imagem 3) — componente na home
 
 Card com barra de progresso e 3 abas:
-- **Etapa 1 – Serviços**: checkboxes em 2 colunas (Controlador de Acesso, Manutenção Predial, Ronda Patrimonial, Copeira, Recepcionista, Zeladoria Predial, Jardinagem, Portaria Física, Posto de Monitoramento, Limpeza 44h, Portaria 24h, Outros)
+
+- **Etapa 1 – Serviços**: checkboxes em 2 colunas (Controlador de Acesso, Manutenção Predial, Ronda Patrimonial, Copeira, Recepcionista, Zeladoria Predial, Portaria Física, Posto de Monitoramento, Limpeza 44h, Portaria 24h, Outros)
 - **Etapa 2 – Localização**: CEP, cidade, estado, endereço
 - **Etapa 3 – Contato**: nome, empresa, e-mail, telefone, envio
 
@@ -48,6 +49,7 @@ Validação com **zod** + react-hook-form. Envio grava em tabela do Lovable Clou
 ## Página /trabalhe-conosco (imagem 2)
 
 Layout 2 colunas:
+
 - Esquerda: "Como funciona?" com 3 passos numerados
 - Direita: card com formulário (Nome, Telefone, E-mail, Mensagem, Anexar Currículo PDF/DOC máx 5MB) + botão "Enviar Currículo"
 
@@ -56,6 +58,7 @@ Upload do CV para **Lovable Cloud Storage** (bucket `resumes`), registro em tabe
 ## Backend (Lovable Cloud)
 
 Ativar Lovable Cloud para:
+
 - Tabela `proposal_requests` (serviços[], cep, cidade, estado, endereço, nome, empresa, email, telefone, criado_em)
 - Tabela `job_applications` (nome, telefone, email, mensagem, resume_url, criado_em)
 - Bucket de storage `resumes` (privado, signed URLs)
