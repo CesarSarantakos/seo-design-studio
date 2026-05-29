@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrabalheConoscoRouteImport } from './routes/trabalhe-conosco'
 import { Route as SolucoesRouteImport } from './routes/solucoes'
+import { Route as SolicitarPropostaRouteImport } from './routes/solicitar-proposta'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as ContatoRouteImport } from './routes/contato'
@@ -25,6 +26,11 @@ const TrabalheConoscoRoute = TrabalheConoscoRouteImport.update({
 const SolucoesRoute = SolucoesRouteImport.update({
   id: '/solucoes',
   path: '/solucoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolicitarPropostaRoute = SolicitarPropostaRouteImport.update({
+  id: '/solicitar-proposta',
+  path: '/solicitar-proposta',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/solucoes': typeof SolucoesRoute
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/solucoes': typeof SolucoesRoute
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/solucoes': typeof SolucoesRoute
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/quem-somos'
     | '/sitemap.xml'
+    | '/solicitar-proposta'
     | '/solucoes'
     | '/trabalhe-conosco'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/quem-somos'
     | '/sitemap.xml'
+    | '/solicitar-proposta'
     | '/solucoes'
     | '/trabalhe-conosco'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/quem-somos'
     | '/sitemap.xml'
+    | '/solicitar-proposta'
     | '/solucoes'
     | '/trabalhe-conosco'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   QuemSomosRoute: typeof QuemSomosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SolicitarPropostaRoute: typeof SolicitarPropostaRoute
   SolucoesRoute: typeof SolucoesRoute
   TrabalheConoscoRoute: typeof TrabalheConoscoRoute
 }
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/solucoes'
       fullPath: '/solucoes'
       preLoaderRoute: typeof SolucoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solicitar-proposta': {
+      id: '/solicitar-proposta'
+      path: '/solicitar-proposta'
+      fullPath: '/solicitar-proposta'
+      preLoaderRoute: typeof SolicitarPropostaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   QuemSomosRoute: QuemSomosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SolicitarPropostaRoute: SolicitarPropostaRoute,
   SolucoesRoute: SolucoesRoute,
   TrabalheConoscoRoute: TrabalheConoscoRoute,
 }
