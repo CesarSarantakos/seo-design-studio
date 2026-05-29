@@ -12,6 +12,8 @@ const proposalSchema = z.object({
   empresa: z.string().max(150).optional().default(""),
   email: z.string().trim().email().max(255),
   telefone: z.string().trim().min(6).max(30),
+  necessidade: z.string().max(2000).optional().default(""),
+  desafio: z.string().max(200).optional().default(""),
 });
 
 export const submitProposal = createServerFn({ method: "POST" })
@@ -27,6 +29,8 @@ export const submitProposal = createServerFn({ method: "POST" })
       empresa: data.empresa || null,
       email: data.email,
       telefone: data.telefone,
+      necessidade: data.necessidade || null,
+      desafio: data.desafio || null,
     });
     if (error) {
       console.error("submitProposal error:", error);
