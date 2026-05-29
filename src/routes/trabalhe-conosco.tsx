@@ -43,9 +43,9 @@ const BENEFITS = [
 const TESTIMONIALS = [
   {
     img: colab1,
-    quote: "Fui muito bem recebida desde o primeiro dia. Me senti parte da equipe.",
-    name: "Maria Aparecida",
-    role: "Auxiliar de Limpeza",
+    quote: "Fui muito bem recebido desde o primeiro dia. Me senti parte da equipe.",
+    name: "Gael Brito",
+    role: "Auxiliar de serviços gerais",
   },
   {
     img: colab2,
