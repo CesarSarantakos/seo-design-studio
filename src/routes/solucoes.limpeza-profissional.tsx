@@ -192,7 +192,7 @@ function Page() {
 
               <div className="mt-10 h-px w-full bg-border" />
 
-              <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8">
+              <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8">
                 {IMPACTOS.map(({ icon: Icon, title, desc }) => (
                   <div key={title} className="group">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
