@@ -1,16 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import {
-  Shield,
-  Sparkles,
-  KeyRound,
-  Users,
-  Wrench,
-  TreePine,
-  ArrowRight,
-  CheckCircle2,
-} from "lucide-react";
+import { Shield, Sparkles, KeyRound, Users, Wrench, TreePine, ArrowRight, CheckCircle2 } from "lucide-react";
 import portariaImg from "@/assets/portaria-hero.jpg";
 import limpezaImg from "@/assets/limpeza-hero.jpg";
 import recepcaoImg from "@/assets/recepcao-hero.jpg";
@@ -73,21 +64,16 @@ const SERVICES: Service[] = [
     highlights: ["Preventiva", "Corretiva", "Equipe multidisciplinar"],
     available: false,
   },
-  {
-    icon: TreePine,
-    title: "Jardinagem",
-    tagline: "Áreas verdes que respiram cuidado.",
-    desc: "Cuidado com áreas verdes e paisagismo para valorizar e manter o seu espaço sempre acolhedor.",
-    highlights: ["Paisagismo", "Áreas verdes", "Manutenção regular"],
-    available: false,
-  },
 ];
 
 export const Route = createFileRoute("/solucoes/")({
   head: () => ({
     meta: [
       { title: "Soluções — GS" },
-      { name: "description", content: "Portaria, limpeza, controle de acesso, recepção, manutenção predial e jardinagem com a GS." },
+      {
+        name: "description",
+        content: "Portaria, limpeza, controle de acesso, recepção, e manutenção predial com a GS.",
+      },
       { property: "og:title", content: "Soluções — GS" },
       { property: "og:description", content: "Conheça nossas soluções de terceirização." },
       { property: "og:url", content: "/solucoes" },
@@ -121,7 +107,8 @@ function Page() {
               <span className="text-primary">do que realmente importa.</span>
             </h1>
             <p className="mt-8 text-lg text-white/75 leading-relaxed max-w-2xl mx-auto">
-              Da portaria à recepção, da limpeza à manutenção — oferecemos soluções de terceirização com presença, organização e padrão de cuidado em cada detalhe.
+              Da portaria à recepção, da limpeza à manutenção — oferecemos soluções de terceirização com presença,
+              organização e padrão de cuidado em cada detalhe.
             </p>
           </div>
         </section>
@@ -169,9 +156,7 @@ function ServiceCard({ service }: { service: Service }) {
   const content = (
     <article
       className={`group relative h-full bg-card border border-border rounded-2xl overflow-hidden transition-all ${
-        available
-          ? "hover:border-primary/60 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
-          : "opacity-90"
+        available ? "hover:border-primary/60 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1" : "opacity-90"
       }`}
     >
       <div className="relative h-48 overflow-hidden bg-background-deep">

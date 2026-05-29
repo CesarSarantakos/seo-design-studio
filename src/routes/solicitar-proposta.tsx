@@ -10,9 +10,29 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import {
-  Users, ShieldCheck, Headphones, Flame, Sparkles, ShoppingBag, Building2, Leaf,
-  Package, Wrench, Camera, MoreHorizontal, MessageCircle, Target, UserX, RefreshCw,
-  HeadphonesIcon, Zap, Send, ShieldCheck as ShieldIcon, Clock, Users2, Phone,
+  Users,
+  ShieldCheck,
+  Headphones,
+  Flame,
+  Sparkles,
+  ShoppingBag,
+  Building2,
+  Leaf,
+  Package,
+  Wrench,
+  Camera,
+  MoreHorizontal,
+  MessageCircle,
+  Target,
+  UserX,
+  RefreshCw,
+  HeadphonesIcon,
+  Zap,
+  Send,
+  ShieldCheck as ShieldIcon,
+  Clock,
+  Users2,
+  Phone,
 } from "lucide-react";
 import { submitProposal } from "@/lib/api/forms.functions";
 
@@ -20,7 +40,11 @@ export const Route = createFileRoute("/solicitar-proposta")({
   head: () => ({
     meta: [
       { title: "Solicitar Proposta — GS" },
-      { name: "description", content: "Receba uma proposta personalizada da GS em minutos. Conte sobre sua operação e desafios — montamos a solução ideal para você." },
+      {
+        name: "description",
+        content:
+          "Receba uma proposta personalizada da GS em minutos. Conte sobre sua operação e desafios — montamos a solução ideal para você.",
+      },
       { property: "og:title", content: "Solicitar Proposta — GS" },
       { property: "og:description", content: "Receba uma proposta personalizada da GS em minutos." },
       { property: "og:url", content: "/solicitar-proposta" },
@@ -38,7 +62,6 @@ const SERVICES = [
   { id: "Limpeza", label: "Limpeza", icon: Sparkles },
   { id: "Serviços Gerais", label: "Serviços Gerais", icon: ShoppingBag },
   { id: "Zeladoria", label: "Zeladoria", icon: Building2 },
-  { id: "Jardinagem", label: "Jardinagem", icon: Leaf },
   { id: "Apoio Logístico", label: "Apoio Logístico", icon: Package },
   { id: "Manutenção Predial", label: "Manutenção Predial", icon: Wrench },
   { id: "Monitoramento", label: "Monitoramento", icon: Camera },
@@ -81,14 +104,22 @@ function Page() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (data.servicos.length === 0) { toast.error("Selecione ao menos um serviço"); return; }
-    if (!data.nome || !data.telefone) { toast.error("Preencha nome e WhatsApp"); return; }
+    if (data.servicos.length === 0) {
+      toast.error("Selecione ao menos um serviço");
+      return;
+    }
+    if (!data.nome || !data.telefone) {
+      toast.error("Preencha nome e WhatsApp");
+      return;
+    }
     setLoading(true);
     try {
       await submit({
         data: {
           servicos: data.servicos,
-          cep: "", cidade: "", estado: "",
+          cep: "",
+          cidade: "",
+          estado: "",
           endereco: data.endereco,
           nome: data.nome,
           empresa: data.empresa,
@@ -99,7 +130,16 @@ function Page() {
         },
       });
       toast.success("Recebemos sua solicitação! Em breve entraremos em contato.");
-      setData({ servicos: [], necessidade: "", desafio: "", nome: "", empresa: "", endereco: "", telefone: "", email: "" });
+      setData({
+        servicos: [],
+        necessidade: "",
+        desafio: "",
+        nome: "",
+        empresa: "",
+        endereco: "",
+        telefone: "",
+        email: "",
+      });
     } catch (err: any) {
       toast.error(err?.message ?? "Erro ao enviar");
     } finally {
@@ -152,7 +192,8 @@ function Page() {
                   Fale rapidamente sobre <span className="text-primary">sua necessidade</span>
                 </h2>
                 <p className="text-sm text-muted-foreground mb-5">
-                  Conte sobre sua operação, quantidade de profissionais, escala, horário, tipo de local, rotinas ou qualquer detalhe importante.
+                  Conte sobre sua operação, quantidade de profissionais, escala, horário, tipo de local, rotinas ou
+                  qualquer detalhe importante.
                 </p>
                 <Textarea
                   value={data.necessidade}
@@ -169,7 +210,9 @@ function Page() {
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">
                   Qual o principal <span className="text-primary">desafio</span> da sua operação hoje?
                 </h2>
-                <p className="text-sm text-muted-foreground mb-5">Essa informação nos ajuda a entender melhor e trazer a solução ideal.</p>
+                <p className="text-sm text-muted-foreground mb-5">
+                  Essa informação nos ajuda a entender melhor e trazer a solução ideal.
+                </p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {CHALLENGES.map(({ id, icon: Icon }) => {
                     const active = data.desafio === id;
@@ -180,7 +223,10 @@ function Page() {
                           active ? "border-primary bg-primary/10" : "border-border hover:border-primary/50"
                         }`}
                       >
-                        <Checkbox checked={active} onCheckedChange={() => setData({ ...data, desafio: active ? "" : id })} />
+                        <Checkbox
+                          checked={active}
+                          onCheckedChange={() => setData({ ...data, desafio: active ? "" : id })}
+                        />
                         <Icon className="w-5 h-5 text-primary flex-shrink-0" strokeWidth={1.5} />
                         <span className="text-xs md:text-sm font-medium text-foreground leading-tight">{id}</span>
                       </label>
@@ -194,27 +240,57 @@ function Page() {
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">
                   Agora só faltam seus dados para enviarmos <span className="text-primary">sua proposta</span>
                 </h2>
-                <p className="text-sm text-muted-foreground mb-5">É rápido, seguro e sua proposta será enviada online.</p>
+                <p className="text-sm text-muted-foreground mb-5">
+                  É rápido, seguro e sua proposta será enviada online.
+                </p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <Label>Seu nome</Label>
-                    <Input value={data.nome} onChange={(e) => setData({ ...data, nome: e.target.value })} placeholder="Digite seu nome" required maxLength={150} />
+                    <Input
+                      value={data.nome}
+                      onChange={(e) => setData({ ...data, nome: e.target.value })}
+                      placeholder="Digite seu nome"
+                      required
+                      maxLength={150}
+                    />
                   </div>
                   <div>
                     <Label>Como se chama sua empresa ou condomínio?</Label>
-                    <Input value={data.empresa} onChange={(e) => setData({ ...data, empresa: e.target.value })} placeholder="Digite o nome da empresa ou condomínio" maxLength={150} />
+                    <Input
+                      value={data.empresa}
+                      onChange={(e) => setData({ ...data, empresa: e.target.value })}
+                      placeholder="Digite o nome da empresa ou condomínio"
+                      maxLength={150}
+                    />
                   </div>
                   <div className="sm:col-span-2">
                     <Label>Endereço da prestação de serviço</Label>
-                    <Input value={data.endereco} onChange={(e) => setData({ ...data, endereco: e.target.value })} placeholder="Ex.: Brooklin, Moema, Guarulhos ou endereço completo" maxLength={300} />
+                    <Input
+                      value={data.endereco}
+                      onChange={(e) => setData({ ...data, endereco: e.target.value })}
+                      placeholder="Ex.: Brooklin, Moema, Guarulhos ou endereço completo"
+                      maxLength={300}
+                    />
                   </div>
                   <div>
                     <Label>WhatsApp</Label>
-                    <Input value={data.telefone} onChange={(e) => setData({ ...data, telefone: e.target.value })} placeholder="(11) 99999-9999" required maxLength={30} />
+                    <Input
+                      value={data.telefone}
+                      onChange={(e) => setData({ ...data, telefone: e.target.value })}
+                      placeholder="(11) 99999-9999"
+                      required
+                      maxLength={30}
+                    />
                   </div>
                   <div>
                     <Label>E-mail</Label>
-                    <Input type="email" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} placeholder="seu@email.com" maxLength={255} />
+                    <Input
+                      type="email"
+                      value={data.email}
+                      onChange={(e) => setData({ ...data, email: e.target.value })}
+                      placeholder="seu@email.com"
+                      maxLength={255}
+                    />
                   </div>
                 </div>
                 <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1">
@@ -256,7 +332,7 @@ function Page() {
   );
 }
 
-function StepCard({ step, children }: { step: typeof STEPS[number]; children: React.ReactNode }) {
+function StepCard({ step, children }: { step: (typeof STEPS)[number]; children: React.ReactNode }) {
   const Icon = step.icon;
   return (
     <div className="flex gap-4 md:gap-6">
