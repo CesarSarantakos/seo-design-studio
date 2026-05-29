@@ -75,8 +75,8 @@ function Page() {
             width={1920}
             height={1280}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background-deep/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background-deep via-background-deep/95 to-background-deep/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background-deep via-background-deep/50 to-transparent" />
           <div className="container relative mx-auto px-6 py-32 lg:py-40">
             <div className="max-w-2xl">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
