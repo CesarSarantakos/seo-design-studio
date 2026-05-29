@@ -61,11 +61,13 @@ export type Database = {
           cep: string | null
           cidade: string | null
           created_at: string
+          desafio: string | null
           email: string
           empresa: string | null
           endereco: string | null
           estado: string | null
           id: string
+          necessidade: string | null
           nome: string
           servicos: string[]
           telefone: string
@@ -74,11 +76,13 @@ export type Database = {
           cep?: string | null
           cidade?: string | null
           created_at?: string
+          desafio?: string | null
           email: string
           empresa?: string | null
           endereco?: string | null
           estado?: string | null
           id?: string
+          necessidade?: string | null
           nome: string
           servicos?: string[]
           telefone: string
@@ -87,11 +91,13 @@ export type Database = {
           cep?: string | null
           cidade?: string | null
           created_at?: string
+          desafio?: string | null
           email?: string
           empresa?: string | null
           endereco?: string | null
           estado?: string | null
           id?: string
+          necessidade?: string | null
           nome?: string
           servicos?: string[]
           telefone?: string
