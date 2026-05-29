@@ -1,6 +1,61 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { render } from "@react-email/components";
+import * as React from "react";
+import { template as formNotification } from "@/lib/email-templates/form-notification";
+
+const NOTIFY_TO = "cesarsarantakos@gmail.com";
+const SITE_NAME = "GS";
+const SENDER_DOMAIN = "notify.gs.stktecnologia.com";
+const FROM_DOMAIN = "gs.stktecnologia.com";
+
+async function notifyFormSubmission(
+  formType: string,
+  fields: Array<{ label: string; value: string }>,
+) {
+  try {
+    const submittedAt = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
+    const element = React.createElement(formNotification.component, {
+      formType,
+      submittedAt,
+      fields,
+    });
+    const html = await render(element);
+    const text = await render(element, { plainText: true });
+    const subject = typeof formNotification.subject === "function"
+      ? formNotification.subject({ formType })
+      : formNotification.subject;
+    const messageId = crypto.randomUUID();
+
+    await (supabaseAdmin as any).from("email_send_log").insert({
+      message_id: messageId,
+      template_name: "form-notification",
+      recipient_email: NOTIFY_TO,
+      status: "pending",
+    });
+
+    const { error } = await (supabaseAdmin as any).rpc("enqueue_email", {
+      queue_name: "transactional_emails",
+      payload: {
+        message_id: messageId,
+        to: NOTIFY_TO,
+        from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+        sender_domain: SENDER_DOMAIN,
+        subject,
+        html,
+        text,
+        purpose: "transactional",
+        label: "form-notification",
+        idempotency_key: messageId,
+        queued_at: new Date().toISOString(),
+      },
+    });
+    if (error) console.error("notifyFormSubmission enqueue error:", error);
+  } catch (e) {
+    console.error("notifyFormSubmission error:", e);
+  }
+}
 
 const proposalSchema = z.object({
   servicos: z.array(z.string().min(1).max(100)).min(1).max(20),
@@ -36,6 +91,19 @@ export const submitProposal = createServerFn({ method: "POST" })
       console.error("submitProposal error:", error);
       throw new Error("Não foi possível enviar a solicitação. Tente novamente.");
     }
+    await notifyFormSubmission("Solicitar Proposta", [
+      { label: "Nome", value: data.nome },
+      { label: "Empresa", value: data.empresa },
+      { label: "E-mail", value: data.email },
+      { label: "Telefone", value: data.telefone },
+      { label: "Serviços", value: data.servicos.join(", ") },
+      { label: "CEP", value: data.cep },
+      { label: "Cidade", value: data.cidade },
+      { label: "Estado", value: data.estado },
+      { label: "Endereço", value: data.endereco },
+      { label: "Necessidade", value: data.necessidade },
+      { label: "Principal desafio", value: data.desafio },
+    ]);
     return { success: true };
   });
 
@@ -92,5 +160,16 @@ export const submitJobApplication = createServerFn({ method: "POST" })
       console.error("job_applications insert error:", error);
       throw new Error("Falha ao registrar candidatura.");
     }
+    await notifyFormSubmission("Trabalhe Conosco", [
+      { label: "Nome", value: data.nome },
+      { label: "E-mail", value: data.email },
+      { label: "Telefone", value: data.telefone },
+      { label: "Região", value: data.regiao },
+      { label: "Área de interesse", value: data.areaInteresse },
+      { label: "Tem experiência?", value: data.temExperiencia ? "Sim" : "Não" },
+      { label: "Disponibilidade", value: data.disponibilidade },
+      { label: "Mensagem", value: data.mensagem ?? "" },
+      { label: "Currículo (arquivo)", value: path },
+    ]);
     return { success: true };
   });
