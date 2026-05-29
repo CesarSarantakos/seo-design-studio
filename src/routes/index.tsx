@@ -6,7 +6,6 @@ import { MissionVisionValues } from "@/components/site/MissionVisionValues";
 import { SignificadoG } from "@/components/site/SignificadoG";
 import { Pillars } from "@/components/site/Pillars";
 import { ProposalSimulator } from "@/components/site/ProposalSimulator";
-import { SectionDivider } from "@/components/site/SectionDivider";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,12 +27,9 @@ function Index() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <SectionDivider variant="dark-to-light" direction="down-right" />
         <MissionVisionValues />
-        <SectionDivider variant="light-to-light" direction="down-left" />
         <SignificadoG />
         <Pillars />
-        <SectionDivider variant="dark-to-light" direction="down-right" />
         <ProposalSimulator />
       </main>
       <Footer />
