@@ -12,7 +12,7 @@ const SERVICES = [
   { icon: TreePine, title: "Jardinagem", desc: "Cuidado com áreas verdes e paisagismo." },
 ];
 
-export const Route = createFileRoute("/solucoes")({
+export const Route = createFileRoute("/solucoes/")({
   head: () => ({
     meta: [
       { title: "Soluções — GS" },
