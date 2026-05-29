@@ -17,6 +17,7 @@ import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SolucoesPortaria24hRouteImport } from './routes/solucoes.portaria-24h'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
@@ -63,6 +64,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolucoesPortaria24hRoute = SolucoesPortaria24hRouteImport.update({
+  id: '/portaria-24h',
+  path: '/portaria-24h',
+  getParentRoute: () => SolucoesRoute,
+} as any)
 const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   id: '/email/unsubscribe',
   path: '/email/unsubscribe',
@@ -99,9 +105,10 @@ export interface FileRoutesByFullPath {
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
-  '/solucoes': typeof SolucoesRoute
+  '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -114,9 +121,10 @@ export interface FileRoutesByTo {
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
-  '/solucoes': typeof SolucoesRoute
+  '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -130,9 +138,10 @@ export interface FileRoutesById {
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
-  '/solucoes': typeof SolucoesRoute
+  '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/solucoes/portaria-24h'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/solucoes/portaria-24h'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
     | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/solucoes/portaria-24h'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -193,7 +205,7 @@ export interface RootRouteChildren {
   QuemSomosRoute: typeof QuemSomosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolicitarPropostaRoute: typeof SolicitarPropostaRoute
-  SolucoesRoute: typeof SolucoesRoute
+  SolucoesRoute: typeof SolucoesRouteWithChildren
   TrabalheConoscoRoute: typeof TrabalheConoscoRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
@@ -260,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solucoes/portaria-24h': {
+      id: '/solucoes/portaria-24h'
+      path: '/portaria-24h'
+      fullPath: '/solucoes/portaria-24h'
+      preLoaderRoute: typeof SolucoesPortaria24hRouteImport
+      parentRoute: typeof SolucoesRoute
+    }
     '/email/unsubscribe': {
       id: '/email/unsubscribe'
       path: '/email/unsubscribe'
@@ -298,6 +317,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface SolucoesRouteChildren {
+  SolucoesPortaria24hRoute: typeof SolucoesPortaria24hRoute
+}
+
+const SolucoesRouteChildren: SolucoesRouteChildren = {
+  SolucoesPortaria24hRoute: SolucoesPortaria24hRoute,
+}
+
+const SolucoesRouteWithChildren = SolucoesRoute._addFileChildren(
+  SolucoesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClientesRoute: ClientesRoute,
@@ -305,7 +336,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuemSomosRoute: QuemSomosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolicitarPropostaRoute: SolicitarPropostaRoute,
-  SolucoesRoute: SolucoesRoute,
+  SolucoesRoute: SolucoesRouteWithChildren,
   TrabalheConoscoRoute: TrabalheConoscoRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
