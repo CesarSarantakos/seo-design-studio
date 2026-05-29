@@ -28,14 +28,14 @@ async function notifyFormSubmission(
       : formNotification.subject;
     const messageId = crypto.randomUUID();
 
-    await supabaseAdmin.from("email_send_log").insert({
+    await (supabaseAdmin as any).from("email_send_log").insert({
       message_id: messageId,
       template_name: "form-notification",
       recipient_email: NOTIFY_TO,
       status: "pending",
     });
 
-    const { error } = await supabaseAdmin.rpc("enqueue_email", {
+    const { error } = await (supabaseAdmin as any).rpc("enqueue_email", {
       queue_name: "transactional_emails",
       payload: {
         message_id: messageId,
