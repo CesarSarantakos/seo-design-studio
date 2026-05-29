@@ -10,13 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrabalheConoscoRouteImport } from './routes/trabalhe-conosco'
-import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as SolicitarPropostaRouteImport } from './routes/solicitar-proposta'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
 import { Route as SolucoesPortaria24hRouteImport } from './routes/solucoes.portaria-24h'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
@@ -27,11 +27,6 @@ import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/e
 const TrabalheConoscoRoute = TrabalheConoscoRouteImport.update({
   id: '/trabalhe-conosco',
   path: '/trabalhe-conosco',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SolucoesRoute = SolucoesRouteImport.update({
-  id: '/solucoes',
-  path: '/solucoes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SolicitarPropostaRoute = SolicitarPropostaRouteImport.update({
@@ -62,6 +57,11 @@ const ClientesRoute = ClientesRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolucoesIndexRoute = SolucoesIndexRouteImport.update({
+  id: '/solucoes/',
+  path: '/solucoes/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SolucoesPortaria24hRoute = SolucoesPortaria24hRouteImport.update({
@@ -105,10 +105,10 @@ export interface FileRoutesByFullPath {
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
-  '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
+  '/solucoes/': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -121,10 +121,10 @@ export interface FileRoutesByTo {
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
-  '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
+  '/solucoes': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -138,10 +138,10 @@ export interface FileRoutesById {
   '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
-  '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
+  '/solucoes/': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -156,10 +156,10 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
-    | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
     | '/solucoes/portaria-24h'
+    | '/solucoes/'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -172,10 +172,10 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
-    | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
     | '/solucoes/portaria-24h'
+    | '/solucoes'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -188,10 +188,10 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
-    | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
     | '/solucoes/portaria-24h'
+    | '/solucoes/'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -205,9 +205,9 @@ export interface RootRouteChildren {
   QuemSomosRoute: typeof QuemSomosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolicitarPropostaRoute: typeof SolicitarPropostaRoute
-  SolucoesRoute: typeof SolucoesRouteWithChildren
   TrabalheConoscoRoute: typeof TrabalheConoscoRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  SolucoesIndexRoute: typeof SolucoesIndexRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -221,13 +221,6 @@ declare module '@tanstack/react-router' {
       path: '/trabalhe-conosco'
       fullPath: '/trabalhe-conosco'
       preLoaderRoute: typeof TrabalheConoscoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/solucoes': {
-      id: '/solucoes'
-      path: '/solucoes'
-      fullPath: '/solucoes'
-      preLoaderRoute: typeof SolucoesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/solicitar-proposta': {
@@ -270,6 +263,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/': {
+      id: '/solucoes/'
+      path: '/solucoes'
+      fullPath: '/solucoes/'
+      preLoaderRoute: typeof SolucoesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/solucoes/portaria-24h': {
@@ -317,18 +317,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface SolucoesRouteChildren {
-  SolucoesPortaria24hRoute: typeof SolucoesPortaria24hRoute
-}
-
-const SolucoesRouteChildren: SolucoesRouteChildren = {
-  SolucoesPortaria24hRoute: SolucoesPortaria24hRoute,
-}
-
-const SolucoesRouteWithChildren = SolucoesRoute._addFileChildren(
-  SolucoesRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClientesRoute: ClientesRoute,
@@ -336,9 +324,9 @@ const rootRouteChildren: RootRouteChildren = {
   QuemSomosRoute: QuemSomosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolicitarPropostaRoute: SolicitarPropostaRoute,
-  SolucoesRoute: SolucoesRouteWithChildren,
   TrabalheConoscoRoute: TrabalheConoscoRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  SolucoesIndexRoute: SolucoesIndexRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
@@ -347,3 +335,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
