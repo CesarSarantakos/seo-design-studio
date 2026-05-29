@@ -8,7 +8,7 @@ const navItems = [
   { to: "/solucoes", label: "Soluções", hasDropdown: true },
   { to: "/quem-somos", label: "Quem Somos" },
   { to: "/trabalhe-conosco", label: "Trabalhe Conosco" },
-  { to: "/contato", label: "Contato" },
+  
 ] as const;
 
 const solucoesItems = [
