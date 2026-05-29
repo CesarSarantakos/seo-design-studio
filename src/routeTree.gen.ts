@@ -18,6 +18,7 @@ import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
+import { Route as SolucoesRecepcaoEAtendimentoRouteImport } from './routes/solucoes.recepcao-e-atendimento'
 import { Route as SolucoesPortaria24hRouteImport } from './routes/solucoes.portaria-24h'
 import { Route as SolucoesLimpezaProfissionalRouteImport } from './routes/solucoes.limpeza-profissional'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
@@ -71,6 +72,12 @@ const SolucoesIndexRoute = SolucoesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SolucoesRoute,
 } as any)
+const SolucoesRecepcaoEAtendimentoRoute =
+  SolucoesRecepcaoEAtendimentoRouteImport.update({
+    id: '/recepcao-e-atendimento',
+    path: '/recepcao-e-atendimento',
+    getParentRoute: () => SolucoesRoute,
+  } as any)
 const SolucoesPortaria24hRoute = SolucoesPortaria24hRouteImport.update({
   id: '/portaria-24h',
   path: '/portaria-24h',
@@ -123,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
+  '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
   '/solucoes/': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -140,6 +148,7 @@ export interface FileRoutesByTo {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
+  '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
   '/solucoes': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -159,6 +168,7 @@ export interface FileRoutesById {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
+  '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
   '/solucoes/': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
+    | '/solucoes/recepcao-e-atendimento'
     | '/solucoes/'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -196,6 +207,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
+    | '/solucoes/recepcao-e-atendimento'
     | '/solucoes'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -214,6 +226,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
+    | '/solucoes/recepcao-e-atendimento'
     | '/solucoes/'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -302,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolucoesIndexRouteImport
       parentRoute: typeof SolucoesRoute
     }
+    '/solucoes/recepcao-e-atendimento': {
+      id: '/solucoes/recepcao-e-atendimento'
+      path: '/recepcao-e-atendimento'
+      fullPath: '/solucoes/recepcao-e-atendimento'
+      preLoaderRoute: typeof SolucoesRecepcaoEAtendimentoRouteImport
+      parentRoute: typeof SolucoesRoute
+    }
     '/solucoes/portaria-24h': {
       id: '/solucoes/portaria-24h'
       path: '/portaria-24h'
@@ -357,12 +377,14 @@ declare module '@tanstack/react-router' {
 interface SolucoesRouteChildren {
   SolucoesLimpezaProfissionalRoute: typeof SolucoesLimpezaProfissionalRoute
   SolucoesPortaria24hRoute: typeof SolucoesPortaria24hRoute
+  SolucoesRecepcaoEAtendimentoRoute: typeof SolucoesRecepcaoEAtendimentoRoute
   SolucoesIndexRoute: typeof SolucoesIndexRoute
 }
 
 const SolucoesRouteChildren: SolucoesRouteChildren = {
   SolucoesLimpezaProfissionalRoute: SolucoesLimpezaProfissionalRoute,
   SolucoesPortaria24hRoute: SolucoesPortaria24hRoute,
+  SolucoesRecepcaoEAtendimentoRoute: SolucoesRecepcaoEAtendimentoRoute,
   SolucoesIndexRoute: SolucoesIndexRoute,
 }
 
@@ -388,3 +410,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
