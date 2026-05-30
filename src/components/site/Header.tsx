@@ -56,7 +56,7 @@ export function Header() {
                 </Link>
                 <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                   <div className="bg-background-deep/95 backdrop-blur-xl border border-border rounded-lg shadow-2xl py-2 min-w-[240px]">
-                    {solucoesItems.map((s) => (
+                    {(item.label === "Segmentos" ? segmentosItems : solucoesItems).map((s) => (
                       <Link
                         key={s.label}
                         to={s.to}
