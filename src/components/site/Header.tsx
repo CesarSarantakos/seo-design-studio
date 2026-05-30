@@ -6,9 +6,9 @@ import logo from "@/assets/gs-logo.png";
 const navItems = [
   { to: "/", label: "Home" },
   { to: "/solucoes", label: "Soluções", hasDropdown: true },
+  { to: "/segmentos", label: "Segmentos", hasDropdown: true },
   { to: "/quem-somos", label: "Quem Somos" },
   { to: "/trabalhe-conosco", label: "Trabalhe Conosco" },
-  
 ] as const;
 
 const solucoesItems = [
@@ -17,6 +17,11 @@ const solucoesItems = [
   { to: "/solucoes/limpeza-profissional", label: "Limpeza Profissional" },
   { to: "/solucoes/recepcao-e-atendimento", label: "Recepção e Atendimento" },
   { to: "/solucoes", label: "Manutenção Predial" },
+] as const;
+
+const segmentosItems = [
+  { to: "/segmentos/empresas", label: "Empresas" },
+  { to: "/segmentos/condominios", label: "Condomínios" },
 ] as const;
 
 const WHATSAPP_URL =
