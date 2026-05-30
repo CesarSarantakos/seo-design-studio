@@ -18,6 +18,7 @@ import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
+import { Route as SegmentosIndexRouteImport } from './routes/segmentos.index'
 import { Route as SolucoesRecepcaoEAtendimentoRouteImport } from './routes/solucoes.recepcao-e-atendimento'
 import { Route as SolucoesPortaria24hRouteImport } from './routes/solucoes.portaria-24h'
 import { Route as SolucoesLimpezaProfissionalRouteImport } from './routes/solucoes.limpeza-profissional'
@@ -73,6 +74,11 @@ const SolucoesIndexRoute = SolucoesIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SolucoesRoute,
+} as any)
+const SegmentosIndexRoute = SegmentosIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SegmentosRoute,
 } as any)
 const SolucoesRecepcaoEAtendimentoRoute =
   SolucoesRecepcaoEAtendimentoRouteImport.update({
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
+  '/segmentos/': typeof SegmentosIndexRoute
   '/solucoes/': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -155,7 +162,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/clientes': typeof ClientesRoute
   '/quem-somos': typeof QuemSomosRoute
-  '/segmentos': typeof SegmentosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
@@ -165,6 +171,7 @@ export interface FileRoutesByTo {
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
+  '/segmentos': typeof SegmentosIndexRoute
   '/solucoes': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -187,6 +194,7 @@ export interface FileRoutesById {
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
+  '/segmentos/': typeof SegmentosIndexRoute
   '/solucoes/': typeof SolucoesIndexRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -210,6 +218,7 @@ export interface FileRouteTypes {
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
+    | '/segmentos/'
     | '/solucoes/'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -220,7 +229,6 @@ export interface FileRouteTypes {
     | '/'
     | '/clientes'
     | '/quem-somos'
-    | '/segmentos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
     | '/trabalhe-conosco'
@@ -230,6 +238,7 @@ export interface FileRouteTypes {
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
+    | '/segmentos'
     | '/solucoes'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -251,6 +260,7 @@ export interface FileRouteTypes {
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
+    | '/segmentos/'
     | '/solucoes/'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -339,6 +349,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolucoesIndexRouteImport
       parentRoute: typeof SolucoesRoute
     }
+    '/segmentos/': {
+      id: '/segmentos/'
+      path: '/'
+      fullPath: '/segmentos/'
+      preLoaderRoute: typeof SegmentosIndexRouteImport
+      parentRoute: typeof SegmentosRoute
+    }
     '/solucoes/recepcao-e-atendimento': {
       id: '/solucoes/recepcao-e-atendimento'
       path: '/recepcao-e-atendimento'
@@ -415,11 +432,13 @@ declare module '@tanstack/react-router' {
 interface SegmentosRouteChildren {
   SegmentosCondominiosRoute: typeof SegmentosCondominiosRoute
   SegmentosEmpresasRoute: typeof SegmentosEmpresasRoute
+  SegmentosIndexRoute: typeof SegmentosIndexRoute
 }
 
 const SegmentosRouteChildren: SegmentosRouteChildren = {
   SegmentosCondominiosRoute: SegmentosCondominiosRoute,
   SegmentosEmpresasRoute: SegmentosEmpresasRoute,
+  SegmentosIndexRoute: SegmentosIndexRoute,
 }
 
 const SegmentosRouteWithChildren = SegmentosRoute._addFileChildren(
