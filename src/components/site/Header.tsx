@@ -6,9 +6,9 @@ import logo from "@/assets/gs-logo.png";
 const navItems = [
   { to: "/", label: "Home" },
   { to: "/solucoes", label: "Soluções", hasDropdown: true },
+  { to: "/segmentos", label: "Segmentos", hasDropdown: true },
   { to: "/quem-somos", label: "Quem Somos" },
   { to: "/trabalhe-conosco", label: "Trabalhe Conosco" },
-  
 ] as const;
 
 const solucoesItems = [
@@ -17,6 +17,11 @@ const solucoesItems = [
   { to: "/solucoes/limpeza-profissional", label: "Limpeza Profissional" },
   { to: "/solucoes/recepcao-e-atendimento", label: "Recepção e Atendimento" },
   { to: "/solucoes", label: "Manutenção Predial" },
+] as const;
+
+const segmentosItems = [
+  { to: "/segmentos/empresas", label: "Empresas" },
+  { to: "/segmentos/condominios", label: "Condomínios" },
 ] as const;
 
 const WHATSAPP_URL =
@@ -51,7 +56,7 @@ export function Header() {
                 </Link>
                 <div className="absolute left-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                   <div className="bg-background-deep/95 backdrop-blur-xl border border-border rounded-lg shadow-2xl py-2 min-w-[240px]">
-                    {solucoesItems.map((s) => (
+                    {(item.label === "Segmentos" ? segmentosItems : solucoesItems).map((s) => (
                       <Link
                         key={s.label}
                         to={s.to}
