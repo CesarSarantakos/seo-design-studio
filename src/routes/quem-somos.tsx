@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { Hero } from "@/components/site/Hero";
 import { SignificadoG } from "@/components/site/SignificadoG";
 import { MissionVisionValues } from "@/components/site/MissionVisionValues";
+import { Pillars } from "@/components/site/Pillars";
 
 export const Route = createFileRoute("/quem-somos")({
   head: () => ({
@@ -22,16 +24,11 @@ function Page() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 pt-32">
-        <section className="container mx-auto px-6 py-16 max-w-3xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground">Quem Somos</h1>
-          <p className="mt-6 text-lg text-foreground/85 leading-relaxed">
-            A GS nasceu para representar mais do que terceirização. Representa pessoas comprometidas,
-            operações organizadas e a responsabilidade de servir com presença.
-          </p>
-        </section>
+      <main className="flex-1">
+        <Hero />
         <MissionVisionValues />
         <SignificadoG />
+        <Pillars />
       </main>
       <Footer />
     </div>

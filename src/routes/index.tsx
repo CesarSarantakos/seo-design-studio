@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { Hero } from "@/components/site/Hero";
-import { MissionVisionValues } from "@/components/site/MissionVisionValues";
-import { SignificadoG } from "@/components/site/SignificadoG";
-import { Pillars } from "@/components/site/Pillars";
+import { HomeHero } from "@/components/site/HomeHero";
+import { TrustStrip } from "@/components/site/TrustStrip";
+import { MarketChange } from "@/components/site/MarketChange";
+import { HomeBenefits } from "@/components/site/HomeBenefits";
+import { HomeTestimonials } from "@/components/site/HomeTestimonials";
 import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 
 export const Route = createFileRoute("/")({
@@ -26,10 +27,11 @@ function Index() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
-        <Hero />
-        <MissionVisionValues />
-        <SignificadoG />
-        <Pillars />
+        <HomeHero />
+        <TrustStrip />
+        <MarketChange />
+        <HomeBenefits />
+        <HomeTestimonials />
         <ProposalSimulator />
       </main>
       <Footer />
