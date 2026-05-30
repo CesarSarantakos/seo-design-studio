@@ -13,6 +13,7 @@ import { Route as TrabalheConoscoRouteImport } from './routes/trabalhe-conosco'
 import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as SolicitarPropostaRouteImport } from './routes/solicitar-proposta'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SegmentosRouteImport } from './routes/segmentos'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as IndexRouteImport } from './routes/index'
@@ -20,6 +21,8 @@ import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
 import { Route as SolucoesRecepcaoEAtendimentoRouteImport } from './routes/solucoes.recepcao-e-atendimento'
 import { Route as SolucoesPortaria24hRouteImport } from './routes/solucoes.portaria-24h'
 import { Route as SolucoesLimpezaProfissionalRouteImport } from './routes/solucoes.limpeza-profissional'
+import { Route as SegmentosEmpresasRouteImport } from './routes/segmentos.empresas'
+import { Route as SegmentosCondominiosRouteImport } from './routes/segmentos.condominios'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
@@ -44,6 +47,11 @@ const SolicitarPropostaRoute = SolicitarPropostaRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SegmentosRoute = SegmentosRouteImport.update({
+  id: '/segmentos',
+  path: '/segmentos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuemSomosRoute = QuemSomosRouteImport.update({
@@ -83,6 +91,16 @@ const SolucoesLimpezaProfissionalRoute =
     path: '/limpeza-profissional',
     getParentRoute: () => SolucoesRoute,
   } as any)
+const SegmentosEmpresasRoute = SegmentosEmpresasRouteImport.update({
+  id: '/empresas',
+  path: '/empresas',
+  getParentRoute: () => SegmentosRoute,
+} as any)
+const SegmentosCondominiosRoute = SegmentosCondominiosRouteImport.update({
+  id: '/condominios',
+  path: '/condominios',
+  getParentRoute: () => SegmentosRoute,
+} as any)
 const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   id: '/email/unsubscribe',
   path: '/email/unsubscribe',
@@ -116,11 +134,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/clientes': typeof ClientesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/segmentos': typeof SegmentosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/segmentos/condominios': typeof SegmentosCondominiosRoute
+  '/segmentos/empresas': typeof SegmentosEmpresasRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
@@ -134,10 +155,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/clientes': typeof ClientesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/segmentos': typeof SegmentosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/segmentos/condominios': typeof SegmentosCondominiosRoute
+  '/segmentos/empresas': typeof SegmentosEmpresasRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
@@ -152,11 +176,14 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/clientes': typeof ClientesRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/segmentos': typeof SegmentosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/segmentos/condominios': typeof SegmentosCondominiosRoute
+  '/segmentos/empresas': typeof SegmentosEmpresasRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
@@ -172,11 +199,14 @@ export interface FileRouteTypes {
     | '/'
     | '/clientes'
     | '/quem-somos'
+    | '/segmentos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
     | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/segmentos/condominios'
+    | '/segmentos/empresas'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
@@ -190,10 +220,13 @@ export interface FileRouteTypes {
     | '/'
     | '/clientes'
     | '/quem-somos'
+    | '/segmentos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/segmentos/condominios'
+    | '/segmentos/empresas'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
@@ -207,11 +240,14 @@ export interface FileRouteTypes {
     | '/'
     | '/clientes'
     | '/quem-somos'
+    | '/segmentos'
     | '/sitemap.xml'
     | '/solicitar-proposta'
     | '/solucoes'
     | '/trabalhe-conosco'
     | '/email/unsubscribe'
+    | '/segmentos/condominios'
+    | '/segmentos/empresas'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
@@ -226,6 +262,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ClientesRoute: typeof ClientesRoute
   QuemSomosRoute: typeof QuemSomosRoute
+  SegmentosRoute: typeof SegmentosRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolicitarPropostaRoute: typeof SolicitarPropostaRoute
   SolucoesRoute: typeof SolucoesRouteWithChildren
@@ -265,6 +302,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/segmentos': {
+      id: '/segmentos'
+      path: '/segmentos'
+      fullPath: '/segmentos'
+      preLoaderRoute: typeof SegmentosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quem-somos': {
@@ -316,6 +360,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolucoesLimpezaProfissionalRouteImport
       parentRoute: typeof SolucoesRoute
     }
+    '/segmentos/empresas': {
+      id: '/segmentos/empresas'
+      path: '/empresas'
+      fullPath: '/segmentos/empresas'
+      preLoaderRoute: typeof SegmentosEmpresasRouteImport
+      parentRoute: typeof SegmentosRoute
+    }
+    '/segmentos/condominios': {
+      id: '/segmentos/condominios'
+      path: '/condominios'
+      fullPath: '/segmentos/condominios'
+      preLoaderRoute: typeof SegmentosCondominiosRouteImport
+      parentRoute: typeof SegmentosRoute
+    }
     '/email/unsubscribe': {
       id: '/email/unsubscribe'
       path: '/email/unsubscribe'
@@ -354,6 +412,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface SegmentosRouteChildren {
+  SegmentosCondominiosRoute: typeof SegmentosCondominiosRoute
+  SegmentosEmpresasRoute: typeof SegmentosEmpresasRoute
+}
+
+const SegmentosRouteChildren: SegmentosRouteChildren = {
+  SegmentosCondominiosRoute: SegmentosCondominiosRoute,
+  SegmentosEmpresasRoute: SegmentosEmpresasRoute,
+}
+
+const SegmentosRouteWithChildren = SegmentosRoute._addFileChildren(
+  SegmentosRouteChildren,
+)
+
 interface SolucoesRouteChildren {
   SolucoesLimpezaProfissionalRoute: typeof SolucoesLimpezaProfissionalRoute
   SolucoesPortaria24hRoute: typeof SolucoesPortaria24hRoute
@@ -376,6 +448,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClientesRoute: ClientesRoute,
   QuemSomosRoute: QuemSomosRoute,
+  SegmentosRoute: SegmentosRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolicitarPropostaRoute: SolicitarPropostaRoute,
   SolucoesRoute: SolucoesRouteWithChildren,
