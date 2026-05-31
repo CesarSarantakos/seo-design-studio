@@ -179,7 +179,9 @@ function Page() {
             </div>
           </div>
         </section>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+
+        {/* DOR + SOLUÇÃO */}
+        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
             {/* PAIN */}
             <div className="bg-card rounded-2xl p-6 md:p-10">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
