@@ -16,17 +16,15 @@ export function OperationImpact() {
           {/* Video Player - Left Side */}
           <div className="order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 aspect-video">
-              <video
-                width={560}
-                height={315}
-                controls
-                preload="metadata"
-                className="w-full h-full object-cover"
-                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 315'%3E%3Crect fill='%23000' width='560' height='315'/%3E%3C/svg%3E"
-              >
-                <source src="/gs-operacao-video.mp4" type="video/mp4" />
-                Seu navegador não suporta a tag de vídeo.
-              </video>
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/jo795DODkzw"
+                title="O que muda quando a GS assume sua operação"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
             </div>
           </div>
 
