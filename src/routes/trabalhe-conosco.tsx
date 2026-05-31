@@ -33,11 +33,11 @@ export const Route = createFileRoute("/trabalhe-conosco")({
 });
 
 const BENEFITS = [
-  { icon: FileText, label: "Registro em carteira" },
-  { icon: CalendarCheck, label: "Pagamento em dia" },
-  { icon: HandHeart, label: "Respeito no ambiente de trabalho" },
-  { icon: TrendingUp, label: "Oportunidade de crescimento" },
-  { icon: Users, label: "Equipe preparada para te apoiar" },
+  { icon: FileText, label: "Registro em carteira", desc: "Contratação formal e registro desde o início das atividades." },
+  { icon: CalendarCheck, label: "Pagamento em dia", desc: "Compromisso com pagamentos corretos e dentro dos prazos." },
+  { icon: HandHeart, label: "Respeito no ambiente de trabalho", desc: "Valorizamos profissionais e relações baseadas no respeito." },
+  { icon: TrendingUp, label: "Oportunidade de crescimento", desc: "Reconhecemos quem se dedica e busca evolução profissional." },
+  { icon: Users, label: "Vagas em clientes de confiança", desc: "Trabalhamos com empresas e condomínios que valorizam bons profissionais." },
 ];
 
 const TESTIMONIALS = [
