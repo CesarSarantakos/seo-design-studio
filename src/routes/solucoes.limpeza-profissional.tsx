@@ -153,15 +153,15 @@ function Page() {
 
           {/* Destaques strip */}
           <div className="relative container mx-auto px-6 lg:px-12 -mt-4 pb-12">
-            <div className="bg-background-deep/80 backdrop-blur-md border border-border rounded-2xl p-6 md:p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {DESTAQUES.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex flex-col items-center text-center gap-3 group">
-                  <Icon className="w-9 h-9 text-primary group-hover:scale-110 transition-transform" strokeWidth={1.5} />
-                  <span className="text-[11px] md:text-xs font-semibold uppercase tracking-wider text-white/85 leading-tight">
-                    {label}
-                  </span>
-                </div>
-              ))}
+            <div className="rounded-2xl border border-border bg-card/60 backdrop-blur p-6 md:p-10">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-4 md:divide-x md:divide-border">
+                {DESTAQUES.map(({ icon: Icon, label }) => (
+                  <div key={label} className="md:px-4 text-center">
+                    <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                    <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{label}</h3>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
