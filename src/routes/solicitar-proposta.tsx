@@ -165,7 +165,7 @@ function Page() {
                 {/* Connector line linking the 4 steps (desktop only) */}
                 <div
                   aria-hidden
-                  className="hidden md:block absolute left-14 -translate-x-1/2 top-6 bottom-6 w-px bg-gradient-to-b from-primary/40 via-border to-primary/40"
+                  className="hidden md:block absolute left-14 -translate-x-1/2 top-6 bottom-6 w-px bg-gradient-to-b from-primary/40 via-border to-primary/40 text-[#001742]"
                 />
               {/* STEP 1 */}
               <StepCard step={STEPS[0]}>
