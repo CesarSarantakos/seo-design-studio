@@ -48,22 +48,6 @@ const SERVICES: Service[] = [
     highlights: ["Acolhimento", "Atendimento telefônico", "Organização do fluxo"],
     available: true,
   },
-  {
-    icon: KeyRound,
-    title: "Controle de Acesso",
-    tagline: "Quem entra, quem sai, sempre sob controle.",
-    desc: "Operação e gestão de portarias, controle de visitantes e prestadores com registros consistentes.",
-    highlights: ["Registros consistentes", "Gestão de visitantes", "Fluxo organizado"],
-    available: false,
-  },
-  {
-    icon: Wrench,
-    title: "Manutenção Predial",
-    tagline: "Tudo funcionando, sem surpresas.",
-    desc: "Manutenção preventiva e corretiva para manter a estrutura do seu ambiente sempre em ordem.",
-    highlights: ["Preventiva", "Corretiva", "Equipe multidisciplinar"],
-    available: false,
-  },
 ];
 
 export const Route = createFileRoute("/solucoes/")({
