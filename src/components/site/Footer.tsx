@@ -69,6 +69,7 @@ export function Footer() {
             </a>
           </div>
         </div>
+      </div>
       <div className="border-t border-border">
         <div className="container mx-auto px-6 py-4 text-xs text-muted-foreground text-center">
           © {new Date().getFullYear()} GS — O que importa, cuidamos. Todos os direitos reservados.
