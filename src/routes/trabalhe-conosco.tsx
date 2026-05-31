@@ -67,7 +67,7 @@ function Page() {
       <Header />
       <main className="flex-1 bg-background">
         {/* HERO */}
-        <section className="relative min-h-[88vh] flex items-center overflow-hidden">
+        <section className="relative min-h-screen md:min-h-[90vh] flex items-center overflow-hidden">
           <img
             src={heroImg}
             alt="Equipe GS sorrindo em ambiente corporativo"
@@ -75,33 +75,36 @@ function Page() {
             width={1920}
             height={1280}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background-deep via-background-deep/95 to-background-deep/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background-deep via-background-deep/50 to-transparent" />
-          <div className="container relative mx-auto px-6 py-32 lg:py-40">
+          {/* Gradient overlays */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background-deep from-5% via-background-deep/80 via-40% to-background-deep/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background-deep/20 via-background-deep/40 to-background-deep/60" />
+          <div className="container relative mx-auto px-4 sm:px-6 py-20 sm:py-32 lg:py-40">
             <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tight" style={{ textShadow: "0 2px 14px rgba(0,0,0,0.45)" }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] tracking-tight" style={{ textShadow: "0 2px 14px rgba(0,0,0,0.45)" }}>
                 Aqui, você
                 <br />
                 não é só mais
                 <br />
                 um{" "}
-                <span className="text-primary inline-flex items-baseline gap-3">
+                <span className="text-primary inline-flex items-baseline gap-2 sm:gap-3">
                   funcionário.
-                  <Heart className="w-8 h-8 md:w-10 md:h-10 text-primary fill-primary/20 self-center" />
+                  <Heart className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary fill-primary/20 self-center flex-shrink-0" />
                 </span>
               </h1>
-              <p className="mt-8 text-lg text-foreground/85 max-w-md leading-relaxed">
+              <p className="mt-6 sm:mt-8 text-base sm:text-lg text-foreground/85 max-w-md leading-relaxed">
                 Na GS, seu trabalho é respeitado, você é valorizado e faz parte de uma equipe que cuida de pessoas.
               </p>
               <a
                 href="#candidatura"
-                className="mt-10 inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full px-7 py-4 text-sm font-semibold uppercase tracking-wide shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5"
+                className="mt-8 sm:mt-10 inline-flex items-center gap-2 sm:gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full px-6 sm:px-7 py-3 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-wide shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5"
               >
                 <Send className="w-4 h-4" />
-                Quero fazer parte da equipe
+                <span className="hidden sm:inline">Quero fazer parte da equipe</span>
+                <span className="sm:hidden">Fazer parte</span>
               </a>
             </div>
-            <div className="hidden lg:block absolute right-8 bottom-16 max-w-xs bg-background-deep/70 backdrop-blur-md border border-primary/30 rounded-2xl p-5">
+            {/* Desktop info card */}
+            <div className="hidden lg:block absolute right-6 lg:right-8 bottom-12 lg:bottom-16 max-w-xs bg-background-deep/70 backdrop-blur-md border border-primary/30 rounded-2xl p-5">
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center flex-shrink-0">
                   <Users className="w-5 h-5 text-primary" />
