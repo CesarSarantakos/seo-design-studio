@@ -43,9 +43,9 @@ const BENEFITS = [
 const TESTIMONIALS = [
   {
     img: colab1,
-    quote: "Fui muito bem recebido desde o primeiro dia. Me senti parte da equipe.",
+    quote: "Entrei como auxiliar e hoje atuo como zelador. Isso mostra que a empresa valoriza quem se dedica.",
     name: "Gael Brito",
-    role: "Auxiliar de serviços gerais",
+    role: "Zelador",
   },
   {
     img: colab2,
@@ -55,9 +55,9 @@ const TESTIMONIALS = [
   },
   {
     img: colab3,
-    quote: "Aqui tenho respeito e oportunidade de crescer.",
-    name: "Ana Lúcia",
-    role: "Auxiliar de Serviços",
+    quote: "Trabalho com confiança e de cabeça erguida, porque sei que posso contar com a GS.",
+    name: "Eliezer Santos",
+    role: "Porteiro",
   },
 ];
 
@@ -124,7 +124,7 @@ function Page() {
               </h2>
               <div className="h-px w-12 bg-primary/40" />
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
               {BENEFITS.map((b) => (
                 <div
                   key={b.label}
@@ -134,6 +134,7 @@ function Page() {
                     <b.icon className="w-7 h-7 text-primary" />
                   </div>
                   <p className="text-sm font-semibold text-foreground leading-snug">{b.label}</p>
+                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{b.desc}</p>
                 </div>
               ))}
             </div>
