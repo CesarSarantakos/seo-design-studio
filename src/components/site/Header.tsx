@@ -13,10 +13,8 @@ const navItems = [
 
 const solucoesItems = [
   { to: "/solucoes/portaria-24h", label: "Portaria 24h" },
-  { to: "/solucoes", label: "Controle de Acesso" },
   { to: "/solucoes/limpeza-profissional", label: "Limpeza Profissional" },
   { to: "/solucoes/recepcao-e-atendimento", label: "Recepção e Atendimento" },
-  { to: "/solucoes", label: "Manutenção Predial" },
 ] as const;
 
 const segmentosItems = [
