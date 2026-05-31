@@ -97,14 +97,14 @@ export function Header() {
         </button>
       </div>
       {open && (
-        <div className="lg:hidden bg-background-deep border-t border-border">
-          <nav className="container mx-auto px-6 py-4 flex flex-col gap-3" aria-label="Mobile">
+        <div className="lg:hidden bg-[#0B1B3D] border-t border-white/10 shadow-2xl shadow-black/40">
+          <nav className="container mx-auto px-6 py-4 flex flex-col divide-y divide-white/10" aria-label="Mobile">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="text-sm font-medium uppercase text-foreground/90 hover:text-primary py-2"
+                className="text-sm font-medium uppercase text-white/90 hover:text-primary py-3"
               >
                 {item.label}
               </Link>
@@ -113,7 +113,7 @@ export function Header() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-full px-5 py-2.5 text-sm font-semibold uppercase tracking-wide mt-2"
+              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-full px-5 py-2.5 text-sm font-semibold uppercase tracking-wide mt-4 border-0"
             >
               <MessageCircle className="w-4 h-4" />
               Fale com a GS
