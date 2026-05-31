@@ -104,7 +104,7 @@ function Page() {
             className="absolute inset-0 bg-gradient-to-t from-background-deep/85 via-transparent to-transparent"
           />
 
-          <div className="relative container mx-auto px-6 lg:px-12 min-h-[92vh] flex items-center pt-32 pb-20">
+          <div className="relative container mx-auto px-6 lg:px-12 min-h-[92vh] flex items-center pt-28 pb-16 md:pt-32 md:pb-20">
             <div className="max-w-2xl">
               <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-6">
                 <span className="h-px w-8 bg-primary" />
@@ -150,18 +150,18 @@ function Page() {
               </div>
             </div>
           </div>
+        </section>
 
-          {/* Destaques strip */}
-          <div className="relative container mx-auto px-6 lg:px-12 -mt-4 pb-12">
-            <div className="rounded-2xl border border-border bg-card/60 backdrop-blur p-6 md:p-10">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-4 md:divide-x md:divide-border">
-                {DESTAQUES.map(({ icon: Icon, label }) => (
-                  <div key={label} className="md:px-4 text-center">
-                    <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
-                    <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{label}</h3>
-                  </div>
-                ))}
-              </div>
+        {/* Destaques strip */}
+        <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16">
+          <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-4 md:divide-x md:divide-border">
+              {DESTAQUES.map(({ icon: Icon, label }) => (
+                <div key={label} className="md:px-4 text-center">
+                  <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                  <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{label}</h3>
+                </div>
+              ))}
             </div>
           </div>
         </section>
