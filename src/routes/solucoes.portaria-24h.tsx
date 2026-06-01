@@ -138,9 +138,9 @@ function Page() {
               >
                 Portaria 24h
                 <br />
-                <span className="text-primary">Seu apoio está aqui.</span>
+                <span className="text-primary">Nosso cuidado garante</span>
                 <br />
-                <span className="text-primary/90">Sempre.</span>
+                <span className="text-primary/90">A sua segurança.</span>
               </h1>
               <div className="h-[2px] sm:h-[3px] w-16 sm:w-24 bg-primary mt-6 sm:mt-10 mb-5 sm:mb-7" />
               <p
