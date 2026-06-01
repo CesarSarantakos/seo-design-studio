@@ -46,7 +46,7 @@ export function HomeHero() {
           <div className="mt-6 flex items-center gap-3 text-white/85">
             <ShieldCheck className="w-5 h-5 text-[var(--gold)] shrink-0" strokeWidth={2} />
             <p className="text-sm md:text-base">
-              Protegemos pessoas, patrimônio e cuidamos
+              Servimos pessoas, protegemos patrimônio e cuidamos
               <br className="hidden sm:block" /> do que realmente importa.
             </p>
           </div>
