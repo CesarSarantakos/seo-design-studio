@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { toast } from "sonner";
@@ -22,7 +21,6 @@ import {
   Leaf,
   ShieldAlert,
 } from "lucide-react";
-import { submitProposal } from "@/lib/api/forms.functions";
 
 export const Route = createFileRoute("/solicitar-proposta")({
   head: () => ({
@@ -112,7 +110,6 @@ function FieldInput({
 }
 
 function Page() {
-  const submit = useServerFn(submitProposal);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     servicos: [] as string[],
@@ -175,9 +172,16 @@ function Page() {
         estado: data.estado,
       };
       
-      console.log("[v0] Submitting payload:", payload);
-      const result = await submit(payload);
-      console.log("[v0] Server response:", result);
+      console.log("[v0] Submitting payload via fetch:", payload);
+      
+      const response = await fetch("/api/send-proposal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      
+      const result = await response.json();
+      console.log("[v0] API response:", result);
       
       if (result.success) {
         toast.success("Proposta enviada! Retorno em até 1 hora útil.");
@@ -188,7 +192,6 @@ function Page() {
     } catch (err) {
       console.error("[v0] Submit error:", err);
       const errorMsg = err instanceof Error ? err.message : "Erro ao enviar proposta.";
-      console.log("[v0] Error message:", errorMsg);
       toast.error(errorMsg);
     } finally {
       setLoading(false);

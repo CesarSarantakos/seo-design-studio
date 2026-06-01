@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,22 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Paperclip } from "lucide-react";
 import { toast } from "sonner";
-import { submitJobApplication } from "@/lib/api/forms.functions";
-
-function fileToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result as string;
-      resolve(result.split(",")[1] ?? "");
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
 
 export function JobApplicationForm() {
-  const submit = useServerFn(submitJobApplication);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [form, setForm] = useState({
@@ -82,8 +67,7 @@ export function JobApplicationForm() {
 
     setLoading(true);
     try {
-      const resumeBase64 = await fileToBase64(file);
-      const result = await submit({
+      const payload = {
         nome: form.nome,
         telefone: form.telefone,
         email: form.email,
@@ -93,28 +77,41 @@ export function JobApplicationForm() {
         areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
         temExperiencia: form.temExperiencia === "sim",
         disponibilidade: form.disponibilidade as "diurno" | "noturno",
-        resumeBase64,
-        resumeName: file.name,
-        resumeType: file.type,
+      };
+      
+      console.log("[v0] Submitting job application via fetch:", payload);
+      
+      const response = await fetch("/api/send-job-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
       
-      toast.success(result.message || "Candidatura enviada com sucesso! Nossa equipe entrará em contato.");
+      const result = await response.json();
+      console.log("[v0] API response:", result);
       
-      // Reset form
-      setForm({
-        nome: "",
-        telefone: "",
-        email: "",
-        dataNascimento: "",
-        mensagem: "",
-        regiao: "",
-        areaInteresse: "",
-        temExperiencia: "",
-        disponibilidade: "",
-      });
-      setFile(null);
-      if (fileRef.current) fileRef.current.value = "";
+      if (result.success) {
+        toast.success(result.message || "Candidatura enviada com sucesso! Nossa equipe entrará em contato.");
+        
+        // Reset form
+        setForm({
+          nome: "",
+          telefone: "",
+          email: "",
+          dataNascimento: "",
+          mensagem: "",
+          regiao: "",
+          areaInteresse: "",
+          temExperiencia: "",
+          disponibilidade: "",
+        });
+        setFile(null);
+        if (fileRef.current) fileRef.current.value = "";
+      } else {
+        toast.error(result.message || "Erro ao enviar candidatura.");
+      }
     } catch (err: any) {
+      console.error("[v0] Submit error:", err);
       const errorMsg = err?.message || "Erro ao enviar candidatura";
       toast.error(errorMsg);
     } finally {

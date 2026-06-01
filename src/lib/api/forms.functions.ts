@@ -22,7 +22,7 @@ type ContactResponse = {
 };
 
 export const submitContact = createServerFn({ method: "POST" })
-  .validator((data: unknown) => {
+  .inputValidator((data: unknown) => {
     console.log("[v0] submitContact validator received:", JSON.stringify(data));
     const validated = contactSchema.parse(data);
     console.log("[v0] submitContact validation passed");
@@ -84,7 +84,7 @@ type JobAppResponse = {
 };
 
 export const submitJobApplication = createServerFn({ method: "POST" })
-  .validator((data: unknown) => {
+  .inputValidator((data: unknown) => {
     console.log("[v0] submitJobApplication validator received");
     const validated = jobAppSchema.parse(data);
     console.log("[v0] submitJobApplication validation passed");
@@ -196,7 +196,7 @@ type ProposalResponse = {
 };
 
 export const submitProposal = createServerFn({ method: "POST" })
-  .validator((data: unknown) => {
+  .inputValidator((data: unknown) => {
     console.log("[v0] submitProposal validator received:", JSON.stringify(data));
     console.log("[v0] submitProposal validator type:", typeof data);
     const validated = proposalSchema.parse(data);
