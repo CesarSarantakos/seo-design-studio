@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Building2, Home, ArrowRight, CheckCircle2 } from "lucide-react";
-import empresasImg from "@/assets/empresas-hero.jpg";
-import condominiosImg from "@/assets/condominios-hero.jpg";
+import empresasImg from "@/assets/empresa-hero.jpg";
+import condominiosImg from "@/assets/condominio-hero.jpg";
 
 type Segment = {
   icon: typeof Building2;
