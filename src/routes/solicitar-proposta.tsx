@@ -16,18 +16,14 @@ import {
   Sparkles,
   ShoppingBag,
   Building2,
-  Package,
   Wrench,
   Camera,
   MoreHorizontal,
-  MessageCircle,
-  Target,
-  UserX,
-  RefreshCw,
   HeadphonesIcon,
+  RefreshCw,
+  UserX,
   Zap,
   Send,
-  ShieldCheck as ShieldIcon,
   Clock,
   Check,
   CheckCircle,
@@ -36,6 +32,7 @@ import {
   Smartphone,
   Building,
   Heart,
+  Package,
 } from "lucide-react";
 import { submitProposal } from "@/lib/api/forms.functions";
 
@@ -58,37 +55,32 @@ export const Route = createFileRoute("/solicitar-proposta")({
 });
 
 const PROFESSIONALS = [
-  // Segurança e Portaria
-  { category: "Segurança e Portaria", id: "Portaria 24h", label: "Portaria 24h", icon: ShieldCheck },
-  { category: "Segurança e Portaria", id: "Controlador de Acesso", label: "Controlador de Acesso", icon: Users },
-  { category: "Segurança e Portaria", id: "Ronda Patrimonial", label: "Ronda Patrimonial", icon: ShieldCheck },
-  { category: "Segurança e Portaria", id: "Bombeiro Civil", label: "Bombeiro Civil", icon: Flame },
-  
-  // Limpeza e Zeladoria
-  { category: "Limpeza e Zeladoria", id: "Auxiliar de Limpeza", label: "Auxiliar de Limpeza", icon: Sparkles },
-  { category: "Limpeza e Zeladoria", id: "Auxiliar de Serviços Gerais", label: "Auxiliar de Serviços Gerais", icon: ShoppingBag },
-  { category: "Limpeza e Zeladoria", id: "Zeladoria Predial", label: "Zeladoria Predial", icon: Building2 },
-  { category: "Limpeza e Zeladoria", id: "Jardinagem", label: "Jardinagem", icon: Sparkles },
-  
-  // Recepção e Suporte
-  { category: "Recepção e Suporte", id: "Recepcionista", label: "Recepcionista", icon: Headphones },
-  { category: "Recepção e Suporte", id: "Copeira", label: "Copeira", icon: Package },
-  { category: "Recepção e Suporte", id: "Apoio Logístico", label: "Apoio Logístico", icon: Package },
-  
-  // Infraestrutura
-  { category: "Infraestrutura", id: "Manutenção Predial", label: "Manutenção Predial", icon: Wrench },
-  { category: "Infraestrutura", id: "Monitoramento", label: "Monitoramento", icon: Camera },
-  { category: "Infraestrutura", id: "Outros", label: "Outros", icon: MoreHorizontal },
+  { id: "Portaria 24h", label: "Portaria 24h", icon: ShieldCheck },
+  { id: "Controlador de Acesso", label: "Controlador de Acesso", icon: Users },
+  { id: "Ronda Patrimonial", label: "Ronda Patrimonial", icon: ShieldCheck },
+  { id: "Bombeiro Civil", label: "Bombeiro Civil", icon: Flame },
+  { id: "Auxiliar de Limpeza", label: "Auxiliar de Limpeza", icon: Sparkles },
+  { id: "Auxiliar de Serviços Gerais", label: "Auxiliar de Serviços Gerais", icon: ShoppingBag },
+  { id: "Zeladoria Predial", label: "Zeladoria Predial", icon: Building2 },
+  { id: "Jardinagem", label: "Jardinagem", icon: Sparkles },
+  { id: "Recepcionista", label: "Recepcionista", icon: Headphones },
+  { id: "Copeira", label: "Copeira", icon: Package },
+  { id: "Apoio Logístico", label: "Apoio Logístico", icon: Package },
+  { id: "Manutenção Predial", label: "Manutenção Predial", icon: Wrench },
+  { id: "Monitoramento", label: "Monitoramento", icon: Camera },
+  { id: "Serviços Personalizados", label: "Serviços Personalizados", icon: MoreHorizontal },
 ] as const;
 
 const CHALLENGES = [
-  { id: "Empresa atual sem suporte", label: "Empresa atual sem suporte", icon: HeadphonesIcon },
-  { id: "Busco melhorar a qualidade", label: "Busco melhorar a qualidade dos serviços", icon: Sparkles },
-  { id: "Contrato próximo do vencimento", label: "Contrato atual próximo do vencimento", icon: Clock },
-  { id: "Alta rotatividade", label: "Alta rotatividade de funcionários", icon: RefreshCw },
-  { id: "Falta de funcionários", label: "Falta de funcionários", icon: UserX },
-  { id: "Reduzir custos", label: "Busco reduzir custos", icon: Zap },
-  { id: "Ainda não terceirizamos", label: "Ainda não terceirizamos", icon: MessageCircle },
+  "Seleção uma opção",
+  "Empresa atual sem suporte",
+  "Busco melhorar a qualidade dos serviços",
+  "Falta de funcionários",
+  "Alta rotatividade de funcionários",
+  "Busco reduzir custos",
+  "Contrato atual próximo do vencimento",
+  "Ainda não terceirizamos",
+  "Há muito tempo tenho funcionários indisponíveis",
 ] as const;
 
 function Page() {
@@ -114,7 +106,7 @@ function Page() {
 
   const canGoToStep2 = data.servicos.length > 0;
   const canGoToStep3 = data.endereco.trim().length > 0 && data.necessidade.trim().length > 0;
-  const canSubmit = data.nomeEmpresa.trim() && data.seuNome.trim() && data.email.trim() && data.telefone.trim() && data.desafio;
+  const canSubmit = data.nomeEmpresa.trim() && data.seuNome.trim() && data.email.trim() && data.telefone.trim() && data.desafio && data.desafio !== "Seleção uma opção";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -162,305 +154,306 @@ function Page() {
     }
   };
 
-  const groupedProfessionals = PROFESSIONALS.reduce((acc, prof) => {
-    const existing = acc.find(g => g.category === prof.category);
-    if (existing) {
-      existing.items.push(prof);
-    } else {
-      acc.push({ category: prof.category, items: [prof] });
-    }
-    return acc;
-  }, [] as Array<{ category: string; items: typeof PROFESSIONALS }> );
-
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-background to-background/95">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1 pt-20 pb-24 px-6">
-        <div className="max-w-3xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Receba sua proposta <span className="text-primary">personalizada</span>
+        <div className="max-w-4xl mx-auto">
+          {/* Decorative gradient header */}
+          <div className="text-center mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-3">
+              Solicite sua <span className="text-primary">proposta personalizada</span>
             </h1>
-            <p className="text-neutral-300 text-lg">
-              Conte sobre sua operação e montamos a solução ideal para você.
+            <p className="text-neutral-600 text-base">
+              Preencha o formulário abaixo e um especialista GS entrará em contato em até 1 hora
             </p>
           </div>
 
-          {/* Step Indicators */}
-          <div className="flex items-center justify-between mb-12">
-            {[1, 2, 3].map((step) => (
-              <div key={step} className="flex items-center flex-1">
-                <button
-                  onClick={() => {
-                    if (step === 1 || (step === 2 && canGoToStep2) || (step === 3 && canGoToStep3)) {
-                      setCurrentStep(step);
-                    }
-                  }}
-                  className={`relative w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${
-                    step <= currentStep
-                      ? "bg-primary text-white shadow-lg shadow-primary/40"
-                      : "bg-neutral-800 text-neutral-400 cursor-not-allowed"
-                  }`}
-                  disabled={step > currentStep}
-                >
-                  {step < currentStep ? <Check className="w-6 h-6" /> : step}
-                </button>
-                {step < 3 && (
-                  <div className={`flex-1 h-1 mx-3 rounded-full transition-all duration-300 ${step < currentStep ? "bg-primary" : "bg-neutral-800"}`} />
-                )}
-              </div>
-            ))}
-          </div>
+          {/* Main Form Container */}
+          <form onSubmit={handleSubmit} className="relative">
+            <style>{`
+              @keyframes fadeIn {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              .fade-in-step {
+                animation: fadeIn 0.4s ease-out;
+              }
+            `}</style>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* STEP 1 */}
-            {currentStep === 1 && (
-              <div className="space-y-6 animate-fade-in">
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                    Etapa 1: Quais profissionais sua operação precisa?
-                  </h2>
-                  <p className="text-neutral-400">Selecione uma ou mais opções</p>
-                </div>
+            <div className="border-2 border-primary/30 rounded-3xl p-8 md:p-12 bg-gradient-to-br from-white to-neutral-50/50 shadow-xl shadow-primary/5 relative">
+              {/* Vertical step indicator line */}
+              <div className="absolute left-8 md:left-12 top-24 bottom-24 w-0.5 bg-gradient-to-b from-primary/0 via-primary/30 to-primary/0" />
 
-                {groupedProfessionals.map((group) => (
-                  <div key={group.category}>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">{group.category}</p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {group.items.map(({ id, label, icon: Icon }) => {
-                        const active = data.servicos.includes(id);
-                        return (
-                          <button
-                            type="button"
-                            key={id}
-                            onClick={() => toggleService(id)}
-                            className={`group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all duration-200 ${
-                              active
-                                ? "border-primary bg-primary/10 shadow-lg shadow-primary/20"
-                                : "border-neutral-700 hover:border-primary/50 bg-neutral-900/50 hover:bg-neutral-800/50"
-                            }`}
-                          >
-                            <div className={`p-2 rounded-lg transition-all duration-200 ${
-                              active ? "bg-primary/20" : "bg-neutral-800"
-                            }`}>
-                              <Icon className={`w-5 h-5 transition-colors ${active ? "text-primary" : "text-neutral-400 group-hover:text-primary/70"}`} strokeWidth={1.5} />
-                            </div>
-                            <span className={`text-xs md:text-sm font-medium text-center leading-tight transition-colors ${
-                              active ? "text-white" : "text-neutral-300 group-hover:text-white"
-                            }`}>
+              {/* Step 1 - Profissionais */}
+              {currentStep === 1 && (
+                <div className="fade-in-step space-y-6">
+                  <div className="flex items-start gap-4 mb-8">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
+                      <span className="text-primary font-bold text-lg">1</span>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-2xl font-bold text-neutral-900">
+                        Quais <span className="text-primary">profissionais</span> sua operação precisa?
+                      </h2>
+                      <p className="text-sm text-neutral-500 mt-1">Selecione uma ou mais opções.</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+                    {PROFESSIONALS.map(({ id, label, icon: Icon }) => {
+                      const active = data.servicos.includes(id);
+                      return (
+                        <label
+                          key={id}
+                          className={`flex items-center gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                            active
+                              ? "border-primary/50 bg-primary/5 shadow-sm shadow-primary/10"
+                              : "border-neutral-200 hover:border-primary/30 bg-white hover:bg-neutral-50/50"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={active}
+                            onChange={() => toggleService(id)}
+                            className="w-4 h-4 accent-primary cursor-pointer"
+                          />
+                          <div className="flex items-center gap-2 flex-1 min-w-0">
+                            <Icon className={`w-4 h-4 flex-shrink-0 transition-colors ${active ? "text-primary" : "text-neutral-400"}`} strokeWidth={2} />
+                            <span className={`text-xs font-medium leading-tight transition-colors ${active ? "text-neutral-900" : "text-neutral-600"}`}>
                               {label}
                             </span>
-                            {active && (
-                              <div className="absolute top-2 right-2 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
-                                <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                              </div>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-
-                {data.servicos.length > 0 && (
-                  <div className="pt-4 border-t border-neutral-700">
-                    <p className="text-sm text-neutral-300">
-                      <span className="font-bold text-primary">{data.servicos.length}</span> profissional(is) selecionado(s)
-                    </p>
-                  </div>
-                )}
-
-                <Button
-                  type="button"
-                  onClick={() => setCurrentStep(2)}
-                  disabled={!canGoToStep2}
-                  className="w-full h-14 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Próxima Etapa
-                </Button>
-              </div>
-            )}
-
-            {/* STEP 2 */}
-            {currentStep === 2 && (
-              <div className="space-y-6 animate-fade-in">
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                    Etapa 2: Informações do serviço
-                  </h2>
-                  <p className="text-neutral-400">Nos conte sobre sua necessidade e localização</p>
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <Label className="text-sm font-medium text-white mb-2 flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-primary" />
-                      Endereço da prestação do serviço
-                    </Label>
-                    <Input
-                      value={data.endereco}
-                      onChange={(e) => setData({ ...data, endereco: e.target.value })}
-                      placeholder="Ex.: Brooklin, Moema, Guarulhos ou endereço completo"
-                      className="h-12 bg-neutral-900/50 border-neutral-700 text-white placeholder:text-neutral-500"
-                    />
+                          </div>
+                        </label>
+                      );
+                    })}
                   </div>
 
-                  <div>
-                    <Label className="text-sm font-medium text-white mb-2">Descreva sua necessidade</Label>
-                    <Textarea
-                      value={data.necessidade}
-                      onChange={(e) => setData({ ...data, necessidade: e.target.value })}
-                      placeholder="Ex: Quantidade de colaboradores, Escala desejada, Horários, Início previsto, Detalhes importantes..."
-                      rows={5}
-                      maxLength={600}
-                      className="bg-neutral-900/50 border-neutral-700 text-white placeholder:text-neutral-500 resize-none"
-                    />
-                    <div className="mt-2 flex justify-between">
-                      <span></span>
-                      <p className={`text-xs transition-colors ${data.necessidade.length > 500 ? "text-amber-500" : "text-neutral-500"}`}>
-                        {data.necessidade.length}/600
+                  {data.servicos.length > 0 && (
+                    <div className="mt-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
+                      <p className="text-sm text-neutral-700">
+                        <span className="font-bold text-primary">{data.servicos.length}</span> profissional(is) selecionado(s)
                       </p>
                     </div>
-                  </div>
+                  )}
 
-                  <div>
-                    <Label className="text-sm font-medium text-white mb-2">Qual o principal desafio da sua operação hoje?</Label>
-                    <select
-                      value={data.desafio}
-                      onChange={(e) => setData({ ...data, desafio: e.target.value })}
-                      className="w-full h-12 bg-neutral-900/50 border border-neutral-700 text-white rounded-lg px-4 cursor-pointer"
-                    >
-                      <option value="">Selecione uma opção</option>
-                      {CHALLENGES.map(({ id, label }) => (
-                        <option key={id} value={id}>{label}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
                   <Button
                     type="button"
-                    onClick={() => setCurrentStep(1)}
-                    variant="outline"
-                    className="flex-1 h-12 bg-transparent border-neutral-700 text-white hover:bg-neutral-900"
+                    onClick={() => setCurrentStep(2)}
+                    disabled={!canGoToStep2}
+                    className="w-full mt-8 h-12 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all duration-200"
                   >
-                    Voltar
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => setCurrentStep(3)}
-                    disabled={!canGoToStep3}
-                    className="flex-1 h-12 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Próxima Etapa
+                    Continuar
                   </Button>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* STEP 3 */}
-            {currentStep === 3 && (
-              <div className="space-y-6 animate-fade-in">
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                    Etapa 3: Seus dados
-                  </h2>
-                  <p className="text-neutral-400">Suas informações para enviarmos a proposta</p>
-                </div>
+              {/* Step 2 - Informações do Serviço */}
+              {currentStep === 2 && (
+                <div className="fade-in-step space-y-6">
+                  <div className="flex items-start gap-4 mb-8">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
+                      <span className="text-primary font-bold text-lg">2</span>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-2xl font-bold text-neutral-900">
+                        Informações do <span className="text-primary">serviço</span>
+                      </h2>
+                      <p className="text-sm text-neutral-500 mt-1">Detalhes sobre sua necessidade.</p>
+                    </div>
+                  </div>
 
-                <div className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-4 mt-6">
                     <div>
-                      <Label className="text-sm font-medium text-white mb-2 flex items-center gap-2">
-                        <Building className="w-4 h-4 text-primary" />
-                        Nome da sua Empresa ou Condomínio
+                      <Label className="text-sm font-semibold text-neutral-700 block mb-2">
+                        <MapPin className="w-4 h-4 inline mr-2 text-primary" />
+                        Endereço da prestação do serviço
+                      </Label>
+                      <Input
+                        value={data.endereco}
+                        onChange={(e) => setData({ ...data, endereco: e.target.value })}
+                        placeholder="Ex.: Brooklin, Moema, Guarulhos ou endereço completo"
+                        className="h-11 bg-white border-2 border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:border-primary/50 focus:bg-primary/2 rounded-lg"
+                      />
+                    </div>
+
+                    <div>
+                      <Label className="text-sm font-semibold text-neutral-700 block mb-2">
+                        Descreva os detalhes da prestação de serviço
+                      </Label>
+                      <Textarea
+                        value={data.necessidade}
+                        onChange={(e) => setData({ ...data, necessidade: e.target.value })}
+                        placeholder="Ex.: Temos um condomínio com 2 torres e precisamos de portaria 24h e limpeza diurna. Escala 12x36. Início desejado para o próximo mês."
+                        rows={4}
+                        maxLength={600}
+                        className="bg-white border-2 border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:border-primary/50 focus:bg-primary/2 rounded-lg resize-none"
+                      />
+                      <div className="mt-2 text-right">
+                        <p className={`text-xs font-medium transition-colors ${data.necessidade.length > 500 ? "text-amber-500" : "text-neutral-500"}`}>
+                          {data.necessidade.length}/600
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label className="text-sm font-semibold text-neutral-700 block mb-2">
+                        Qual o principal desafio da sua operação hoje?
+                      </Label>
+                      <select
+                        value={data.desafio}
+                        onChange={(e) => setData({ ...data, desafio: e.target.value })}
+                        className="w-full h-11 bg-white border-2 border-neutral-200 text-neutral-900 rounded-lg px-4 focus:border-primary/50 focus:outline-none cursor-pointer"
+                      >
+                        {CHALLENGES.map((challenge) => (
+                          <option key={challenge} value={challenge}>{challenge}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 mt-8">
+                    <Button
+                      type="button"
+                      onClick={() => setCurrentStep(1)}
+                      variant="outline"
+                      className="flex-1 h-12 border-2 border-neutral-200 text-neutral-700 hover:bg-neutral-50 rounded-lg font-semibold"
+                    >
+                      Voltar
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={() => setCurrentStep(3)}
+                      disabled={!canGoToStep3}
+                      className="flex-1 h-12 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all duration-200"
+                    >
+                      Continuar
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 3 - Seus Dados */}
+              {currentStep === 3 && (
+                <div className="fade-in-step space-y-6">
+                  <div className="flex items-start gap-4 mb-8">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 border border-primary/30">
+                      <span className="text-primary font-bold text-lg">3</span>
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-2xl font-bold text-neutral-900">
+                        Seus <span className="text-primary">dados</span>
+                      </h2>
+                      <p className="text-sm text-neutral-500 mt-1">Para enviarmos sua proposta personalizada.</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mt-6">
+                    <div>
+                      <Label className="text-sm font-semibold text-neutral-700 block mb-2">
+                        Nome da sua empresa ou condomínio
                       </Label>
                       <Input
                         value={data.nomeEmpresa}
                         onChange={(e) => setData({ ...data, nomeEmpresa: e.target.value })}
-                        placeholder="Digite o nome"
-                        className="h-12 bg-neutral-900/50 border-neutral-700 text-white placeholder:text-neutral-500"
+                        placeholder="Digite seu nome"
+                        className="h-11 bg-white border-2 border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:border-primary/50 focus:bg-primary/2 rounded-lg"
                       />
                     </div>
+
                     <div>
-                      <Label className="text-sm font-medium text-white mb-2">Seu nome</Label>
+                      <Label className="text-sm font-semibold text-neutral-700 block mb-2">
+                        Seu Nome
+                      </Label>
                       <Input
                         value={data.seuNome}
                         onChange={(e) => setData({ ...data, seuNome: e.target.value })}
-                        placeholder="Digite seu nome"
-                        className="h-12 bg-neutral-900/50 border-neutral-700 text-white placeholder:text-neutral-500"
+                        placeholder="Digite seu nome..."
+                        className="h-11 bg-white border-2 border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:border-primary/50 focus:bg-primary/2 rounded-lg"
                       />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <Label className="text-sm font-semibold text-neutral-700 block mb-2">
+                          <Mail className="w-4 h-4 inline mr-2 text-primary" />
+                          E-mail
+                        </Label>
+                        <Input
+                          type="email"
+                          value={data.email}
+                          onChange={(e) => setData({ ...data, email: e.target.value })}
+                          placeholder="(11) 96666-6666"
+                          className="h-11 bg-white border-2 border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:border-primary/50 focus:bg-primary/2 rounded-lg"
+                        />
+                      </div>
+                      <div>
+                        <Label className="text-sm font-semibold text-neutral-700 block mb-2">
+                          <Smartphone className="w-4 h-4 inline mr-2 text-primary" />
+                          Telefone
+                        </Label>
+                        <Input
+                          value={data.telefone}
+                          onChange={(e) => setData({ ...data, telefone: e.target.value })}
+                          placeholder="DD + número"
+                          className="h-11 bg-white border-2 border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:border-primary/50 focus:bg-primary/2 rounded-lg"
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <Label className="text-sm font-medium text-white mb-2 flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-primary" />
-                        E-mail
-                      </Label>
-                      <Input
-                        type="email"
-                        value={data.email}
-                        onChange={(e) => setData({ ...data, email: e.target.value })}
-                        placeholder="seu@email.com"
-                        className="h-12 bg-neutral-900/50 border-neutral-700 text-white placeholder:text-neutral-500"
-                      />
-                    </div>
-                    <div>
-                      <Label className="text-sm font-medium text-white mb-2 flex items-center gap-2">
-                        <Smartphone className="w-4 h-4 text-primary" />
-                        WhatsApp
-                      </Label>
-                      <Input
-                        value={data.telefone}
-                        onChange={(e) => setData({ ...data, telefone: e.target.value })}
-                        placeholder="(11) 99999-9999"
-                        className="h-12 bg-neutral-900/50 border-neutral-700 text-white placeholder:text-neutral-500"
-                      />
-                    </div>
+                  <div className="flex gap-3 mt-8">
+                    <Button
+                      type="button"
+                      onClick={() => setCurrentStep(2)}
+                      variant="outline"
+                      className="flex-1 h-12 border-2 border-neutral-200 text-neutral-700 hover:bg-neutral-50 rounded-lg font-semibold"
+                    >
+                      Voltar
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={loading || !canSubmit}
+                      className="flex-1 h-12 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+                    >
+                      <Send className="w-4 h-4" />
+                      {loading ? "ENVIANDO..." : "RECEBER ORÇAMENTO PERSONALIZADO"}
+                    </Button>
                   </div>
                 </div>
+              )}
+            </div>
 
-                <Button
-                  type="submit"
-                  disabled={loading || !canSubmit}
-                  className="w-full h-14 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed font-bold text-base flex items-center justify-center gap-2"
-                >
-                  <Heart className="w-5 h-5" />
-                  {loading ? "ENVIANDO..." : "RECEBER ORÇAMENTO PERSONALIZADO"}
-                </Button>
-
-                <div className="space-y-2 pt-4 border-t border-neutral-700">
-                  <div className="flex items-center gap-3 text-sm text-neutral-300">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>Retorno em até 1 hora útil</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-neutral-300">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>Proposta sem compromisso</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-neutral-300">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>Atendimento direto com a gestão GS</span>
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <Button
-                    type="button"
-                    onClick={() => setCurrentStep(2)}
-                    variant="outline"
-                    className="flex-1 h-12 bg-transparent border-neutral-700 text-white hover:bg-neutral-900"
-                  >
-                    Voltar
-                  </Button>
+            {/* Guarantees - Below Form */}
+            <div className="mt-12 grid md:grid-cols-3 gap-6">
+              <div className="flex items-center gap-4 p-4 rounded-lg bg-neutral-50 border border-neutral-200/50">
+                <Clock className="w-6 h-6 text-primary flex-shrink-0" />
+                <div>
+                  <p className="font-semibold text-neutral-900 text-sm">Retorno em até</p>
+                  <p className="text-xs text-neutral-600">1 hora</p>
                 </div>
               </div>
-            )}
+              <div className="flex items-center gap-4 p-4 rounded-lg bg-neutral-50 border border-neutral-200/50">
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0" />
+                <div>
+                  <p className="font-semibold text-neutral-900 text-sm">Proposta</p>
+                  <p className="text-xs text-neutral-600">sem compromisso</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 p-4 rounded-lg bg-neutral-50 border border-neutral-200/50">
+                <Headphones className="w-6 h-6 text-primary flex-shrink-0" />
+                <div>
+                  <p className="font-semibold text-neutral-900 text-sm">Atendimento direto</p>
+                  <p className="text-xs text-neutral-600">com a gestão GS</p>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </main>
