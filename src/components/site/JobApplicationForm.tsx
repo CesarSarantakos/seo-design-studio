@@ -41,37 +41,82 @@ export function JobApplicationForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) { toast.error("Anexe seu currículo"); return; }
-    if (file.size > 5 * 1024 * 1024) { toast.error("Arquivo maior que 5MB"); return; }
-    if (!form.regiao || !form.areaInteresse || !form.temExperiencia || !form.disponibilidade) {
-      toast.error("Preencha todos os campos obrigatórios");
+    
+    // Validate required fields
+    if (!file) {
+      toast.error("Anexe seu currículo (PDF ou DOC/DOCX)");
       return;
     }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Arquivo maior que 5MB");
+      return;
+    }
+    if (!form.nome.trim()) {
+      toast.error("Por favor, informe seu nome");
+      return;
+    }
+    if (!form.email.trim()) {
+      toast.error("Por favor, informe seu e-mail");
+      return;
+    }
+    if (!form.telefone.trim()) {
+      toast.error("Por favor, informe seu telefone");
+      return;
+    }
+    if (!form.regiao) {
+      toast.error("Selecione uma região");
+      return;
+    }
+    if (!form.areaInteresse) {
+      toast.error("Selecione uma área de interesse");
+      return;
+    }
+    if (!form.temExperiencia) {
+      toast.error("Indique se você tem experiência");
+      return;
+    }
+    if (!form.disponibilidade) {
+      toast.error("Selecione sua disponibilidade");
+      return;
+    }
+
     setLoading(true);
     try {
       const resumeBase64 = await fileToBase64(file);
-      await submit({
-        data: {
-          nome: form.nome,
-          telefone: form.telefone,
-          email: form.email,
-          dataNascimento: form.dataNascimento,
-          mensagem: form.mensagem,
-          regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
-          areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
-          temExperiencia: form.temExperiencia === "sim",
-          disponibilidade: form.disponibilidade as "diurno" | "noturno",
-          resumeBase64,
-          resumeName: file.name,
-          resumeType: file.type,
-        },
+      const result = await submit({
+        nome: form.nome,
+        telefone: form.telefone,
+        email: form.email,
+        dataNascimento: form.dataNascimento,
+        mensagem: form.mensagem,
+        regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
+        areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
+        temExperiencia: form.temExperiencia === "sim",
+        disponibilidade: form.disponibilidade as "diurno" | "noturno",
+        resumeBase64,
+        resumeName: file.name,
+        resumeType: file.type,
       });
-      toast.success("Currículo enviado! Nossa equipe entrará em contato.");
-      setForm({ nome: "", telefone: "", email: "", dataNascimento: "", mensagem: "", regiao: "", areaInteresse: "", temExperiencia: "", disponibilidade: "" });
+      
+      toast.success(result.message || "Candidatura enviada com sucesso! Nossa equipe entrará em contato.");
+      
+      // Reset form
+      setForm({
+        nome: "",
+        telefone: "",
+        email: "",
+        dataNascimento: "",
+        mensagem: "",
+        regiao: "",
+        areaInteresse: "",
+        temExperiencia: "",
+        disponibilidade: "",
+      });
       setFile(null);
       if (fileRef.current) fileRef.current.value = "";
     } catch (err: any) {
-      toast.error(err?.message ?? "Erro ao enviar");
+      const errorMsg = err?.message || "Erro ao enviar candidatura";
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -157,7 +202,7 @@ export function JobApplicationForm() {
         </div>
       </div>
       <div>
-        <Label>Anexar Currículo * (máx. 5MB)</Label>
+        <Label>Anexar Currículo * (m��x. 5MB)</Label>
         <label className="mt-1 flex items-center gap-2 border border-dashed border-border rounded-md px-4 py-3 cursor-pointer hover:bg-muted/30 transition-colors">
           <Paperclip className="w-4 h-4 text-muted-foreground" />
           <span className="text-sm text-muted-foreground">
