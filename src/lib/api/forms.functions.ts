@@ -24,9 +24,25 @@ const proposalSchema = z.object({
   desafio: z.string().max(200).optional().default(""),
 });
 
-export const submitProposal = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => proposalSchema.parse(data))
-  .handler(async ({ data }) => {
+type ProposalResponse = {
+  success: boolean;
+  message: string;
+};
+
+export const submitProposal = createServerFn<any, ProposalResponse>({ method: "POST" })
+  .inputValidator((data: unknown) => {
+    console.log("[v0] submitProposal inputValidator received:", data);
+    try {
+      const validated = proposalSchema.parse(data);
+      console.log("[v0] submitProposal validation passed");
+      return validated;
+    } catch (validationError) {
+      console.error("[v0] submitProposal validation failed:", validationError);
+      throw validationError;
+    }
+  })
+  .handler(async ({ data }): Promise<ProposalResponse> => {
+    console.log("[v0] submitProposal handler called with data:", data);
     try {
       // Save to database
       const { error: dbError } = await supabaseAdmin.from("proposal_requests").insert({
@@ -44,9 +60,11 @@ export const submitProposal = createServerFn({ method: "POST" })
       });
 
       if (dbError) {
-        console.error("submitProposal db error:", dbError);
+        console.error("[v0] submitProposal db error:", dbError);
         throw new Error("Erro ao salvar proposta no banco de dados.");
       }
+
+      console.log("[v0] Database insert successful");
 
       // Send email notification
       const emailBody = `
@@ -69,17 +87,20 @@ export const submitProposal = createServerFn({ method: "POST" })
 <p><strong>Principal Desafio:</strong> ${data.desafio || "Não informado"}</p>
       `;
 
+      console.log("[v0] Sending email to:", "eliahu@gsservicos.com.br");
       await resend.emails.send({
         from: FROM_EMAIL,
         to: "eliahu@gsservicos.com.br",
         subject: "[GS] Nova Proposta - " + data.nome,
         html: emailBody,
       });
+      
+      console.log("[v0] Email sent successfully");
 
       return { success: true, message: "Proposta enviada com sucesso! Você receberá sua proposta em breve." };
     } catch (error) {
-      console.error("submitProposal error:", error);
-      throw new Error("Erro ao enviar proposta. Tente novamente.");
+      console.error("[v0] submitProposal error:", error);
+      throw error instanceof Error ? error : new Error("Erro desconhecido ao enviar proposta.");
     }
   });
 

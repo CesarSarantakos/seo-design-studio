@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Facebook } from "lucide-react";
+import { Instagram, Facebook, Linkedin } from "lucide-react";
 import logo from "@/assets/gs-logo.png";
 
 export function Footer() {
@@ -47,7 +47,7 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">Redes Sociais</h3>
+          <h3 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">Siga a Gente</h3>
           <div className="flex gap-4">
             <a
               href="https://www.instagram.com/grupogs.oficial/"
@@ -66,6 +66,15 @@ export function Footer() {
               aria-label="Facebook"
             >
               <Facebook size={20} />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/grupogsoficial/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={20} />
             </a>
           </div>
         </div>
