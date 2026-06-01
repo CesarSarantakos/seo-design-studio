@@ -48,32 +48,34 @@ function Page() {
       <Header />
       <main className="flex-1 bg-background">
         {/* HERO */}
-        <section className="relative pt-28 md:pt-32 pb-12 md:pb-16 overflow-hidden">
+        <section className="relative pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden">
           <div className="absolute inset-0">
             <img
               src={heroImg}
               alt="Portaria de condomínio premium"
               className="w-full h-full object-cover opacity-40 md:opacity-60"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/20" />
           </div>
           <div className="relative container mx-auto px-6 max-w-6xl">
-            <div className="max-w-2xl">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
-                FAZEMOS O<br />
-                <span className="text-primary">SIMPLES</span>
+            <div className="max-w-3xl">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
+                Seu tempo importa.
                 <br />
-                BEM FEITO.
+                <span className="text-primary">Sua operação fica com a GS.</span>
               </h1>
-              <div className="mt-6 h-1 w-16 bg-primary rounded-full" />
-              <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-lg">
-                Gestão terceirizada com presença, cobertura e suporte de verdade para o seu condomínio.
+              <div className="mt-6 sm:mt-8 h-1 w-16 sm:w-20 bg-primary rounded-full" />
+              <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-lg text-foreground font-semibold max-w-2xl">
+                Enquanto você cuida do crescimento do negócio, nós cuidamos das pessoas, da rotina operacional e da continuidade dos serviços.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <p className="mt-4 sm:mt-6 text-base sm:text-lg text-primary font-bold max-w-2xl leading-relaxed">
+                Mais organização. Mais presença. Menos preocupação.
+              </p>
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3">
+                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
                   <Link to="/solicitar-proposta">Solicitar proposta</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="border-border text-foreground hover:bg-card">
+                <Button asChild size="lg" variant="outline" className="border-border text-foreground hover:bg-card w-full sm:w-auto">
                   <Link to="/solucoes">Conheça as soluções</Link>
                 </Button>
               </div>
@@ -81,23 +83,92 @@ function Page() {
           </div>
         </section>
 
-        {/* DIFERENCIAIS */}
-        <section className="container mx-auto px-6 max-w-6xl -mt-2 md:-mt-6">
-          <div className="rounded-2xl border border-border bg-card/60 backdrop-blur p-6 md:p-10">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 md:divide-x md:divide-border">
-              {[
-                { icon: Headphones, title: "Cobertura de pronta resposta", desc: "Reposição ágil para não deixar a operação na mão." },
-                { icon: CalendarClock, title: "Escalas organizadas", desc: "Planejamento inteligente para evitar falhas e sobrecargas." },
-                { icon: MessageSquare, title: "Comunicação direta com a gestão", desc: "Fale com quem decide. Mais agilidade, menos burocracia." },
-                { icon: BadgeCheck, title: "Menos rotatividade operacional", desc: "Processos de seleção e acompanhamento que fazem a diferença." },
-                { icon: HeartHandshake, title: "Suporte próximo ao síndico", desc: "Acompanhamento constante para trazer tranquilidade." },
-              ].map((d) => (
-                <div key={d.title} className="md:px-4 text-center">
-                  <d.icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
-                  <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{d.title}</h3>
-                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{d.desc}</p>
+        {/* DIFERENCIAIS PRINCIPAIS */}
+        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
+            {/* Card 1 */}
+            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-6 w-6 text-primary" strokeWidth={1.5} />
                 </div>
-              ))}
+                <div className="flex-1">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                    Profissionais alinhados à sua cultura
+                  </h3>
+                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                    Selecionados, treinados e preparados para representar sua empresa com profissionalismo e responsabilidade.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
+                  <ClipboardCheck className="h-6 w-6 text-primary" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                    Supervisão constante
+                  </h3>
+                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                    Acompanhamento próximo da operação para manter o padrão, a organização e a continuidade dos serviços.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
+                  <Handshake className="h-6 w-6 text-primary" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                    Parceria que gera resultados
+                  </h3>
+                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                    Mais do que fornecer mão de obra, atuamos como parceiros na construção de uma operação eficiente e confiável.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
+                  <CalendarClock className="h-6 w-6 text-primary" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                    Continuidade operacional
+                  </h3>
+                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                    Cobertura rápida de faltas, férias e afastamentos para que sua rotina nunca pare.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 5 - Full width */}
+          <div className="bg-[color:var(--background-deep)] rounded-2xl p-6 md:p-8 border border-primary/30">
+            <div className="flex items-start gap-4">
+              <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
+                <Target className="h-6 w-6 text-primary" strokeWidth={1.5} />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                  Mais tempo para sua gestão
+                </h3>
+                <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                  Deixe a operação com a GS e concentre seus esforços no crescimento do seu negócio.
+                </p>
+              </div>
             </div>
           </div>
         </section>

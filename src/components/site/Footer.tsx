@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
+import { Instagram, Facebook } from "lucide-react";
 import logo from "@/assets/gs-logo.png";
 
 export function Footer() {
   return (
     <footer className="bg-background-deep border-t border-border">
-      <div className="container mx-auto px-6 py-12 grid gap-10 md:grid-cols-4">
+      <div className="container mx-auto px-6 py-12 grid gap-10 md:grid-cols-5">
         <div className="md:col-span-2">
           <img
             src={logo}
@@ -44,6 +45,29 @@ export function Footer() {
             </li>
             <li>R. Carlos Meira, 32 — Penha de França, São Paulo – SP</li>
           </ul>
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">Redes Sociais</h3>
+          <div className="flex gap-4">
+            <a
+              href="https://www.instagram.com/grupogs.oficial/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={20} />
+            </a>
+            <a
+              href="https://www.facebook.com/grupogs.oficial/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook size={20} />
+            </a>
+          </div>
         </div>
       </div>
       <div className="border-t border-border">

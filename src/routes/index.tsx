@@ -4,6 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { HomeHero } from "@/components/site/HomeHero";
 import { TrustStrip } from "@/components/site/TrustStrip";
 import { MarketChange } from "@/components/site/MarketChange";
+import { OperationImpact } from "@/components/site/OperationImpact";
 import { HomeBenefits } from "@/components/site/HomeBenefits";
 import { HomeTestimonials } from "@/components/site/HomeTestimonials";
 import { ProposalSimulator } from "@/components/site/ProposalSimulator";
@@ -30,6 +31,7 @@ function Index() {
         <HomeHero />
         <TrustStrip />
         <MarketChange />
+        <OperationImpact />
         <HomeBenefits />
         <HomeTestimonials />
         <ProposalSimulator />

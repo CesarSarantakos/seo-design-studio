@@ -106,32 +106,32 @@ function Page() {
       <Header />
       <main className="flex-1">
         {/* HERO */}
-        <section className="relative w-full min-h-[92vh] overflow-hidden bg-background-deep">
+        <section className="relative w-full min-h-screen md:min-h-[92vh] overflow-hidden bg-background-deep">
           <img
             src={heroImg}
-            alt="Profissional de portaria GS monitorando câmeras em lobby premium"
+            alt="Profissional de segurança GS com rádio atendendo cliente"
             width={1920}
             height={1280}
             fetchPriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-right"
+            className="absolute inset-0 w-full h-full object-cover object-center md:object-right"
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/30"
+            className="absolute inset-0 bg-gradient-to-r from-background-deep from-10% via-background-deep/80 via-50% to-background-deep/20"
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-background-deep/85 via-transparent to-transparent"
+            className="absolute inset-0 bg-gradient-to-b from-background-deep/30 via-background-deep/40 to-background-deep/80"
           />
 
-          <div className="relative container mx-auto px-6 lg:px-12 min-h-[92vh] flex items-center pt-28 pb-16 md:pt-32 md:pb-20">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-6">
-                <span className="h-px w-8 bg-primary" />
+          <div className="relative container mx-auto px-4 sm:px-6 lg:px-12 min-h-screen md:min-h-[92vh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
+            <div className="max-w-2xl w-full">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4 sm:mb-6">
+                <span className="h-px w-6 sm:w-8 bg-primary" />
                 Soluções GS · Portaria
               </span>
               <h1
-                className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] text-white tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] sm:leading-[1.05] text-white tracking-tight"
                 style={{ textShadow: "0 4px 24px rgba(0,0,0,0.5)" }}
               >
                 Portaria 24h
@@ -140,30 +140,30 @@ function Page() {
                 <br />
                 <span className="text-primary/90">Sempre.</span>
               </h1>
-              <div className="h-[3px] w-24 bg-primary mt-10 mb-7" />
+              <div className="h-[2px] sm:h-[3px] w-16 sm:w-24 bg-primary mt-6 sm:mt-10 mb-5 sm:mb-7" />
               <p
-                className="text-xl md:text-2xl text-white/95 max-w-xl leading-snug font-light"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 max-w-xl leading-snug sm:leading-snug font-light"
                 style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}
               >
                 A tecnologia ajuda. Mas presença de verdade tem
                 <span className="text-primary font-medium"> rosto, voz e atenção</span> no dia a dia.
               </p>
-              <p className="text-base md:text-lg text-white/75 max-w-lg mt-6 leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/75 max-w-lg mt-4 sm:mt-6 leading-relaxed">
                 Hoje, condomínios, empresas e transportadoras precisam de muito mais do que alguém sentado na portaria. Precisam de presença operacional, organização e apoio real na rotina.
               </p>
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                 <Link
                   to="/solicitar-proposta"
-                  className="group inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shadow-lg shadow-primary/20"
+                  className="group inline-flex items-center justify-center sm:justify-start gap-2 sm:gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-primary/20 w-full sm:w-auto"
                 >
                   Solicitar Orçamento
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 sm:w-4 h-3.5 sm:h-4 group-hover:translate-x-1 transition-transform hidden sm:inline" />
                 </Link>
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 border border-white/20 hover:border-primary/60 text-white hover:text-primary transition-colors rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-wider backdrop-blur-sm"
+                  className="inline-flex items-center justify-center gap-2 sm:gap-3 border border-white/20 hover:border-primary/60 text-white hover:text-primary transition-colors rounded-full px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-wider backdrop-blur-sm w-full sm:w-auto"
                 >
                   Falar no WhatsApp
                 </a>

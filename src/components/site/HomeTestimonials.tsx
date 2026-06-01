@@ -1,25 +1,23 @@
-import colab1 from "@/assets/colab-1.jpg";
-import colab2 from "@/assets/colab-2.jpg";
-import colab3 from "@/assets/colab-3.jpg";
+import { Link } from "@tanstack/react-router";
 
 const items = [
   {
     quote: "A GS trouxe mais organização e tranquilidade para o nosso condomínio.",
     name: "Roberto S.",
     role: "Síndico Profissional",
-    img: colab1,
+    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ales-5f8OLxvbgyRG1pCOmbK8q3AaX3gccq.webp",
   },
   {
     quote: "Nosso espaço está muito mais seguro e bem cuidado desde que a GS assumiu.",
     name: "Carolina M.",
     role: "Gerente Administrativa",
-    img: colab2,
+    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Caroline_Robert-Individual-Bio-Image-wJA6nInkB6bjwDvXiBko5EFRbZqkd2.jpg",
   },
   {
     quote: "Ganhamos mais tempo para gestão e o suporte é impecável.",
     name: "Marcos A.",
     role: "Diretor de Operações",
-    img: colab3,
+    img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OIP%20%282%29-dtoWGoxvtbk9ZAfZjblbmUopn9qitZ.webp",
   },
 ];
 

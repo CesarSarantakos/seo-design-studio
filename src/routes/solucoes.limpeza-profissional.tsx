@@ -279,8 +279,8 @@ function Page() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-tr from-primary/15 to-transparent rounded-3xl blur-2xl" />
               <img
-                src={heroImg}
-                alt="Lobby corporativo limpo e organizado pela equipe GS"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-31%20at%2013.43.31-xWLbGUmLr9xqGzGHAr32sQpiPZ7tpP.jpeg"
+                alt="Profissional GS limpando corredor enquanto clientes caminham satisfeitos"
                 width={1024}
                 height={768}
                 loading="lazy"

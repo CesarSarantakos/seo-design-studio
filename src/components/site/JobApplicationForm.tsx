@@ -30,6 +30,7 @@ export function JobApplicationForm() {
     nome: "",
     telefone: "",
     email: "",
+    dataNascimento: "",
     mensagem: "",
     regiao: "",
     areaInteresse: "",
@@ -54,6 +55,7 @@ export function JobApplicationForm() {
           nome: form.nome,
           telefone: form.telefone,
           email: form.email,
+          dataNascimento: form.dataNascimento,
           mensagem: form.mensagem,
           regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
           areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
@@ -65,7 +67,7 @@ export function JobApplicationForm() {
         },
       });
       toast.success("Currículo enviado! Nossa equipe entrará em contato.");
-      setForm({ nome: "", telefone: "", email: "", mensagem: "", regiao: "", areaInteresse: "", temExperiencia: "", disponibilidade: "" });
+      setForm({ nome: "", telefone: "", email: "", dataNascimento: "", mensagem: "", regiao: "", areaInteresse: "", temExperiencia: "", disponibilidade: "" });
       setFile(null);
       if (fileRef.current) fileRef.current.value = "";
     } catch (err: any) {
@@ -87,9 +89,15 @@ export function JobApplicationForm() {
           <Input value={form.telefone} onChange={(e) => setForm({ ...form, telefone: e.target.value })} placeholder="Exemplo: (11) 91111-1111" required maxLength={30} />
         </div>
       </div>
-      <div>
-        <Label>E-mail *</Label>
-        <Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="Digite seu e-mail completo" required maxLength={255} />
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <Label>E-mail *</Label>
+          <Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="Digite seu e-mail completo" required maxLength={255} />
+        </div>
+        <div>
+          <Label>Data de Nascimento</Label>
+          <Input type="date" value={form.dataNascimento} onChange={(e) => setForm({ ...form, dataNascimento: e.target.value })} />
+        </div>
       </div>
       <div>
         <Label>Mensagem *</Label>
