@@ -15,21 +15,19 @@ import {
   CheckCircle2,
   ArrowRight,
   Leaf,
-  Headphones,
-  Wrench,
   HeartHandshake,
+  Hotel,
 } from "lucide-react";
-import heroImg from "@/assets/limpeza-hero.jpg";
 
 const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20limpeza%20profissional.%20Pode%20me%20ajudar%3F";
 
 const DESTAQUES = [
-  { icon: Sparkles, label: "Ambientes limpos e organizados" },
-  { icon: Users, label: "Profissionais treinados e alinhados" },
-  { icon: Calendar, label: "Rotina que funciona, todo dia" },
-  { icon: Leaf, label: "Bem-estar para todos no ambiente" },
-  { icon: Building2, label: "Apoio para condomínios, empresas e instituições" },
+  { icon: Sparkles, label: "Ambientes limpos, higienizados e organizados" },
+  { icon: Users, label: "Profissionais qualificados, treinados e alinhados" },
+  { icon: Calendar, label: "Rotina que funciona, todo dia, consistentemente" },
+  { icon: Leaf, label: "Bem-estar, saúde e qualidade de vida para todos" },
+  { icon: Building2, label: "Suporte especializado para condomínios, empresas e instituições" },
 ];
 
 const IMPACTOS = [
@@ -45,6 +43,7 @@ const AMBIENTES = [
   { icon: Truck, label: "Transportadoras" },
   { icon: Stethoscope, label: "Clínicas e consultórios" },
   { icon: GraduationCap, label: "Escolas e instituições" },
+  { icon: Hotel, label: "Hotéis e hospedagem" },
 ];
 
 const COMPROMISSO = [
@@ -87,12 +86,12 @@ function Page() {
         {/* HERO */}
         <section className="relative w-full min-h-[92vh] overflow-hidden bg-background-deep">
           <img
-            src={heroImg}
-            alt="Profissional de limpeza GS cuidando do piso em lobby corporativo premium"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-31%20at%2013.39.08-fQYpVse6ceeuleRO7EV3aCznKroatc.jpeg"
+            alt="Equipe profissional GS de limpeza uniformizada em ambiente corporativo moderno"
             width={1920}
             height={1280}
             fetchPriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-right"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
           <div
             aria-hidden="true"
@@ -286,59 +285,6 @@ function Page() {
                 className="relative rounded-2xl object-cover w-full aspect-[4/3] shadow-2xl"
               />
             </div>
-          </div>
-        </section>
-
-        {/* WHY GS */}
-        <section className="py-24 bg-foreground/[0.03]">
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="max-w-2xl mx-auto text-center mb-14">
-              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">
-                Por que GS
-              </span>
-              <h2 className="mt-4 text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-                Limpeza que sustenta a experiência do seu ambiente.
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { icon: Wrench, title: "Equipamentos certos", desc: "Produtos e ferramentas adequados para cada superfície e ambiente." },
-                { icon: Users, title: "Equipes treinadas", desc: "Profissionais selecionados, uniformizados e alinhados com a sua operação." },
-                { icon: Headphones, title: "Supervisão próxima", desc: "Acompanhamento constante e comunicação rápida quando algo precisa de atenção." },
-              ].map(({ icon: Icon, title, desc }) => (
-                <article key={title} className="bg-card border border-border rounded-2xl p-8 hover:border-primary/50 transition-colors">
-                  <Icon className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
-                  <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA BAND */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0">
-                <Sparkles className="w-7 h-7 text-primary-foreground" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-primary-foreground uppercase tracking-tight">
-                  Precisando de uma limpeza que realmente cuida do seu ambiente?
-                </h3>
-                <p className="text-primary-foreground/85 mt-1 text-sm md:text-base">
-                  Fale com a GS e solicite uma proposta personalizada.
-                </p>
-              </div>
-            </div>
-            <Link
-              to="/solicitar-proposta"
-              className="group inline-flex items-center gap-3 bg-background-deep text-white hover:bg-background-deep/90 transition-colors rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shrink-0"
-            >
-              Solicitar Orçamento
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
           </div>
         </section>
       </main>

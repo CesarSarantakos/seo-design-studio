@@ -7,7 +7,6 @@ import {
   UserCheck,
   CalendarCheck,
   Phone,
-  UserPlus,
   Smile,
   Building2,
   Headphones,
@@ -28,12 +27,11 @@ const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20recep%C3%A7%C3%A3o%20e%20atendimento.%20Pode%20me%20ajudar%3F";
 
 const DESTAQUES = [
-  { icon: Users, label: "Acolhimento e cordialidade" },
-  { icon: MessageCircle, label: "Comunicação eficaz" },
-  { icon: UserCheck, label: "Postura e profissionalismo" },
-  { icon: CalendarCheck, label: "Organização e controle" },
-  { icon: Phone, label: "Atendimento telefônico" },
-  { icon: UserPlus, label: "Apoio ao fluxo diário" },
+  { icon: Users, label: "Acolhimento genuíno e cordial" },
+  { icon: MessageCircle, label: "Comunicação clara e eficiente" },
+  { icon: UserCheck, label: "Profissionalismo e discrição" },
+  { icon: CalendarCheck, label: "Organização e controle total" },
+  { icon: Phone, label: "Atendimento telefônico preparado" },
 ];
 
 const PILARES = [
@@ -134,9 +132,9 @@ function Page() {
                 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] text-white tracking-tight"
                 style={{ textShadow: "0 4px 24px rgba(0,0,0,0.5)" }}
               >
-                Recepção e
+                Acolher bem
                 <br />
-                <span className="text-primary">Atendimento.</span>
+                <span className="text-primary">é mais do que atender.</span>
               </h1>
               <div className="h-[3px] w-24 bg-primary mt-10 mb-7" />
               <p
@@ -173,9 +171,9 @@ function Page() {
         {/* Destaques strip */}
         <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16">
           <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-4 md:divide-x md:divide-border">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-0 gap-y-6 md:gap-y-8 md:divide-x md:divide-border">
               {DESTAQUES.map(({ icon: Icon, label }) => (
-                <div key={label} className="md:px-4 text-center">
+                <div key={label} className="md:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
                   <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
                   <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{label}</h3>
                 </div>
@@ -256,57 +254,135 @@ function Page() {
           </div>
         </section>
 
-        {/* AMBIENTES + COMPROMISSO */}
+        {/* Values and Commitment Section */}
         <section className="py-24 bg-background">
-          <div className="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-14">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-                Ambientes organizados
-                <br />
-                <span className="text-primary">começam na recepção.</span>
+          <style>{`
+            @keyframes slideInUp {
+              from {
+                opacity: 0;
+                transform: translateY(40px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            @keyframes slideInLeft {
+              from {
+                opacity: 0;
+                transform: translateX(-40px);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+            
+            .section-title {
+              animation: slideInUp 0.7s ease-out;
+            }
+            
+            .card-left {
+              animation: slideInLeft 0.6s ease-out both;
+            }
+            
+            .card-right {
+              animation: slideInUp 0.6s ease-out both;
+            }
+            
+            .card-left:nth-child(1) { animation-delay: 0.1s; }
+            .card-left:nth-child(2) { animation-delay: 0.2s; }
+            .card-left:nth-child(3) { animation-delay: 0.3s; }
+            .card-left:nth-child(4) { animation-delay: 0.4s; }
+            .card-left:nth-child(5) { animation-delay: 0.5s; }
+            .card-left:nth-child(6) { animation-delay: 0.6s; }
+            
+            .card-right:nth-child(1) { animation-delay: 0.15s; }
+            .card-right:nth-child(2) { animation-delay: 0.25s; }
+            .card-right:nth-child(3) { animation-delay: 0.35s; }
+            .card-right:nth-child(4) { animation-delay: 0.45s; }
+            .card-right:nth-child(5) { animation-delay: 0.55s; }
+          `}</style>
+          
+          <div className="container mx-auto px-6 lg:px-12">
+            {/* Header */}
+            <div className="max-w-2xl mx-auto text-center mb-16 section-title">
+              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">
+                Nossa abordagem
+              </span>
+              <h2 className="mt-4 text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+                Onde começam
+                <br className="hidden sm:block" />
+                <span className="text-primary">ambientes acolhedores.</span>
               </h2>
-              <ul className="mt-10 space-y-3">
-                {AMBIENTES.map(({ icon: Icon, label }) => (
-                  <li
-                    key={label}
-                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-foreground/[0.04] transition-colors"
-                  >
-                    <span className="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                      <CheckCircle2 className="w-4 h-4 text-primary" strokeWidth={2} />
-                    </span>
-                    <span className="text-base text-foreground/90">{label}</span>
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-6 text-neutral-300 text-lg leading-relaxed max-w-xl mx-auto">
+                A recepção é o coração do seu ambiente. Transformamos esse espaço em uma experiência de qualidade e cuidado.
+              </p>
             </div>
 
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-                Nosso compromisso
-                <br />
-                <span className="text-primary">com o seu ambiente.</span>
-              </h2>
-              <ul className="mt-10 space-y-4">
-                {COMPROMISSO.map(({ icon: Icon, label }) => (
-                  <li key={label} className="flex items-start gap-4">
-                    <span className="mt-0.5 w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                    </span>
-                    <span className="text-base text-foreground/90 leading-relaxed pt-1.5">
-                      {label}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+            {/* Two Column Grid */}
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+              {/* Left Column - Ambientes */}
+              <div className="space-y-4">
+                <div className="mb-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">Áreas de atuação</p>
+                  <h3 className="text-2xl font-bold text-white">Atuamos em diversos segmentos</h3>
+                </div>
+                
+                <div className="space-y-3">
+                  {AMBIENTES.map(({ icon: Icon, label }, index) => (
+                    <div
+                      key={label}
+                      className="card-left group relative flex items-center gap-4 p-4 rounded-lg border border-neutral-700 hover:border-primary/50 bg-neutral-950/40 hover:bg-neutral-900/60 transition-all duration-300 cursor-pointer"
+                    >
+                      <div className="flex-shrink-0">
+                        <div className="relative w-12 h-12 rounded-lg border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center group-hover:from-primary/20 transition-colors duration-300">
+                          <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                        </div>
+                      </div>
+                      <p className="text-sm font-medium text-neutral-100 group-hover:text-white transition-colors">{label}</p>
+                      <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <ArrowRight className="w-4 h-4 text-primary/50" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-              <div className="mt-10 bg-background-deep border border-border rounded-2xl p-8">
-                <Heart className="w-8 h-8 text-primary mb-4" strokeWidth={1.5} />
-                <p className="text-xl font-bold text-white leading-snug">
-                  Acolher bem é mais do que atender.
-                </p>
-                <p className="mt-2 text-primary font-medium">
-                  É cuidar da experiência de cada pessoa.
-                </p>
+              {/* Right Column - Compromisso */}
+              <div className="space-y-4">
+                <div className="mb-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">Nosso compromisso</p>
+                  <h3 className="text-2xl font-bold text-white">Qualidade em cada detalhe</h3>
+                </div>
+
+                <div className="space-y-3">
+                  {COMPROMISSO.map(({ icon: Icon, label }, index) => (
+                    <div
+                      key={label}
+                      className="card-right group relative flex items-start gap-4 p-4 rounded-lg border border-neutral-700 hover:border-primary/50 bg-neutral-950/40 hover:bg-neutral-900/60 transition-all duration-300"
+                    >
+                      <div className="flex-shrink-0 mt-0.5">
+                        <div className="relative w-12 h-12 rounded-lg border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center group-hover:from-primary/20 transition-colors duration-300">
+                          <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                        </div>
+                      </div>
+                      <p className="text-sm font-medium text-neutral-100 pt-1 group-hover:text-white transition-colors leading-snug">{label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Highlight Box */}
+                <div className="mt-6 p-6 rounded-lg border border-primary/30 bg-gradient-to-br from-primary/5 to-transparent hover:from-primary/10 transition-colors duration-300 group">
+                  <div className="flex items-start gap-3">
+                    <Heart className="w-5 h-5 text-primary flex-shrink-0 mt-1" strokeWidth={1.5} />
+                    <div>
+                      <p className="font-semibold text-white mb-1">Acolher bem é mais do que atender.</p>
+                      <p className="text-sm text-neutral-300">É cuidar da experiência de cada pessoa que entra no seu ambiente.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

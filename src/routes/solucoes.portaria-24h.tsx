@@ -15,14 +15,12 @@ import {
   Settings2,
   CheckCircle2,
   ArrowRight,
-  Headphones,
   Clock,
   HeartHandshake,
   Lock,
 } from "lucide-react";
 import heroImg from "@/assets/portaria-hero.jpg";
 import heroImgNew from "/portaria-hero.jpg";
-import conciergeImg from "@/assets/portaria-concierge.jpg";
 
 const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20portaria%2024h.%20Pode%20me%20ajudar%3F";
@@ -31,9 +29,8 @@ const ROTINA = [
   { icon: Package, label: "Recebimento de encomendas" },
   { icon: Lock, label: "Controle de acesso" },
   { icon: Users, label: "Fluxo de visitantes" },
-  { icon: Bike, label: "Entregas por aplicativo" },
-  { icon: Truck, label: "Prestadores de serviço" },
-  { icon: Building2, label: "Movimentação constante" },
+  { icon: Bike, label: "Controle de entregas por aplicativo" },
+  { icon: Truck, label: "Controle de Prestadores de serviço" },
 ];
 
 const PILARES = [
@@ -138,9 +135,9 @@ function Page() {
               >
                 Portaria 24h
                 <br />
-                <span className="text-primary">Seu apoio está aqui.</span>
+                <span className="text-primary">Nosso cuidado garante</span>
                 <br />
-                <span className="text-primary/90">Sempre.</span>
+                <span className="text-primary/90">A sua segurança.</span>
               </h1>
               <div className="h-[2px] sm:h-[3px] w-16 sm:w-24 bg-primary mt-6 sm:mt-10 mb-5 sm:mb-7" />
               <p
@@ -177,9 +174,9 @@ function Page() {
         {/* Rotina strip */}
         <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16">
           <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-4 md:divide-x md:divide-border">
-              {ROTINA.map(({ icon: Icon, label }) => (
-                <div key={label} className="md:px-4 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-0 gap-y-6 md:gap-y-8 md:divide-x md:divide-border">
+              {ROTINA.map(({ icon: Icon, label }, index) => (
+                <div key={label} className="md:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
                   <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
                   <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{label}</h3>
                 </div>
@@ -194,8 +191,8 @@ function Page() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-2xl" />
               <img
-                src={conciergeImg}
-                alt="Profissional de portaria GS uniformizado em lobby"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-OAN1qNAcBDTREIbd52YCdRycRQs2Om.png"
+                alt="Profissional de portaria GS interagindo com entregador de aplicativo de delivery no saguão"
                 width={1024}
                 height={1024}
                 loading="lazy"
@@ -300,32 +297,6 @@ function Page() {
 
         {/* WHY GS — premium values */}
         <ProposalSimulator />
-
-        {/* CTA BAND */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0">
-                <Headphones className="w-7 h-7 text-primary-foreground" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-primary-foreground uppercase tracking-tight">
-                  Precisa de uma operação organizada?
-                </h3>
-                <p className="text-primary-foreground/85 mt-1 text-sm md:text-base">
-                  Fale com a GS e solicite uma proposta alinhada à necessidade da sua operação.
-                </p>
-              </div>
-            </div>
-            <Link
-              to="/solicitar-proposta"
-              className="group inline-flex items-center gap-3 bg-background-deep text-white hover:bg-background-deep/90 transition-colors rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shrink-0"
-            >
-              Solicitar Orçamento
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
