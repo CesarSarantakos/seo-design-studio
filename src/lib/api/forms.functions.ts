@@ -24,7 +24,12 @@ const proposalSchema = z.object({
   desafio: z.string().max(200).optional().default(""),
 });
 
-export const submitProposal = createServerFn({ method: "POST" })
+type ProposalResponse = {
+  success: boolean;
+  message: string;
+};
+
+export const submitProposal = createServerFn<any, ProposalResponse>({ method: "POST" })
   .inputValidator((data: unknown) => {
     console.log("[v0] submitProposal inputValidator received:", data);
     try {
@@ -36,7 +41,7 @@ export const submitProposal = createServerFn({ method: "POST" })
       throw validationError;
     }
   })
-  .handler(async ({ data }) => {
+  .handler(async ({ data }): Promise<ProposalResponse> => {
     console.log("[v0] submitProposal handler called with data:", data);
     try {
       // Save to database
