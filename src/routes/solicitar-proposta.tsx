@@ -96,6 +96,14 @@ function Page() {
     email: "",
   });
 
+  const getStepCompletion = () => {
+    const step1 = data.servicos.length > 0 ? 100 : 0;
+    const step2 = data.necessidade.length > 0 ? 100 : 0;
+    const step3 = data.desafio.length > 0 ? 100 : 0;
+    const step4 = data.nome && data.telefone ? 100 : 0;
+    return Math.round((step1 + step2 + step3 + step4) / 4);
+  };
+
   const toggleService = (s: string) =>
     setData((d) => ({
       ...d,
@@ -161,13 +169,19 @@ function Page() {
 
           <form onSubmit={handleSubmit} className="relative">
             <div className="space-y-6">
+              {/* Progress bar */}
+              <div className="flex items-center gap-2 mb-8">
+                <div className="flex-1 h-1 bg-muted rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-primary via-primary to-primary/80 rounded-full transition-all duration-500 ease-out shadow-lg shadow-primary/30"
+                    style={{ width: `${getStepCompletion()}%` }}
+                  />
+                </div>
+                <span className="text-xs font-semibold text-primary whitespace-nowrap">{getStepCompletion()}%</span>
+              </div>
+
               <div className="relative space-y-6">
-                {/* Connector line linking the 4 steps (desktop only) */}
-                <div
-                  aria-hidden
-                  className="hidden md:block absolute left-14 -translate-x-1/2 top-6 bottom-6 w-px bg-gradient-to-b from-primary/40 via-border to-primary/40 text-[#001742]"
-                />
-              {/* STEP 1 */}
+                {/* STEP 1 */}
               <StepCard step={STEPS[0]}>
                 <h2 className="text-xl md:text-2xl font-bold text-foreground">
                   Quais <span className="text-primary">profissionais</span> sua operação precisa?
