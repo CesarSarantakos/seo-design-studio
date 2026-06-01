@@ -112,44 +112,49 @@ function Page() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate required fields
     if (data.servicos.length === 0) {
-      toast.error("Selecione ao menos um serviço");
+      toast.error("Selecione pelo menos um profissional.");
       return;
     }
-    if (!data.nome || !data.telefone) {
-      toast.error("Preencha nome e WhatsApp");
+    if (!data.nome.trim()) {
+      toast.error("Por favor, informe seu nome.");
       return;
     }
+    if (!data.email.trim()) {
+      toast.error("Por favor, informe seu e-mail.");
+      return;
+    }
+    if (!data.telefone.trim()) {
+      toast.error("Por favor, informe seu telefone.");
+      return;
+    }
+
     setLoading(true);
     try {
-      await submit({
-        data: {
-          servicos: data.servicos,
-          cep: "",
-          cidade: "",
-          estado: "",
-          endereco: data.endereco,
-          nome: data.nome,
-          empresa: data.empresa,
-          email: data.email || `${data.telefone.replace(/\D/g, "")}@sem-email.local`,
-          telefone: data.telefone,
-          necessidade: data.necessidade,
-          desafio: data.desafio,
-        },
-      });
-      toast.success("Recebemos sua solicitação! Em breve entraremos em contato.");
-      setData({
-        servicos: [],
-        necessidade: "",
-        desafio: "",
-        nome: "",
-        empresa: "",
-        endereco: "",
-        telefone: "",
-        email: "",
-      });
-    } catch (err: any) {
-      toast.error(err?.message ?? "Erro ao enviar");
+      const result = await submit(data);
+      if (result.success) {
+        toast.success(result.message || "Proposta enviada com sucesso!");
+        // Reset form
+        setData({
+          servicos: [],
+          necessidade: "",
+          desafio: "",
+          nome: "",
+          empresa: "",
+          endereco: "",
+          telefone: "",
+          email: "",
+        });
+        // Optionally redirect after success
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
+      }
+    } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : "Erro ao enviar proposta.";
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }

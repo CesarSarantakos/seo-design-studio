@@ -59,28 +59,42 @@ export function ProposalSimulator() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!data.nome || !data.email || !data.telefone) {
-      toast.error("Preencha nome, e-mail e telefone");
+    
+    // Validate required fields
+    if (!data.nome || !data.nome.trim()) {
+      toast.error("Por favor, informe seu nome");
       return;
     }
+    if (!data.email || !data.email.trim()) {
+      toast.error("Por favor, informe seu e-mail");
+      return;
+    }
+    if (!data.telefone || !data.telefone.trim()) {
+      toast.error("Por favor, informe seu telefone");
+      return;
+    }
+    
     setLoading(true);
     try {
-      await submit({ data });
-      toast.success("Recebemos sua solicitação! Em breve entraremos em contato.");
-      setStep(0);
-      setData({
-        servicos: [],
-        cep: "",
-        cidade: "",
-        estado: "",
-        endereco: "",
-        nome: "",
-        empresa: "",
-        email: "",
-        telefone: "",
-      });
+      const result = await submit(data);
+      if (result.success) {
+        toast.success(result.message || "Proposta enviada com sucesso! Entraremos em contato em breve.");
+        setStep(0);
+        setData({
+          servicos: [],
+          cep: "",
+          cidade: "",
+          estado: "",
+          endereco: "",
+          nome: "",
+          empresa: "",
+          email: "",
+          telefone: "",
+        });
+      }
     } catch (err: any) {
-      toast.error(err?.message ?? "Erro ao enviar");
+      const errorMsg = err?.message ?? "Erro ao enviar proposta";
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
