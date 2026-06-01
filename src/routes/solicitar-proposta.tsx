@@ -123,6 +123,9 @@ function Page() {
     seuNome: "",
     email: "",
     telefone: "",
+    cep: "",
+    cidade: "",
+    estado: "",
   });
 
   const toggleService = (s: string) =>
@@ -149,6 +152,9 @@ function Page() {
         endereco: data.endereco,
         telefone: data.telefone,
         email: data.email,
+        cep: data.cep,
+        cidade: data.cidade,
+        estado: data.estado,
       });
       if (result.success) {
         toast.success("Proposta enviada! Retorno em até 1 hora útil.");
