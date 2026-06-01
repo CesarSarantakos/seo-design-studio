@@ -21,12 +21,12 @@ export function ContactForm({ origem = "contato", className = "" }: ContactFormP
     email: "",
     telefone: "",
     empresa: "",
-    assunto: "",
     mensagem: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("[v0] ContactForm submit started with form data:", form);
 
     // Validate required fields
     if (!form.nome.trim()) {
@@ -41,10 +41,6 @@ export function ContactForm({ origem = "contato", className = "" }: ContactFormP
       toast.error("Por favor, informe seu telefone");
       return;
     }
-    if (!form.assunto.trim()) {
-      toast.error("Por favor, informe o assunto");
-      return;
-    }
     if (!form.mensagem.trim()) {
       toast.error("Por favor, escreva uma mensagem");
       return;
@@ -52,15 +48,18 @@ export function ContactForm({ origem = "contato", className = "" }: ContactFormP
 
     setLoading(true);
     try {
-      const result = await submit({
+      const payload = {
         nome: form.nome,
         email: form.email,
         telefone: form.telefone,
         empresa: form.empresa,
-        assunto: form.assunto,
         mensagem: form.mensagem,
         origem,
-      });
+      };
+      console.log("[v0] ContactForm submitting payload:", payload);
+      
+      const result = await submit(payload);
+      console.log("[v0] ContactForm result:", result);
 
       toast.success(result.message || "Mensagem enviada com sucesso!");
 
@@ -70,10 +69,10 @@ export function ContactForm({ origem = "contato", className = "" }: ContactFormP
         email: "",
         telefone: "",
         empresa: "",
-        assunto: "",
         mensagem: "",
       });
     } catch (error) {
+      console.error("[v0] ContactForm error:", error);
       const errorMsg = error instanceof Error ? error.message : "Erro ao enviar mensagem";
       toast.error(errorMsg);
     } finally {
@@ -131,18 +130,6 @@ export function ContactForm({ origem = "contato", className = "" }: ContactFormP
             className="h-11 transition-all duration-200 focus:shadow-[0_0_0_3px_hsl(var(--primary)/0.1)] border-2 border-border/60 focus:border-primary/50"
           />
         </div>
-      </div>
-
-      <div className="space-y-2">
-        <Label className="text-sm font-medium">Assunto *</Label>
-        <Input
-          value={form.assunto}
-          onChange={(e) => setForm({ ...form, assunto: e.target.value })}
-          placeholder="Como podemos ajudar?"
-          maxLength={200}
-          required
-          className="h-11 transition-all duration-200 focus:shadow-[0_0_0_3px_hsl(var(--primary)/0.1)] border-2 border-border/60 focus:border-primary/50"
-        />
       </div>
 
       <div className="space-y-2">
