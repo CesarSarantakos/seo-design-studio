@@ -17,8 +17,8 @@ export function TrustStrip() {
               <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" strokeWidth={1.8} />
             </div>
             <div className="min-w-0">
-              <p className="font-bold text-neutral-900 text-sm md:text-base leading-tight">{title}</p>
-              <p className="text-xs md:text-sm text-neutral-600 leading-snug mt-0.5">{subtitle}</p>
+              <p className="font-bold text-neutral-900 text-base md:text-lg leading-tight">{title}</p>
+              <p className="text-sm md:text-base text-neutral-600 leading-snug mt-0.5">{subtitle}</p>
             </div>
           </div>
         ))}
