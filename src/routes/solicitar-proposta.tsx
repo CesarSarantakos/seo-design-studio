@@ -143,7 +143,7 @@ function Page() {
 
     setLoading(true);
     try {
-      const payload = {
+      const result = await submit({
         servicos: data.servicos,
         necessidade: data.necessidade,
         desafio: data.desafio,
@@ -155,8 +155,7 @@ function Page() {
         cep: data.cep,
         cidade: data.cidade,
         estado: data.estado,
-      };
-      const result = await submit({ data: payload });
+      });
       if (result.success) {
         toast.success("Proposta enviada! Retorno em até 1 hora útil.");
         setTimeout(() => { window.location.href = "/"; }, 2000);
