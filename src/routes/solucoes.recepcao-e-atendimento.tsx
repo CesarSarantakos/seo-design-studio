@@ -28,12 +28,11 @@ const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20recep%C3%A7%C3%A3o%20e%20atendimento.%20Pode%20me%20ajudar%3F";
 
 const DESTAQUES = [
-  { icon: Users, label: "Acolhimento e cordialidade" },
-  { icon: MessageCircle, label: "Comunicação eficaz" },
-  { icon: UserCheck, label: "Postura e profissionalismo" },
-  { icon: CalendarCheck, label: "Organização e controle" },
-  { icon: Phone, label: "Atendimento telefônico" },
-  { icon: UserPlus, label: "Apoio ao fluxo diário" },
+  { icon: Users, label: "Acolhimento genuíno e cordial" },
+  { icon: MessageCircle, label: "Comunicação clara e eficiente" },
+  { icon: UserCheck, label: "Profissionalismo e discrição" },
+  { icon: CalendarCheck, label: "Organização e controle total" },
+  { icon: Phone, label: "Atendimento telefônico preparado" },
 ];
 
 const PILARES = [
@@ -173,9 +172,9 @@ function Page() {
         {/* Destaques strip */}
         <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16">
           <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-4 md:divide-x md:divide-border">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-0 gap-y-6 md:gap-y-8 md:divide-x md:divide-border">
               {DESTAQUES.map(({ icon: Icon, label }) => (
-                <div key={label} className="md:px-4 text-center">
+                <div key={label} className="md:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
                   <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
                   <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{label}</h3>
                 </div>
