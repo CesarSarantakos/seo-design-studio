@@ -1,16 +1,14 @@
-import heroImg from "@/assets/hero-team.jpg";
-
 export function Hero() {
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-[#0B1B3D]">
       {/* Background photo */}
       <img
-        src={heroImg}
-        alt="Equipe GS — segurança, limpeza e gestão profissional com águia ao fundo"
+        src="/quem-somos-hero.jpg"
+        alt="Logo GS em ouro com mãos representando cuidado e conexão profissional"
         width={1920}
         height={1080}
         fetchPriority="high"
-        className="absolute inset-0 w-full h-full object-cover object-right"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
       {/* Left-to-right dark gradient for text legibility */}
       <div

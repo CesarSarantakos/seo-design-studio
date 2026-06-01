@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { HotbarFeatures } from "@/components/site/HotbarFeatures";
 import {
   Clock,
   ShieldCheck,
@@ -88,6 +89,30 @@ function Page() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* HOTBAR */}
+        <section className="pt-0 pb-16 md:pb-24 bg-background">
+          <HotbarFeatures 
+            features={[
+              {
+                icon: Users,
+                title: "Profissionais alinhados à sua cultura",
+              },
+              {
+                icon: ClipboardCheck,
+                title: "Supervisão constante",
+              },
+              {
+                icon: Handshake,
+                title: "Parceria que gera resultados",
+              },
+              {
+                icon: CalendarClock,
+                title: "Continuidade operacional",
+              },
+            ]}
+          />
         </section>
 
         {/* DIFERENCIAIS PRINCIPAIS */}

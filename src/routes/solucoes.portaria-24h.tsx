@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 import {
   ShieldCheck,
   Eye,
@@ -20,6 +21,7 @@ import {
   Lock,
 } from "lucide-react";
 import heroImg from "@/assets/portaria-hero.jpg";
+import heroImgNew from "/portaria-hero.jpg";
 import conciergeImg from "@/assets/portaria-concierge.jpg";
 
 const WHATSAPP_URL =
@@ -108,12 +110,12 @@ function Page() {
         {/* HERO */}
         <section className="relative w-full min-h-screen md:min-h-[92vh] overflow-hidden bg-background-deep">
           <img
-            src={heroImg}
-            alt="Profissional de segurança GS com rádio atendendo cliente"
+            src={heroImgNew}
+            alt="Profissionais de portaria GS interagindo com cliente em cadeira de rodas no saguão corporativo"
             width={1920}
             height={1280}
             fetchPriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-center md:object-right"
+            className="absolute inset-0 w-full h-full object-cover object-center md:object-center"
           />
           <div
             aria-hidden="true"
@@ -297,31 +299,7 @@ function Page() {
         </section>
 
         {/* WHY GS — premium values */}
-        <section className="py-24 bg-foreground/[0.03]">
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="max-w-2xl mx-auto text-center mb-14">
-              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">
-                Por que GS
-              </span>
-              <h2 className="mt-4 text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-                Uma portaria que sustenta a sua operação.
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { icon: Clock, title: "Cobertura 24/7", desc: "Escalas firmes, turnos sempre cobertos e zero buraco operacional." },
-                { icon: Eye, title: "Atenção real", desc: "Profissionais treinados para observar, registrar e agir com critério." },
-                { icon: Headphones, title: "Supervisão próxima", desc: "Canal direto entre equipe, supervisão e cliente — sem ruído." },
-              ].map(({ icon: Icon, title, desc }) => (
-                <article key={title} className="bg-card border border-border rounded-2xl p-8 hover:border-primary/50 transition-colors">
-                  <Icon className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
-                  <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ProposalSimulator />
 
         {/* CTA BAND */}
         <section className="py-16 bg-primary">

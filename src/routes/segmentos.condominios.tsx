@@ -26,7 +26,6 @@ import {
   Award,
 } from "lucide-react";
 import heroImg from "@/assets/condominio-hero.jpg";
-import entregaImg from "@/assets/condominio-entrega.jpg";
 
 export const Route = createFileRoute("/segmentos/condominios")({
   head: () => ({
@@ -178,10 +177,10 @@ function Page() {
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
             <div className="relative rounded-2xl overflow-hidden min-h-[320px] md:min-h-[460px]">
               <img
-                src={entregaImg}
-                alt="Entrega em condomínio"
+                src="/condominios-operacao.jpg"
+                alt="Profissional GS em portaria de condomínio atendendo entregador"
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-background/85 via-background/50 to-transparent" />
               <div className="relative p-6 md:p-10 max-w-md">
