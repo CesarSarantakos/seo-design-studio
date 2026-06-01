@@ -18,8 +18,8 @@ import {
   Headphones,
   Wrench,
   HeartHandshake,
+  Hotel,
 } from "lucide-react";
-import heroImg from "@/assets/limpeza-hero.jpg";
 
 const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20limpeza%20profissional.%20Pode%20me%20ajudar%3F";
@@ -45,6 +45,7 @@ const AMBIENTES = [
   { icon: Truck, label: "Transportadoras" },
   { icon: Stethoscope, label: "Clínicas e consultórios" },
   { icon: GraduationCap, label: "Escolas e instituições" },
+  { icon: Hotel, label: "Hotéis e hospedagem" },
 ];
 
 const COMPROMISSO = [
@@ -87,12 +88,12 @@ function Page() {
         {/* HERO */}
         <section className="relative w-full min-h-[92vh] overflow-hidden bg-background-deep">
           <img
-            src={heroImg}
-            alt="Profissional de limpeza GS cuidando do piso em lobby corporativo premium"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-31%20at%2013.39.08-fQYpVse6ceeuleRO7EV3aCznKroatc.jpeg"
+            alt="Equipe profissional GS de limpeza uniformizada em ambiente corporativo moderno"
             width={1920}
             height={1280}
             fetchPriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-right"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
           <div
             aria-hidden="true"
