@@ -42,17 +42,20 @@ export function OperationImpact() {
 
             {/* Benefits List */}
             <ul className="space-y-4">
-              {benefits.map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <CheckCircle2
-                    className="w-6 h-6 text-[var(--primary)] shrink-0 mt-0.5"
-                    strokeWidth={2}
-                  />
-                  <span className="text-base md:text-lg text-gray-700 leading-relaxed">
-                    {benefit}
-                  </span>
-                </li>
-              ))}
+              {benefits.map((benefit, index) => {
+                const [title, rest] = benefit.split(": ");
+                return (
+                  <li key={index} className="flex items-start gap-3">
+                    <CheckCircle2
+                      className="w-6 h-6 text-[var(--primary)] shrink-0 mt-0.5"
+                      strokeWidth={2}
+                    />
+                    <span className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      <strong>{title}:</strong> {rest}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
