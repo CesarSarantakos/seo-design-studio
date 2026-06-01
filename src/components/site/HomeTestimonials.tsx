@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 
 const items = [
   {
@@ -22,17 +23,45 @@ const items = [
 ];
 
 export function HomeTestimonials() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <section className="bg-[#F7F5F0] pb-20" aria-labelledby="depoimentos">
+      <style>{`
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .testimonial-card {
+          animation: slideInUp 0.6s ease-out both;
+        }
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+      `}</style>
       <div className="container mx-auto px-6">
         <h2 id="depoimentos" className="text-center text-2xl md:text-3xl font-bold text-neutral-900 mb-10">
           Resultados percebidos por nossos clientes
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {items.map((t) => (
+          {items.map((t, index) => (
             <article
               key={t.name}
-              className="bg-white rounded-xl p-6 md:p-7 shadow-sm border border-neutral-200/70 flex flex-col"
+              className="testimonial-card bg-white rounded-xl p-6 md:p-7 shadow-sm border border-neutral-200/70 flex flex-col transition-all duration-300 ease-out cursor-pointer"
+              style={{
+                transform: hoveredIndex === index ? "translateY(-8px)" : "translateY(0)",
+                boxShadow: hoveredIndex === index 
+                  ? "0 20px 25px -5px rgba(0, 0, 0, 0.1)" 
+                  : "0 1px 2px 0px rgba(0, 0, 0, 0.05)",
+              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <p className="text-[var(--gold)] text-3xl leading-none mb-2">“</p>
               <p className="text-neutral-700 leading-relaxed text-[15px] flex-1">{t.quote}</p>
