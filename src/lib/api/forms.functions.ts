@@ -66,3 +66,121 @@ export const submitContact = createServerFn<any, ContactResponse>({ method: "POS
       throw error instanceof Error ? error : new Error("Erro ao enviar mensagem. Tente novamente.");
     }
   });
+
+// ===== JOB APPLICATION SCHEMA =====
+const jobAppSchema = z.object({
+  nome: z.string().trim().min(1, "Nome é obrigatório").max(150),
+  telefone: z.string().trim().min(6, "Telefone inválido").max(30),
+  email: z.string().trim().email("Email inválido").max(255),
+  dataNascimento: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data inválida").optional().default(""),
+  mensagem: z.string().max(2000).optional().default(""),
+  regiao: z.enum(["zona_leste", "zona_sul", "zona_norte", "zona_oeste"]),
+  areaInteresse: z.enum(["portaria", "recepcao", "limpeza", "apoio_operacional", "zeladoria", "supervisao", "outros"]),
+  temExperiencia: z.boolean(),
+  disponibilidade: z.enum(["diurno", "noturno"]),
+  resumeBase64: z.string().min(1).max(8_000_000),
+  resumeName: z.string().min(1).max(200),
+  resumeType: z.string().min(1).max(100),
+});
+
+type JobAppResponse = {
+  success: boolean;
+  message: string;
+};
+
+export const submitJobApplication = createServerFn<any, JobAppResponse>({ method: "POST" })
+  .inputValidator((data: unknown) => {
+    console.log("[v0] submitJobApplication validator received data");
+    try {
+      const validated = jobAppSchema.parse(data);
+      console.log("[v0] submitJobApplication validation passed");
+      return validated;
+    } catch (error) {
+      console.error("[v0] submitJobApplication validation error:", error);
+      throw error;
+    }
+  })
+  .handler(async ({ data }): Promise<JobAppResponse> => {
+    console.log("[v0] submitJobApplication handler called");
+    try {
+      const allowed = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (!allowed.includes(data.resumeType)) {
+        throw new Error("Formato inválido. Envie PDF ou DOC/DOCX.");
+      }
+
+      const buf = Buffer.from(data.resumeBase64, "base64");
+      if (buf.byteLength > 5 * 1024 * 1024) {
+        throw new Error("Arquivo maior que 5MB.");
+      }
+
+      // Upload resume to storage
+      const safeName = data.resumeName.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const path = `${Date.now()}-${crypto.randomUUID()}-${safeName}`;
+      const { error: upErr } = await supabaseAdmin.storage
+        .from("resumes")
+        .upload(path, buf, { contentType: data.resumeType, upsert: false });
+
+      if (upErr) {
+        console.error("[v0] storage upload error:", upErr);
+        throw new Error("Falha ao enviar o currículo.");
+      }
+
+      // Save to database
+      const { error: dbError } = await supabaseAdmin.from("job_applications").insert({
+        nome: data.nome,
+        telefone: data.telefone,
+        email: data.email,
+        data_nascimento: data.dataNascimento || null,
+        mensagem: data.mensagem || null,
+        resume_path: path,
+        regiao: data.regiao,
+        area_interesse: data.areaInteresse,
+        tem_experiencia: data.temExperiencia,
+        disponibilidade: data.disponibilidade,
+      });
+
+      if (dbError) {
+        console.error("[v0] job_applications insert error:", dbError);
+        throw new Error("Falha ao registrar candidatura.");
+      }
+
+      // Send email notification with attachment
+      const resumeUrl = supabaseAdmin.storage.from("resumes").getPublicUrl(path).data.publicUrl;
+
+      const emailBody = `
+<h2>Nova Candidatura Recebida</h2>
+<p><strong>Data:</strong> ${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</p>
+<p><strong>Página:</strong> Trabalhe Conosco</p>
+
+<hr />
+
+<p><strong>Nome:</strong> ${data.nome}</p>
+<p><strong>E-mail:</strong> ${data.email}</p>
+<p><strong>Telefone:</strong> ${data.telefone}</p>
+<p><strong>Data de Nascimento:</strong> ${data.dataNascimento || "Não informado"}</p>
+<p><strong>Região:</strong> ${data.regiao}</p>
+<p><strong>Área de Interesse:</strong> ${data.areaInteresse}</p>
+<p><strong>Tem Experiência?:</strong> ${data.temExperiencia ? "Sim" : "Não"}</p>
+<p><strong>Disponibilidade:</strong> ${data.disponibilidade}</p>
+<p><strong>Mensagem:</strong> ${data.mensagem || "Não informado"}</p>
+<p><strong>Currículo:</strong> <a href="${resumeUrl}">Baixar currículo</a></p>
+      `;
+
+      await resend.emails.send({
+        from: FROM_EMAIL,
+        to: "rh@gsservicos.com.br",
+        subject: "[GS] Nova Candidatura - " + data.nome,
+        html: emailBody,
+      });
+
+      console.log("[v0] Job application email sent successfully");
+      return { success: true, message: "Candidatura enviada com sucesso! Entraremos em contato em breve." };
+    } catch (error) {
+      console.error("[v0] submitJobApplication error:", error);
+      throw error instanceof Error ? error : new Error("Erro ao enviar candidatura. Tente novamente.");
+    }
+  });
