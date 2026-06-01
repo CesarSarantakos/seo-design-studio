@@ -1,5 +1,4 @@
 import { UsersRound } from "lucide-react";
-import marketImg from "@/assets/handshake.jpg";
 
 export function MarketChange() {
   return (
@@ -32,10 +31,10 @@ export function MarketChange() {
         <div className="relative">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-[5/4]">
             <img
-              src={marketImg}
-              alt="Profissional preocupado com a operação"
+              src="/desgaste-operacional.jpg"
+              alt="Profissional preocupado com a operação e equipe de limpeza ao fundo"
               loading="lazy"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center md:object-left"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-[#0B1B3D]/40 via-transparent to-transparent" />
           </div>
