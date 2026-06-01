@@ -20,6 +20,7 @@ import {
   Lock,
 } from "lucide-react";
 import heroImg from "@/assets/portaria-hero.jpg";
+import heroImgNew from "/portaria-hero.jpg";
 import conciergeImg from "@/assets/portaria-concierge.jpg";
 
 const WHATSAPP_URL =
@@ -108,12 +109,12 @@ function Page() {
         {/* HERO */}
         <section className="relative w-full min-h-screen md:min-h-[92vh] overflow-hidden bg-background-deep">
           <img
-            src={heroImg}
-            alt="Profissional de segurança GS com rádio atendendo cliente"
+            src={heroImgNew}
+            alt="Profissionais de portaria GS interagindo com cliente em cadeira de rodas no saguão corporativo"
             width={1920}
             height={1280}
             fetchPriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-center md:object-right"
+            className="absolute inset-0 w-full h-full object-cover object-center md:object-center"
           />
           <div
             aria-hidden="true"
