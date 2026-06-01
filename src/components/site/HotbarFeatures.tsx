@@ -9,23 +9,15 @@ interface HotbarFeaturesProps {
 
 export function HotbarFeatures({ features }: HotbarFeaturesProps) {
   return (
-    <section className="bg-[#001f3f] border-y border-[#003d6b]">
-      <div className="container mx-auto px-6 max-w-7xl py-8 md:py-10">
-        <div className="flex flex-wrap justify-center md:justify-between items-stretch divide-x divide-[#003d6b]">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={index}
-                className="flex flex-col items-center justify-center gap-2 px-4 md:px-6 py-4 flex-1 min-w-max md:min-w-0"
-              >
-                <Icon className="h-7 w-7 md:h-8 md:w-8 text-[#d4a574]" strokeWidth={1.5} />
-                <h3 className="text-white font-semibold text-xs md:text-sm text-center leading-tight">
-                  {feature.title}
-                </h3>
-              </div>
-            );
-          })}
+    <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16">
+      <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-4 md:divide-x md:divide-border">
+          {features.map(({ icon: Icon, title }) => (
+            <div key={title} className="md:px-4 text-center">
+              <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+              <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{title}</h3>
+            </div>
+          ))}
         </div>
       </div>
     </section>

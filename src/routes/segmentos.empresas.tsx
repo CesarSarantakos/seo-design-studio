@@ -92,26 +92,28 @@ function Page() {
         </section>
 
         {/* HOTBAR */}
-        <HotbarFeatures 
-          features={[
-            {
-              icon: Users,
-              title: "Profissionais alinhados à sua cultura",
-            },
-            {
-              icon: ClipboardCheck,
-              title: "Supervisão constante",
-            },
-            {
-              icon: Handshake,
-              title: "Parceria que gera resultados",
-            },
-            {
-              icon: CalendarClock,
-              title: "Continuidade operacional",
-            },
-          ]}
-        />
+        <section className="pt-0 pb-16 md:pb-24 bg-background">
+          <HotbarFeatures 
+            features={[
+              {
+                icon: Users,
+                title: "Profissionais alinhados à sua cultura",
+              },
+              {
+                icon: ClipboardCheck,
+                title: "Supervisão constante",
+              },
+              {
+                icon: Handshake,
+                title: "Parceria que gera resultados",
+              },
+              {
+                icon: CalendarClock,
+                title: "Continuidade operacional",
+              },
+            ]}
+          />
+        </section>
 
         {/* DIFERENCIAIS PRINCIPAIS */}
         <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
