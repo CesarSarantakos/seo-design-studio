@@ -184,3 +184,97 @@ export const submitJobApplication = createServerFn<any, JobAppResponse>({ method
       throw error instanceof Error ? error : new Error("Erro ao enviar candidatura. Tente novamente.");
     }
   });
+
+// ===== PROPOSAL/ORÇAMENTO SCHEMA =====
+const proposalSchema = z.object({
+  servicos: z.array(z.string().min(1).max(100)).min(1).max(20),
+  cep: z.string().max(20).optional().default(""),
+  cidade: z.string().max(120).optional().default(""),
+  estado: z.string().max(60).optional().default(""),
+  endereco: z.string().max(300).optional().default(""),
+  nome: z.string().trim().min(1, "Nome é obrigatório").max(150),
+  empresa: z.string().max(150).optional().default(""),
+  email: z.string().trim().email("Email inválido").max(255),
+  telefone: z.string().trim().min(6, "Telefone inválido").max(30),
+  necessidade: z.string().max(2000).optional().default(""),
+  desafio: z.string().max(200).optional().default(""),
+});
+
+type ProposalResponse = {
+  success: boolean;
+  message: string;
+};
+
+export const submitProposal = createServerFn<any, ProposalResponse>({ method: "POST" })
+  .inputValidator((data: unknown) => {
+    console.log("[v0] submitProposal validator received");
+    try {
+      const validated = proposalSchema.parse(data);
+      console.log("[v0] submitProposal validation passed");
+      return validated;
+    } catch (error) {
+      console.error("[v0] submitProposal validation error:", error);
+      throw error;
+    }
+  })
+  .handler(async ({ data }): Promise<ProposalResponse> => {
+    console.log("[v0] submitProposal handler called");
+    try {
+      // Save to database
+      const { error: dbError } = await supabaseAdmin.from("proposal_requests").insert({
+        servicos: data.servicos,
+        cep: data.cep || null,
+        cidade: data.cidade || null,
+        estado: data.estado || null,
+        endereco: data.endereco || null,
+        nome: data.nome,
+        empresa: data.empresa || null,
+        email: data.email,
+        telefone: data.telefone,
+        necessidade: data.necessidade || null,
+        desafio: data.desafio || null,
+      });
+
+      if (dbError) {
+        console.error("[v0] submitProposal db error:", dbError);
+        throw new Error("Erro ao salvar proposta no banco de dados.");
+      }
+
+      console.log("[v0] Database insert successful");
+
+      // Send email notification
+      const emailBody = `
+<h2>Nova Proposta Recebida</h2>
+<p><strong>Data:</strong> ${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</p>
+<p><strong>Página:</strong> Solicitar Orçamento</p>
+
+<hr />
+
+<p><strong>Nome:</strong> ${data.nome}</p>
+<p><strong>Empresa:</strong> ${data.empresa || "Não informado"}</p>
+<p><strong>E-mail:</strong> ${data.email}</p>
+<p><strong>Telefone:</strong> ${data.telefone}</p>
+<p><strong>CEP:</strong> ${data.cep || "Não informado"}</p>
+<p><strong>Cidade:</strong> ${data.cidade || "Não informado"}</p>
+<p><strong>Estado:</strong> ${data.estado || "Não informado"}</p>
+<p><strong>Endereço:</strong> ${data.endereco || "Não informado"}</p>
+<p><strong>Serviços:</strong> ${data.servicos.join(", ")}</p>
+<p><strong>Necessidade:</strong> ${data.necessidade || "Não informado"}</p>
+<p><strong>Principal Desafio:</strong> ${data.desafio || "Não informado"}</p>
+      `;
+
+      console.log("[v0] Sending proposal email...");
+      await resend.emails.send({
+        from: FROM_EMAIL,
+        to: "eliahu@gsservicos.com.br",
+        subject: "[GS] Nova Proposta - " + data.nome,
+        html: emailBody,
+      });
+
+      console.log("[v0] Proposal email sent successfully");
+      return { success: true, message: "Proposta enviada com sucesso! Você receberá sua proposta em breve." };
+    } catch (error) {
+      console.error("[v0] submitProposal error:", error);
+      throw error instanceof Error ? error : new Error("Erro ao enviar proposta. Tente novamente.");
+    }
+  });
