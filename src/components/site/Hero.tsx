@@ -3,8 +3,8 @@ export function Hero() {
     <section className="relative w-full min-h-screen overflow-hidden bg-[#0B1B3D]">
       {/* Background photo */}
       <img
-        src="/quem-somos-hero.jpg"
-        alt="Logo GS em ouro com mãos representando cuidado e conexão profissional"
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-31%20at%2013.39.08%20%281%29-pmW8BlOC1mVbifd9LORVyCCp80hlvr.jpeg"
+        alt="Equipe profissional GS em uniforme azul em ambiente corporativo moderno"
         width={1920}
         height={1080}
         fetchPriority="high"
