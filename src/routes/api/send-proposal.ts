@@ -1,10 +1,6 @@
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { Resend } from "resend";
 import { z } from "zod";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@gsservicos.com.br";
-const TO_EMAIL = "eliahu@gsservicos.com.br";
 
 const proposalSchema = z.object({
   servicos: z.array(z.string()).min(1),
@@ -20,16 +16,22 @@ const proposalSchema = z.object({
   desafio: z.string().optional().default(""),
 });
 
-export const APIRoute = createAPIFileRoute("/api/send-proposal")({
-  POST: async ({ request }) => {
-    try {
-      const body = await request.json();
-      console.log("[API] send-proposal received:", JSON.stringify(body));
+export const Route = createFileRoute("/api/send-proposal")({
+  server: {
+    handlers: {
+      POST: async ({ request }) => {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@gsservicos.com.br";
+        const TO_EMAIL = "eliahu@gsservicos.com.br";
 
-      const data = proposalSchema.parse(body);
-      console.log("[API] send-proposal validation passed");
+        try {
+          const body = await request.json();
+          console.log("[API] send-proposal received:", JSON.stringify(body));
 
-      const emailHtml = `
+          const data = proposalSchema.parse(body);
+          console.log("[API] send-proposal validation passed");
+
+          const emailHtml = `
 <h2>Nova Solicitação de Orçamento</h2>
 <p><strong>Data:</strong> ${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</p>
 <hr />
@@ -44,38 +46,31 @@ export const APIRoute = createAPIFileRoute("/api/send-proposal")({
 <p><strong>Serviços Solicitados:</strong> ${data.servicos.join(", ")}</p>
 <p><strong>Necessidade:</strong> ${data.necessidade || "Não informado"}</p>
 <p><strong>Principal Desafio:</strong> ${data.desafio || "Não informado"}</p>
-      `;
+          `;
 
-      console.log("[API] Sending email via Resend...");
-      const { error } = await resend.emails.send({
-        from: FROM_EMAIL,
-        to: TO_EMAIL,
-        subject: `[GS] Nova Proposta - ${data.nome}`,
-        html: emailHtml,
-      });
+          console.log("[API] Sending email via Resend...");
+          const { error } = await resend.emails.send({
+            from: FROM_EMAIL,
+            to: TO_EMAIL,
+            subject: `[GS] Nova Proposta - ${data.nome}`,
+            html: emailHtml,
+          });
 
-      if (error) {
-        console.error("[API] Resend error:", error);
-        return new Response(JSON.stringify({ success: false, message: "Erro ao enviar email." }), {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        });
-      }
+          if (error) {
+            console.error("[API] Resend error:", error);
+            return Response.json({ success: false, message: "Erro ao enviar email." }, { status: 500 });
+          }
 
-      console.log("[API] Email sent successfully");
-      return new Response(JSON.stringify({ success: true, message: "Proposta enviada com sucesso!" }), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (err) {
-      console.error("[API] send-proposal error:", err);
-      const message = err instanceof z.ZodError 
-        ? "Dados inválidos: " + err.errors.map(e => e.message).join(", ")
-        : "Erro ao processar solicitação.";
-      return new Response(JSON.stringify({ success: false, message }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
+          console.log("[API] Email sent successfully");
+          return Response.json({ success: true, message: "Proposta enviada com sucesso!" });
+        } catch (err) {
+          console.error("[API] send-proposal error:", err);
+          const message = err instanceof z.ZodError 
+            ? "Dados inválidos: " + err.errors.map(e => e.message).join(", ")
+            : "Erro ao processar solicitação.";
+          return Response.json({ success: false, message }, { status: 400 });
+        }
+      },
+    },
   },
 });

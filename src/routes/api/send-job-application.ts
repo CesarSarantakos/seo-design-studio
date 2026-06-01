@@ -1,10 +1,6 @@
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { Resend } from "resend";
 import { z } from "zod";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@gsservicos.com.br";
-const TO_EMAIL = "rh@gsservicos.com.br";
 
 const jobAppSchema = z.object({
   nome: z.string().min(1),
@@ -35,16 +31,22 @@ const areaLabels: Record<string, string> = {
   outros: "Outros",
 };
 
-export const APIRoute = createAPIFileRoute("/api/send-job-application")({
-  POST: async ({ request }) => {
-    try {
-      const body = await request.json();
-      console.log("[API] send-job-application received:", JSON.stringify(body));
+export const Route = createFileRoute("/api/send-job-application")({
+  server: {
+    handlers: {
+      POST: async ({ request }) => {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@gsservicos.com.br";
+        const TO_EMAIL = "rh@gsservicos.com.br";
 
-      const data = jobAppSchema.parse(body);
-      console.log("[API] send-job-application validation passed");
+        try {
+          const body = await request.json();
+          console.log("[API] send-job-application received:", JSON.stringify(body));
 
-      const emailHtml = `
+          const data = jobAppSchema.parse(body);
+          console.log("[API] send-job-application validation passed");
+
+          const emailHtml = `
 <h2>Nova Candidatura - Trabalhe Conosco</h2>
 <p><strong>Data:</strong> ${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</p>
 <hr />
@@ -57,38 +59,31 @@ export const APIRoute = createAPIFileRoute("/api/send-job-application")({
 <p><strong>Tem Experiência:</strong> ${data.temExperiencia ? "Sim" : "Não"}</p>
 <p><strong>Disponibilidade:</strong> ${data.disponibilidade === "diurno" ? "Diurno" : "Noturno"}</p>
 <p><strong>Mensagem:</strong> ${data.mensagem || "Não informado"}</p>
-      `;
+          `;
 
-      console.log("[API] Sending job application email via Resend...");
-      const { error } = await resend.emails.send({
-        from: FROM_EMAIL,
-        to: TO_EMAIL,
-        subject: `[GS] Nova Candidatura - ${data.nome}`,
-        html: emailHtml,
-      });
+          console.log("[API] Sending job application email via Resend...");
+          const { error } = await resend.emails.send({
+            from: FROM_EMAIL,
+            to: TO_EMAIL,
+            subject: `[GS] Nova Candidatura - ${data.nome}`,
+            html: emailHtml,
+          });
 
-      if (error) {
-        console.error("[API] Resend error:", error);
-        return new Response(JSON.stringify({ success: false, message: "Erro ao enviar email." }), {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        });
-      }
+          if (error) {
+            console.error("[API] Resend error:", error);
+            return Response.json({ success: false, message: "Erro ao enviar email." }, { status: 500 });
+          }
 
-      console.log("[API] Job application email sent successfully");
-      return new Response(JSON.stringify({ success: true, message: "Candidatura enviada com sucesso!" }), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (err) {
-      console.error("[API] send-job-application error:", err);
-      const message = err instanceof z.ZodError 
-        ? "Dados inválidos: " + err.errors.map(e => e.message).join(", ")
-        : "Erro ao processar candidatura.";
-      return new Response(JSON.stringify({ success: false, message }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
+          console.log("[API] Job application email sent successfully");
+          return Response.json({ success: true, message: "Candidatura enviada com sucesso!" });
+        } catch (err) {
+          console.error("[API] send-job-application error:", err);
+          const message = err instanceof z.ZodError 
+            ? "Dados inválidos: " + err.errors.map(e => e.message).join(", ")
+            : "Erro ao processar candidatura.";
+          return Response.json({ success: false, message }, { status: 400 });
+        }
+      },
+    },
   },
 });

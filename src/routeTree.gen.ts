@@ -25,6 +25,8 @@ import { Route as SolucoesLimpezaProfissionalRouteImport } from './routes/soluco
 import { Route as SegmentosEmpresasRouteImport } from './routes/segmentos.empresas'
 import { Route as SegmentosCondominiosRouteImport } from './routes/segmentos.condominios'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as ApiSendProposalRouteImport } from './routes/api/send-proposal'
+import { Route as ApiSendJobApplicationRouteImport } from './routes/api/send-job-application'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -112,6 +114,16 @@ const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   path: '/email/unsubscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSendProposalRoute = ApiSendProposalRouteImport.update({
+  id: '/api/send-proposal',
+  path: '/api/send-proposal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSendJobApplicationRoute = ApiSendJobApplicationRouteImport.update({
+  id: '/api/send-job-application',
+  path: '/api/send-job-application',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   id: '/lovable/email/suppression',
   path: '/lovable/email/suppression',
@@ -145,6 +157,8 @@ export interface FileRoutesByFullPath {
   '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
+  '/api/send-job-application': typeof ApiSendJobApplicationRoute
+  '/api/send-proposal': typeof ApiSendProposalRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/segmentos/condominios': typeof SegmentosCondominiosRoute
   '/segmentos/empresas': typeof SegmentosEmpresasRoute
@@ -165,6 +179,8 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
+  '/api/send-job-application': typeof ApiSendJobApplicationRoute
+  '/api/send-proposal': typeof ApiSendProposalRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/segmentos/condominios': typeof SegmentosCondominiosRoute
   '/segmentos/empresas': typeof SegmentosEmpresasRoute
@@ -188,6 +204,8 @@ export interface FileRoutesById {
   '/solicitar-proposta': typeof SolicitarPropostaRoute
   '/solucoes': typeof SolucoesRouteWithChildren
   '/trabalhe-conosco': typeof TrabalheConoscoRoute
+  '/api/send-job-application': typeof ApiSendJobApplicationRoute
+  '/api/send-proposal': typeof ApiSendProposalRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/segmentos/condominios': typeof SegmentosCondominiosRoute
   '/segmentos/empresas': typeof SegmentosEmpresasRoute
@@ -212,6 +230,8 @@ export interface FileRouteTypes {
     | '/solicitar-proposta'
     | '/solucoes'
     | '/trabalhe-conosco'
+    | '/api/send-job-application'
+    | '/api/send-proposal'
     | '/email/unsubscribe'
     | '/segmentos/condominios'
     | '/segmentos/empresas'
@@ -232,6 +252,8 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solicitar-proposta'
     | '/trabalhe-conosco'
+    | '/api/send-job-application'
+    | '/api/send-proposal'
     | '/email/unsubscribe'
     | '/segmentos/condominios'
     | '/segmentos/empresas'
@@ -254,6 +276,8 @@ export interface FileRouteTypes {
     | '/solicitar-proposta'
     | '/solucoes'
     | '/trabalhe-conosco'
+    | '/api/send-job-application'
+    | '/api/send-proposal'
     | '/email/unsubscribe'
     | '/segmentos/condominios'
     | '/segmentos/empresas'
@@ -277,6 +301,8 @@ export interface RootRouteChildren {
   SolicitarPropostaRoute: typeof SolicitarPropostaRoute
   SolucoesRoute: typeof SolucoesRouteWithChildren
   TrabalheConoscoRoute: typeof TrabalheConoscoRoute
+  ApiSendJobApplicationRoute: typeof ApiSendJobApplicationRoute
+  ApiSendProposalRoute: typeof ApiSendProposalRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
@@ -398,6 +424,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmailUnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/send-proposal': {
+      id: '/api/send-proposal'
+      path: '/api/send-proposal'
+      fullPath: '/api/send-proposal'
+      preLoaderRoute: typeof ApiSendProposalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/send-job-application': {
+      id: '/api/send-job-application'
+      path: '/api/send-job-application'
+      fullPath: '/api/send-job-application'
+      preLoaderRoute: typeof ApiSendJobApplicationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/suppression': {
       id: '/lovable/email/suppression'
       path: '/lovable/email/suppression'
@@ -472,6 +512,8 @@ const rootRouteChildren: RootRouteChildren = {
   SolicitarPropostaRoute: SolicitarPropostaRoute,
   SolucoesRoute: SolucoesRouteWithChildren,
   TrabalheConoscoRoute: TrabalheConoscoRoute,
+  ApiSendJobApplicationRoute: ApiSendJobApplicationRoute,
+  ApiSendProposalRoute: ApiSendProposalRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
