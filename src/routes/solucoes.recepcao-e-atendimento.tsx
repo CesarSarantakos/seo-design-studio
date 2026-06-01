@@ -134,9 +134,9 @@ function Page() {
                 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] text-white tracking-tight"
                 style={{ textShadow: "0 4px 24px rgba(0,0,0,0.5)" }}
               >
-                Recepção e
+                Acolher bem
                 <br />
-                <span className="text-primary">Atendimento.</span>
+                <span className="text-primary">é mais do que atender.</span>
               </h1>
               <div className="h-[3px] w-24 bg-primary mt-10 mb-7" />
               <p
