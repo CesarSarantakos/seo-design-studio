@@ -25,11 +25,11 @@ const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20limpeza%20profissional.%20Pode%20me%20ajudar%3F";
 
 const DESTAQUES = [
-  { icon: Sparkles, label: "Ambientes limpos e organizados" },
-  { icon: Users, label: "Profissionais treinados e alinhados" },
-  { icon: Calendar, label: "Rotina que funciona, todo dia" },
-  { icon: Leaf, label: "Bem-estar para todos no ambiente" },
-  { icon: Building2, label: "Apoio para condomínios, empresas e instituições" },
+  { icon: Sparkles, label: "Ambientes limpos, higienizados e organizados" },
+  { icon: Users, label: "Profissionais qualificados, treinados e alinhados" },
+  { icon: Calendar, label: "Rotina que funciona, todo dia, consistentemente" },
+  { icon: Leaf, label: "Bem-estar, saúde e qualidade de vida para todos" },
+  { icon: Building2, label: "Suporte especializado para condomínios, empresas e instituições" },
 ];
 
 const IMPACTOS = [
