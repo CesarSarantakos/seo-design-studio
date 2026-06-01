@@ -15,7 +15,6 @@ import {
   Settings2,
   CheckCircle2,
   ArrowRight,
-  Headphones,
   Clock,
   HeartHandshake,
   Lock,
@@ -299,32 +298,6 @@ function Page() {
 
         {/* WHY GS — premium values */}
         <ProposalSimulator />
-
-        {/* CTA BAND */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0">
-                <Headphones className="w-7 h-7 text-primary-foreground" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-primary-foreground uppercase tracking-tight">
-                  Precisa de uma operação organizada?
-                </h3>
-                <p className="text-primary-foreground/85 mt-1 text-sm md:text-base">
-                  Fale com a GS e solicite uma proposta alinhada à necessidade da sua operação.
-                </p>
-              </div>
-            </div>
-            <Link
-              to="/solicitar-proposta"
-              className="group inline-flex items-center gap-3 bg-background-deep text-white hover:bg-background-deep/90 transition-colors rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shrink-0"
-            >
-              Solicitar Orçamento
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
