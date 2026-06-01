@@ -1,60 +1,25 @@
-import { UsersRound } from "lucide-react";
+import { UsersRound, ShieldCheck, Clock } from "lucide-react";
 
 export function MarketChange() {
   return (
     <section className="bg-[#F7F5F0] py-16 md:py-24" aria-labelledby="mercado-mudou">
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
-        <div className="text-neutral-900 flex flex-col justify-between">
-          <div>
-            <div className="border-l-4 border-[var(--gold)] pl-5 mb-6">
-              <h2
-                id="mercado-mudou"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight uppercase"
-              >
-                O mercado mudou.
-              </h2>
-            </div>
-            <p className="text-lg text-neutral-700 leading-relaxed max-w-xl">
-              Encontrar profissionais ficou mais difícil. Mas a responsabilidade da
-              operação continua existindo todos os dias.
-            </p>
+      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        {/* Coluna esquerda - Texto */}
+        <div className="text-neutral-900 flex flex-col">
+          <div className="border-l-4 border-[var(--gold)] pl-5 mb-6">
+            <h2
+              id="mercado-mudou"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight uppercase"
+            >
+              O mercado mudou.
+            </h2>
           </div>
-
-          <div className="mt-12 md:mt-16 bg-[#0B1B3D] text-white rounded-xl p-6 md:p-8 flex gap-4 shadow-xl shadow-[#0B1B3D]/10">
-            <UsersRound className="w-10 h-10 text-primary shrink-0" strokeWidth={1.5} />
-            <p className="text-sm md:text-[15px] leading-relaxed text-white/90">
-              Na GS, entendemos que qualidade também significa{" "}
-              <span className="text-white">resposta, acompanhamento e continuidade operacional</span>,
-              para <span className="text-primary font-semibold">reduzir ao máximo os impactos do dia a dia.</span>
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-video flex-1">
-            <img
-              src="/desgaste-operacional.jpg"
-              alt="Profissional preocupado com a operação e equipe de limpeza ao fundo"
-              loading="lazy"
-              className="w-full h-full object-cover object-center md:object-left"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#0B1B3D]/40 via-transparent to-transparent" />
-          </div>
-          <blockquote className="bg-white rounded-xl p-5 md:p-6 shadow-xl border-l-4 border-[var(--gold)]">
-            <p className="text-[var(--gold)] text-2xl leading-none mb-2">"</p>
-            <p className="text-neutral-700 text-sm md:text-base leading-relaxed">
-              A ausência de cobertura gera mais do que falha operacional.{" "}
-              <span className="text-[var(--gold)] font-semibold">
-                Gera desgaste para quem está na linha de frente.
-              </span>
-            </p>
-          </blockquote>
-        </div>
           <p className="text-lg text-neutral-700 leading-relaxed max-w-xl">
             Encontrar profissionais ficou mais difícil. Mas a responsabilidade da
             operação continua existindo todos os dias.
           </p>
 
+          {/* Card principal */}
           <div className="mt-8 bg-[#0B1B3D] text-white rounded-xl p-6 md:p-7 flex gap-4 shadow-xl shadow-[#0B1B3D]/10 max-w-xl">
             <UsersRound className="w-10 h-10 text-primary shrink-0" strokeWidth={1.5} />
             <p className="text-sm md:text-[15px] leading-relaxed text-white/90">
@@ -63,8 +28,27 @@ export function MarketChange() {
               para <span className="text-primary font-semibold">reduzir ao máximo os impactos do dia a dia.</span>
             </p>
           </div>
+
+          {/* Cards secundários para preencher espaço */}
+          <div className="mt-6 grid grid-cols-2 gap-4 max-w-xl">
+            <div className="bg-white rounded-xl p-5 shadow-md border border-neutral-200/60">
+              <ShieldCheck className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
+              <h3 className="font-semibold text-neutral-900 text-sm mb-1">Equipe qualificada</h3>
+              <p className="text-xs text-neutral-600 leading-relaxed">
+                Profissionais treinados e alinhados à sua operação.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-5 shadow-md border border-neutral-200/60">
+              <Clock className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
+              <h3 className="font-semibold text-neutral-900 text-sm mb-1">Cobertura ágil</h3>
+              <p className="text-xs text-neutral-600 leading-relaxed">
+                Reposição rápida em faltas, férias e imprevistos.
+              </p>
+            </div>
+          </div>
         </div>
 
+        {/* Coluna direita - Imagem */}
         <div className="relative">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-[5/4]">
             <img
@@ -77,7 +61,7 @@ export function MarketChange() {
           </div>
           <div className="absolute -bottom-4 left-6 right-6 md:left-10 md:-bottom-6">
             <blockquote className="bg-white rounded-xl p-5 md:p-6 shadow-xl border-l-4 border-[var(--gold)]">
-              <p className="text-[var(--gold)] text-2xl leading-none mb-2">“</p>
+              <p className="text-[var(--gold)] text-2xl leading-none mb-2">"</p>
               <p className="text-neutral-700 text-sm md:text-base leading-relaxed">
                 A ausência de cobertura gera mais do que falha operacional.{" "}
                 <span className="text-[var(--gold)] font-semibold">
@@ -86,6 +70,7 @@ export function MarketChange() {
               </p>
             </blockquote>
           </div>
+        </div>
       </div>
     </section>
   );
