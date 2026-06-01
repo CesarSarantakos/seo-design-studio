@@ -58,7 +58,7 @@ Todos os formulários do site agora enviam emails reais através do **Resend**, 
 Cadastre as seguintes variáveis na Vercel em **Settings > Environment Variables**:
 
 ```
-RESEND_API_KEY=re_XXXXXXXXXXXXXXXXXX
+RESEND_API_KEY=re_L3azz4d9_PA5A3k7qH9niKktSk1AyUFy3
 FROM_EMAIL=noreply@gsservicos.com.br
 ```
 
