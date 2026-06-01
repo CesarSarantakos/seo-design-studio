@@ -31,9 +31,8 @@ const ROTINA = [
   { icon: Package, label: "Recebimento de encomendas" },
   { icon: Lock, label: "Controle de acesso" },
   { icon: Users, label: "Fluxo de visitantes" },
-  { icon: Bike, label: "Entregas por aplicativo" },
+  { icon: Bike, label: "Controle de entregas por aplicativo" },
   { icon: Truck, label: "Prestadores de serviço" },
-  { icon: Building2, label: "Movimentação constante" },
 ];
 
 const PILARES = [
