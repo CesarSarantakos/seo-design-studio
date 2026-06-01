@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { HotbarFeatures } from "@/components/site/HotbarFeatures";
 import {
   Clock,
   ShieldCheck,
@@ -89,6 +90,32 @@ function Page() {
             </div>
           </div>
         </section>
+
+        {/* HOTBAR */}
+        <HotbarFeatures 
+          features={[
+            {
+              icon: Users,
+              title: "Profissionais alinhados à sua cultura",
+              description: "Selecionados, treinados e preparados para representar sua empresa com profissionalismo e responsabilidade.",
+            },
+            {
+              icon: ClipboardCheck,
+              title: "Supervisão constante",
+              description: "Acompanhamento próximo da operação para manter o padrão, a organização e a continuidade dos serviços.",
+            },
+            {
+              icon: Handshake,
+              title: "Parceria que gera resultados",
+              description: "Mais do que fornecer mão de obra, atuamos como parceiros na construção de uma operação eficiente e confiável.",
+            },
+            {
+              icon: CalendarClock,
+              title: "Continuidade operacional",
+              description: "Cobertura rápida de faltas, férias e afastamentos para que sua rotina nunca pare.",
+            },
+          ]}
+        />
 
         {/* DIFERENCIAIS PRINCIPAIS */}
         <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
