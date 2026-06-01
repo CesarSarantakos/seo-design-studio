@@ -21,20 +21,15 @@ type ContactResponse = {
   message: string;
 };
 
-export const submitContact = createServerFn<any, ContactResponse>({ method: "POST" })
-  .inputValidator((data: unknown) => {
-    console.log("[v0] submitContact validator received:", data);
-    try {
-      const validated = contactSchema.parse(data);
-      console.log("[v0] submitContact validation passed");
-      return validated;
-    } catch (error) {
-      console.error("[v0] submitContact validation error:", error);
-      throw error;
-    }
+export const submitContact = createServerFn({ method: "POST" })
+  .validator((data: unknown) => {
+    console.log("[v0] submitContact validator received:", JSON.stringify(data));
+    const validated = contactSchema.parse(data);
+    console.log("[v0] submitContact validation passed");
+    return validated;
   })
   .handler(async ({ data }): Promise<ContactResponse> => {
-    console.log("[v0] submitContact handler called with:", { nome: data.nome, email: data.email, telefone: data.telefone, empresa: data.empresa, origem: data.origem });
+    console.log("[v0] submitContact handler called");
     try {
       const emailBody = `
 <h2>Nova Mensagem de Contato</h2>
@@ -88,17 +83,12 @@ type JobAppResponse = {
   message: string;
 };
 
-export const submitJobApplication = createServerFn<any, JobAppResponse>({ method: "POST" })
-  .inputValidator((data: unknown) => {
-    console.log("[v0] submitJobApplication validator received data");
-    try {
-      const validated = jobAppSchema.parse(data);
-      console.log("[v0] submitJobApplication validation passed");
-      return validated;
-    } catch (error) {
-      console.error("[v0] submitJobApplication validation error:", error);
-      throw error;
-    }
+export const submitJobApplication = createServerFn({ method: "POST" })
+  .validator((data: unknown) => {
+    console.log("[v0] submitJobApplication validator received");
+    const validated = jobAppSchema.parse(data);
+    console.log("[v0] submitJobApplication validation passed");
+    return validated;
   })
   .handler(async ({ data }): Promise<JobAppResponse> => {
     console.log("[v0] submitJobApplication handler called");
@@ -205,17 +195,13 @@ type ProposalResponse = {
   message: string;
 };
 
-export const submitProposal = createServerFn<any, ProposalResponse>({ method: "POST" })
-  .inputValidator((data: unknown) => {
-    console.log("[v0] submitProposal validator received");
-    try {
-      const validated = proposalSchema.parse(data);
-      console.log("[v0] submitProposal validation passed");
-      return validated;
-    } catch (error) {
-      console.error("[v0] submitProposal validation error:", error);
-      throw error;
-    }
+export const submitProposal = createServerFn({ method: "POST" })
+  .validator((data: unknown) => {
+    console.log("[v0] submitProposal validator received:", JSON.stringify(data));
+    console.log("[v0] submitProposal validator type:", typeof data);
+    const validated = proposalSchema.parse(data);
+    console.log("[v0] submitProposal validation passed");
+    return validated;
   })
   .handler(async ({ data }): Promise<ProposalResponse> => {
     console.log("[v0] submitProposal handler called");
