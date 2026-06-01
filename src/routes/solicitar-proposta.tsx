@@ -136,14 +136,32 @@ function Page() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (data.servicos.length === 0) { toast.error("Selecione pelo menos um profissional."); return; }
-    if (!data.seuNome.trim()) { toast.error("Por favor, informe seu nome."); return; }
-    if (!data.email.trim()) { toast.error("Por favor, informe seu e-mail."); return; }
-    if (!data.telefone.trim()) { toast.error("Por favor, informe seu telefone."); return; }
+    console.log("[v0] Form submit started");
+    
+    if (data.servicos.length === 0) { 
+      console.log("[v0] Validation failed: no services selected");
+      toast.error("Selecione pelo menos um profissional."); 
+      return; 
+    }
+    if (!data.seuNome.trim()) { 
+      console.log("[v0] Validation failed: missing name");
+      toast.error("Por favor, informe seu nome."); 
+      return; 
+    }
+    if (!data.email.trim()) { 
+      console.log("[v0] Validation failed: missing email");
+      toast.error("Por favor, informe seu e-mail."); 
+      return; 
+    }
+    if (!data.telefone.trim()) { 
+      console.log("[v0] Validation failed: missing phone");
+      toast.error("Por favor, informe seu telefone."); 
+      return; 
+    }
 
     setLoading(true);
     try {
-      const result = await submit({
+      const payload = {
         servicos: data.servicos,
         necessidade: data.necessidade,
         desafio: data.desafio,
@@ -155,13 +173,23 @@ function Page() {
         cep: data.cep,
         cidade: data.cidade,
         estado: data.estado,
-      });
+      };
+      
+      console.log("[v0] Submitting payload:", payload);
+      const result = await submit(payload);
+      console.log("[v0] Server response:", result);
+      
       if (result.success) {
         toast.success("Proposta enviada! Retorno em até 1 hora útil.");
         setTimeout(() => { window.location.href = "/"; }, 2000);
+      } else {
+        toast.error(result.message || "Erro ao enviar proposta.");
       }
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Erro ao enviar proposta.");
+      console.error("[v0] Submit error:", err);
+      const errorMsg = err instanceof Error ? err.message : "Erro ao enviar proposta.";
+      console.log("[v0] Error message:", errorMsg);
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
