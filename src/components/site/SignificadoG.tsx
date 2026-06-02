@@ -4,8 +4,13 @@ import helpingHands from "@/assets/helping-hands.jpg";
 export function SignificadoG() {
   return (
     <section
-      className="relative py-0 overflow-hidden bg-background-deep"
+      className="relative overflow-hidden"
       aria-labelledby="significado-g"
+      style={{
+        backgroundImage: "linear-gradient(to bottom, #c7821c 0%, #c7821c 3rem, transparent 3rem, transparent calc(100% - 3rem), #c7821c calc(100% - 3rem), #c7821c 100%)",
+        paddingTop: "3rem",
+        paddingBottom: "3rem",
+      }}
     >
       <div className="container relative mx-auto px-6 lg:px-12">
         {/* Main content: 3-column layout */}
