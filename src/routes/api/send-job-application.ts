@@ -44,10 +44,27 @@ export const Route = createFileRoute("/api/send-job-application")({
         const TO_EMAIL = "rh@gsservicos.com.br";
 
         try {
-          const body = await request.json();
-          console.log("[API] send-job-application received:", JSON.stringify(body));
+          // Parse FormData instead of JSON
+          const formData = await request.formData();
+          
+          const rawData = {
+            nome: formData.get("nome") as string,
+            telefone: formData.get("telefone") as string,
+            email: formData.get("email") as string,
+            dataNascimento: (formData.get("dataNascimento") as string) || "",
+            mensagem: (formData.get("mensagem") as string) || "",
+            regiao: formData.get("regiao") as string,
+            areaInteresse: formData.get("areaInteresse") as string,
+            temExperiencia: formData.get("temExperiencia") === "true",
+            disponibilidade: formData.get("disponibilidade") as string,
+          };
+          
+          const curriculo = formData.get("curriculo") as File | null;
+          
+          console.log("[API] send-job-application received:", JSON.stringify(rawData));
+          console.log("[API] Curriculo file:", curriculo?.name, curriculo?.size, "bytes");
 
-          const data = jobAppSchema.parse(body);
+          const data = jobAppSchema.parse(rawData);
           console.log("[API] send-job-application validation passed");
 
           const emailHtml = `
@@ -63,15 +80,34 @@ export const Route = createFileRoute("/api/send-job-application")({
 <p><strong>Tem Experiência:</strong> ${data.temExperiencia ? "Sim" : "Não"}</p>
 <p><strong>Disponibilidade:</strong> ${data.disponibilidade === "diurno" ? "Diurno" : "Noturno"}</p>
 <p><strong>Mensagem:</strong> ${data.mensagem || "Não informado"}</p>
+<hr />
+<p><em>Currículo em anexo: ${curriculo?.name || "Não anexado"}</em></p>
           `;
 
-          console.log("[API] Sending job application email from:", FROM_EMAIL, "to:", TO_EMAIL);
-          const result = await resend.emails.send({
+          // Prepare email options with optional attachment
+          const emailOptions: Parameters<typeof resend.emails.send>[0] = {
             from: FROM_EMAIL,
             to: TO_EMAIL,
             subject: `[GS] Nova Candidatura - ${data.nome}`,
             html: emailHtml,
-          });
+          };
+
+          // Add attachment if file was uploaded
+          if (curriculo && curriculo.size > 0) {
+            const arrayBuffer = await curriculo.arrayBuffer();
+            const content = Buffer.from(arrayBuffer).toString("base64");
+            
+            emailOptions.attachments = [
+              {
+                filename: curriculo.name,
+                content: content,
+              },
+            ];
+            console.log("[API] Attachment added:", curriculo.name);
+          }
+
+          console.log("[API] Sending job application email from:", FROM_EMAIL, "to:", TO_EMAIL);
+          const result = await resend.emails.send(emailOptions);
 
           console.log("[API] Resend result:", JSON.stringify(result));
 
