@@ -1,10 +1,9 @@
-import { Users, ShieldCheck, ClipboardCheck, BadgeCheck } from "lucide-react";
+import { ShieldCheck, ClipboardCheck, BadgeCheck } from "lucide-react";
 
 const items = [
-  { icon: Users, title: "250+", subtitle: "Profissionais qualificados" },
-  { icon: ShieldCheck, title: "Cobertura rápida", subtitle: "em faltas e imprevistos" },
-  { icon: ClipboardCheck, title: "Supervisão próxima", subtitle: "e acompanhamento constante" },
-  { icon: BadgeCheck, title: "Presença que gera", subtitle: "confiança e continuidade" },
+  { icon: ShieldCheck, title: "COBERTURA RÁPIDA", subtitle: "em faltas e imprevistos" },
+  { icon: ClipboardCheck, title: "SUPERVISÃO PRÓXIMA", subtitle: "e acompanhamento constante" },
+  { icon: BadgeCheck, title: "PRESENÇA QUE GERA", subtitle: "confiança e continuidade" },
 ];
 
 export function TrustStrip() {
