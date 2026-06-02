@@ -9,7 +9,7 @@ export function SignificadoG() {
     >
       <div className="container relative mx-auto px-6 lg:px-12">
         {/* Desktop: 3-column layout | Mobile: stacked */}
-        <div className="grid lg:grid-cols-[1fr_1.2fr_1fr] gap-8 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-[1.3fr_1fr_1.3fr] gap-8 lg:gap-12 items-center">
           
           {/* Left Image - Gimel Symbol */}
           <div className="hidden lg:flex items-center justify-center">
