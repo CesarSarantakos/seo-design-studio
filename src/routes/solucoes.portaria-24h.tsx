@@ -19,8 +19,7 @@ import {
   HeartHandshake,
   Lock,
 } from "lucide-react";
-import heroImg from "@/assets/portaria-hero.jpg";
-import heroImgNew from "/portaria-hero.jpg";
+import heroImg from "@/assets/portaria-24h-hero.jpg";
 
 const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20portaria%2024h.%20Pode%20me%20ajudar%3F";
@@ -107,7 +106,7 @@ function Page() {
         {/* HERO */}
         <section className="relative w-full min-h-screen md:min-h-[92vh] overflow-hidden bg-background-deep">
           <img
-            src={heroImgNew}
+            src={heroImg}
             alt="Profissionais de portaria GS interagindo com cliente em cadeira de rodas no saguão corporativo"
             width={1920}
             height={1280}
