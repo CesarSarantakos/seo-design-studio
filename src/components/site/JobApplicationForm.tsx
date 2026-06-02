@@ -138,7 +138,7 @@ export function JobApplicationForm() {
         </div>
         <div>
           <Label>Data de Nascimento</Label>
-          <Input type="date" value={form.dataNascimento} onChange={(e) => setForm({ ...form, dataNascimento: e.target.value })} />
+          <Input type="date" value={form.dataNascimento} onChange={(e) => setForm({ ...form, dataNascimento: e.target.value })} className="cursor-pointer" />
         </div>
       </div>
       <div>
