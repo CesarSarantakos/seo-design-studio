@@ -1,4 +1,3 @@
-import significadoG from "@/assets/significado-g.jpg";
 import gimelMaos from "@/assets/gimel-maos.jpg";
 
 export function SignificadoG() {
@@ -11,24 +10,10 @@ export function SignificadoG() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-background to-transparent z-10" />
 
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl py-12 md:py-16 lg:py-20">
-        {/* LAYOUT 3 COLUNAS — imagem G | texto | imagem mãos */}
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_300px] gap-8 lg:gap-10 items-center">
+        {/* LAYOUT 2 COLUNAS — texto | imagem mãos */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-10 items-center">
 
-          {/* COLUNA 1: IMAGEM DO G DOURADO */}
-          <div className="flex justify-center lg:justify-start">
-            <div className="relative w-52 h-52 md:w-60 md:h-60 lg:w-[260px] lg:h-[260px]">
-              <img
-                src={significadoG}
-                alt="Letra hebraica Gimel — símbolo de servir e cuidar"
-                width={260}
-                height={260}
-                loading="lazy"
-                className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(203,161,53,0.3)]"
-              />
-            </div>
-          </div>
-
-          {/* COLUNA 2: TEXTO CENTRAL */}
+          {/* COLUNA 1: TEXTO CENTRAL */}
           <div className="text-center lg:text-left space-y-5 lg:space-y-6 py-4">
             {/* headline */}
             <h2
@@ -63,7 +48,7 @@ export function SignificadoG() {
             </div>
           </div>
 
-          {/* COLUNA 3: IMAGEM DAS MÃOS */}
+          {/* COLUNA 2: IMAGEM DAS MÃOS */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative w-64 h-44 md:w-72 md:h-48 lg:w-[280px] lg:h-[200px] overflow-hidden rounded-lg">
               <img
