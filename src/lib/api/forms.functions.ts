@@ -67,7 +67,7 @@ const jobAppSchema = z.object({
   nome: z.string().trim().min(1, "Nome é obrigatório").max(150),
   telefone: z.string().trim().min(6, "Telefone inválido").max(30),
   email: z.string().trim().email("Email inválido").max(255),
-  dataNascimento: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data inválida").optional().default(""),
+  dataNascimento: z.string().max(20).optional().default(""),
   mensagem: z.string().max(2000).optional().default(""),
   regiao: z.enum(["zona_leste", "zona_sul", "zona_norte", "zona_oeste"]),
   areaInteresse: z.enum(["portaria", "recepcao", "limpeza", "apoio_operacional", "zeladoria", "supervisao", "outros"]),
