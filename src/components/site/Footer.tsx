@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Linkedin, Youtube, Facebook } from "lucide-react";
-import logoFooter from "@/assets/gs-logo-footer.png";
+import logo from "@/assets/gs-logo.png";
 
 export function Footer() {
   return (
@@ -8,8 +8,8 @@ export function Footer() {
       <div className="container mx-auto px-6 py-12 grid gap-10 md:grid-cols-5">
         <div className="md:col-span-2">
           <img
-            src={logoFooter}
-            alt="GS"
+            src={logo}
+            alt="GS - O que importa, cuidamos."
             className="h-14 w-auto mb-4"
             width={200}
             height={70}
