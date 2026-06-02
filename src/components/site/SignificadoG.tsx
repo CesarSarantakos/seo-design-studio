@@ -10,15 +10,15 @@ export function SignificadoG() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-background to-transparent z-10" />
 
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl py-12 md:py-16 lg:py-20">
-        {/* LAYOUT 2 COLUNAS — texto | imagem mãos */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-10 items-center">
+        {/* LAYOUT 2 COLUNAS — texto | imagem mãos (50/50) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
           {/* COLUNA 1: TEXTO CENTRAL */}
-          <div className="text-center lg:text-left space-y-5 lg:space-y-6 py-4">
+          <div className="text-center lg:text-left space-y-5 lg:space-y-6">
             {/* headline */}
             <h2
               id="significado-g"
-              className="text-2xl sm:text-3xl lg:text-[2.5rem] font-bold text-foreground leading-[1.15] tracking-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-[1.15] tracking-tight"
             >
               O significado do "G"
               <br />
@@ -38,7 +38,7 @@ export function SignificadoG() {
             </div>
 
             {/* frases em destaque */}
-            <div className="pt-1 lg:pt-2">
+            <div className="pt-2 lg:pt-4">
               <p className="text-base lg:text-lg font-bold text-primary leading-snug">
                 Servir é o que nos move.
               </p>
@@ -50,12 +50,12 @@ export function SignificadoG() {
 
           {/* COLUNA 2: IMAGEM DAS MÃOS */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative w-64 h-44 md:w-72 md:h-48 lg:w-[280px] lg:h-[200px] overflow-hidden rounded-lg">
+            <div className="relative w-full max-w-sm h-64 md:h-72 lg:h-80 overflow-hidden rounded-xl">
               <img
                 src={gimelMaos}
                 alt="Mãos em gesto de colaboração e parceria"
-                width={280}
-                height={200}
+                width={400}
+                height={320}
                 loading="lazy"
                 className="w-full h-full object-cover object-[75%_center]"
               />
