@@ -195,8 +195,8 @@ function Page() {
             className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-20"
             style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
           />
-          <div className="relative container mx-auto px-6 lg:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="relative container mx-auto px-6 lg:px-12 pt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start pt-6">
               {/* Left column - Title & Content */}
               <div>
                 <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-8">
