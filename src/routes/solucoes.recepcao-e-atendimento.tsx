@@ -24,6 +24,8 @@ import {
 const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20recep%C3%A7%C3%A3o%20e%20atendimento.%20Pode%20me%20ajudar%3F";
 
+const HERO_IMG = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-01%20at%2019.08.31-7DDl4jAJRuEZxRrKWDoJAzjjSbq7u7.jpeg";
+
 const DESTAQUES = [
   { icon: Users, label: "Acolhimento genuíno e cordial" },
   { icon: MessageCircle, label: "Comunicação clara e eficiente" },
@@ -55,8 +57,6 @@ const COMPROMISSO = [
   "Suporte e supervisão contínuos",
   "Foco na excelência do atendimento",
 ];
-
-const HERO_IMG = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-31%20at%2013.39.08-fQYpVse6ceeuleRO7EV3aCznKroatc.jpeg";
 
 export const Route = createFileRoute("/solucoes/recepcao-e-atendimento")({
   head: () => ({
