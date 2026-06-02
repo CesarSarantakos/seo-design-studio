@@ -26,7 +26,7 @@ import {
   ClipboardCheck,
   Award,
 } from "lucide-react";
-import heroImg from "@/assets/condominio-hero.jpg";
+import heroImg from "@/assets/condominios-hero.jpg";
 
 export const Route = createFileRoute("/segmentos/condominios")({
   head: () => ({
