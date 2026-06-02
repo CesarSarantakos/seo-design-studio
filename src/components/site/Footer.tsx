@@ -32,7 +32,7 @@ export function Footer() {
           <h3 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">Contato</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
             
-            <li>contato@gs.com.br</li>
+            <li>contato@gsservicos.com.br</li>
             <li>
               <a
                 href="https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20terceiriza%C3%A7%C3%A3o.%20Pode%20me%20ajudar%3F"
