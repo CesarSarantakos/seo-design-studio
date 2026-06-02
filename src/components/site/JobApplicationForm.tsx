@@ -5,9 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Paperclip, Calendar, AlertCircle, CheckCircle } from "lucide-react";
+import { Paperclip, Calendar } from "lucide-react";
 import { toast } from "sonner";
-import { submitJobApplication } from "@/lib/api/forms.functions";
 
 export function JobApplicationForm() {
   const [loading, setLoading] = useState(false);
@@ -138,20 +137,28 @@ export function JobApplicationForm() {
     try {
       const base64 = await convertFileToBase64(file);
       
-      const result = await submitJobApplication({
+      const payload = {
         nome: form.nome,
         telefone: form.telefone,
         email: form.email,
         dataNascimento: getFullDate(),
         mensagem: form.mensagem,
-        regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
-        areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
+        regiao: form.regiao,
+        areaInteresse: form.areaInteresse,
         temExperiencia: form.temExperiencia === "sim",
-        disponibilidade: form.disponibilidade as "diurno" | "noturno",
+        disponibilidade: form.disponibilidade,
         resumeBase64: base64,
         resumeName: file.name,
         resumeType: file.type,
+      };
+
+      const response = await fetch("/api/send-job-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
+
+      const result = await response.json();
 
       if (result.success) {
         toast.success(result.message || "Candidatura enviada com sucesso!");
