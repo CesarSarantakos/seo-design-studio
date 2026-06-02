@@ -7,7 +7,7 @@ import { MarketChange } from "@/components/site/MarketChange";
 import { OperationImpact } from "@/components/site/OperationImpact";
 import { HomeBenefits } from "@/components/site/HomeBenefits";
 import { HomeTestimonials } from "@/components/site/HomeTestimonials";
-import { ProposalSimulator } from "@/components/site/ProposalSimulator";
+import { PremiumCTA } from "@/components/site/PremiumCTA";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,7 +34,7 @@ function Index() {
         <OperationImpact />
         <HomeBenefits />
         <HomeTestimonials />
-        <ProposalSimulator />
+        <PremiumCTA />
       </main>
       <Footer />
     </div>

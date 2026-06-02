@@ -29,7 +29,7 @@ export function HomeTestimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="py-24 overflow-hidden" style={{ background: "linear-gradient(to bottom, oklch(0.208 0.042 265.755), oklch(0.129 0.042 264.695))" }} aria-labelledby="depoimentos">
+    <section className="py-24 overflow-hidden" style={{ backgroundColor: "#0B1B3D", boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" }} aria-labelledby="depoimentos">
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -49,6 +49,7 @@ export function HomeTestimonials() {
         
         .testimonials-container {
           animation: fadeInUp 0.8s ease-out;
+          background-color: #0B1B3D;
         }
         
         .testimonial-card {
