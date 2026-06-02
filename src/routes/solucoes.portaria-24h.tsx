@@ -20,6 +20,7 @@ import {
   Lock,
 } from "lucide-react";
 import heroImg from "@/assets/portaria-24h-hero.jpg";
+import presencaImg from "@/assets/presenca-faz-diferenca.jpg";
 
 const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20portaria%2024h.%20Pode%20me%20ajudar%3F";
@@ -190,8 +191,8 @@ function Page() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-2xl" />
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-OAN1qNAcBDTREIbd52YCdRycRQs2Om.png"
-                alt="Profissional de portaria GS interagindo com entregador de aplicativo de delivery no saguão"
+                src={presencaImg}
+                alt="Profissional de portaria GS com rádio comunicador interagindo com cliente em carro"
                 width={1024}
                 height={1024}
                 loading="lazy"
