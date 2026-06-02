@@ -292,7 +292,7 @@ function Page() {
         </section>
 
         {/* FORMULÁRIO DE ORÇAMENTO */}
-        <section className="py-24 bg-background-deep">
+        <section className="pt-0 pb-24 bg-background-deep">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="max-w-4xl mx-auto">
               <ProposalSimulator />
