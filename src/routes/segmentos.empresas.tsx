@@ -273,25 +273,6 @@ function Page() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 bg-background border-t border-border">
-          <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Pronto para terceirizar com quem<br />
-                <span className="text-primary">entrega de verdade?</span>
-              </h2>
-            </div>
-            <Link
-              to="/solicitar-proposta"
-              className="group inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shadow-lg shadow-primary/20 whitespace-nowrap"
-            >
-              Solicitar Orçamento
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </section>
-
         {/* FORMULÁRIO DE ORÇAMENTO */}
         <section className="py-24 bg-background-deep">
           <div className="container mx-auto px-6 lg:px-12">
