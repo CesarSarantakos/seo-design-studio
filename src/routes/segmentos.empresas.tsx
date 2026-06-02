@@ -32,7 +32,7 @@ const IMPACTOS = [
   { icon: Handshake, title: "Mais resultados", desc: "com parceria de verdade." },
 ];
 
-const HERO_IMG = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-01%20at%2019.09.55-PcOAEpuKKTfamQzf7SGyndRGK9bJBn.jpeg";
+const HERO_IMG = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-01%20at%2019.10.50-hcrwwemK8xUofW2Tba1pLqQWfjq8UZ.jpeg";
 
 export const Route = createFileRoute("/segmentos/empresas")({
   head: () => ({

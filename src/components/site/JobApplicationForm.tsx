@@ -67,24 +67,24 @@ export function JobApplicationForm() {
 
     setLoading(true);
     try {
-      // Use FormData to send file along with form data
-      const formData = new FormData();
-      formData.append("nome", form.nome);
-      formData.append("telefone", form.telefone);
-      formData.append("email", form.email);
-      formData.append("dataNascimento", form.dataNascimento);
-      formData.append("mensagem", form.mensagem);
-      formData.append("regiao", form.regiao);
-      formData.append("areaInteresse", form.areaInteresse);
-      formData.append("temExperiencia", form.temExperiencia === "sim" ? "true" : "false");
-      formData.append("disponibilidade", form.disponibilidade);
-      formData.append("curriculo", file);
+      const payload = {
+        nome: form.nome,
+        telefone: form.telefone,
+        email: form.email,
+        dataNascimento: form.dataNascimento,
+        mensagem: form.mensagem,
+        regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
+        areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
+        temExperiencia: form.temExperiencia === "sim",
+        disponibilidade: form.disponibilidade as "diurno" | "noturno",
+      };
       
-      console.log("[v0] Submitting job application with file:", file.name);
+      console.log("[v0] Submitting job application via fetch:", payload);
       
       const response = await fetch("/api/send-job-application", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
       
       const result = await response.json();
