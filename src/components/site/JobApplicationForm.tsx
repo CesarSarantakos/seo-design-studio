@@ -119,59 +119,67 @@ export function JobApplicationForm() {
     }
 
     setLoading(true);
-    try {
-      // Convert file to base64
-      const reader = new FileReader();
-      reader.onload = async () => {
-        const base64 = (reader.result as string).split(",")[1];
-        
-        const result = await submitJobApplication({
-          nome: form.nome,
-          telefone: form.telefone,
-          email: form.email,
-          dataNascimento: getFullDate(),
-          mensagem: form.mensagem,
-          regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
-          areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
-          temExperiencia: form.temExperiencia === "sim",
-          disponibilidade: form.disponibilidade as "diurno" | "noturno",
-          resumeBase64: base64,
-          resumeName: file.name,
-          resumeType: file.type,
-        });
+    
+    // Convert file to base64 using Promise wrapper
+    const convertFileToBase64 = (file: File): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64 = (reader.result as string).split(",")[1];
+          resolve(base64);
+        };
+        reader.onerror = () => {
+          reject(new Error("Erro ao processar o arquivo"));
+        };
+        reader.readAsDataURL(file);
+      });
+    };
 
-        if (result.success) {
-          toast.success(result.message || "Candidatura enviada com sucesso!");
-          
-          // Reset form
-          setForm({
-            nome: "",
-            telefone: "",
-            email: "",
-            diaNascimento: "",
-            meaNascimento: "",
-            anoNascimento: "",
-            mensagem: "",
-            regiao: "",
-            areaInteresse: "",
-            temExperiencia: "",
-            disponibilidade: "",
-          });
-          setFile(null);
-          if (fileRef.current) fileRef.current.value = "";
-        } else {
-          toast.error(result.message || "Erro ao enviar candidatura.");
-        }
-      };
-      reader.onerror = () => {
-        toast.error("Erro ao processar o arquivo.");
-        setLoading(false);
-      };
-      reader.readAsDataURL(file);
+    try {
+      const base64 = await convertFileToBase64(file);
+      
+      const result = await submitJobApplication({
+        nome: form.nome,
+        telefone: form.telefone,
+        email: form.email,
+        dataNascimento: getFullDate(),
+        mensagem: form.mensagem,
+        regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
+        areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
+        temExperiencia: form.temExperiencia === "sim",
+        disponibilidade: form.disponibilidade as "diurno" | "noturno",
+        resumeBase64: base64,
+        resumeName: file.name,
+        resumeType: file.type,
+      });
+
+      if (result.success) {
+        toast.success(result.message || "Candidatura enviada com sucesso!");
+        
+        // Reset form
+        setForm({
+          nome: "",
+          telefone: "",
+          email: "",
+          diaNascimento: "",
+          meaNascimento: "",
+          anoNascimento: "",
+          mensagem: "",
+          regiao: "",
+          areaInteresse: "",
+          temExperiencia: "",
+          disponibilidade: "",
+        });
+        setFile(null);
+        if (fileRef.current) fileRef.current.value = "";
+      } else {
+        toast.error(result.message || "Erro ao enviar candidatura.");
+      }
     } catch (err: any) {
       console.error("[v0] Submit error:", err);
       const errorMsg = err?.message || "Erro ao enviar candidatura";
       toast.error(errorMsg);
+    } finally {
       setLoading(false);
     }
   };
