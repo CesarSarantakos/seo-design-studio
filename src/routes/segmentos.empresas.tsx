@@ -195,28 +195,76 @@ function Page() {
             style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
           />
           <div className="relative container mx-auto px-6 lg:px-12">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+            <div className="mb-16">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight max-w-4xl">
                 Quando a operação
                 <br />
                 funciona bem,
                 <br />
                 <span className="text-primary">ninguém percebe.</span>
               </h2>
-              <p className="mt-6 text-lg text-white/75 leading-relaxed">
-                E esse é exatamente o ponto. O cuidado profissional não chama atenção — ele sustenta o dia a dia silenciosamente, para que você possa focar no que realmente importa: fazer seu negócio crescer.
-              </p>
+              <div className="h-1 w-20 bg-primary mt-8 rounded-full" />
+            </div>
 
-              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-background/40 border border-border rounded-xl p-6">
-                  <Clock className="w-8 h-8 text-primary mb-4" strokeWidth={1.5} />
-                  <h3 className="text-lg font-bold text-white mb-2">Você foca no que é importante.</h3>
-                  <p className="text-sm text-white/75">Deixe a operação com a GS e concentre seus esforços no crescimento.</p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+              {/* Main content */}
+              <div className="lg:col-span-1">
+                <p className="text-lg text-white/85 leading-relaxed font-light">
+                  E esse é exatamente o ponto. O cuidado profissional não chama atenção — ele sustenta o dia a dia silenciosamente.
+                </p>
+                <p className="text-base text-white/70 leading-relaxed mt-6">
+                  Para que você possa focar no que realmente importa: fazer seu negócio crescer.
+                </p>
+              </div>
+
+              {/* Cards Grid */}
+              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+                  <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
+                    <Clock className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    Você foca no que é importante.
+                  </h3>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Deixe a operação com a GS e concentre seus esforços no crescimento do seu negócio.
+                  </p>
                 </div>
-                <div className="bg-background/40 border border-border rounded-xl p-6">
-                  <CheckCircle2 className="w-8 h-8 text-primary mb-4" strokeWidth={1.5} />
-                  <h3 className="text-lg font-bold text-white mb-2">Nós garantimos a continuidade.</h3>
-                  <p className="text-sm text-white/75">Profissionais qualificados, supervisão constante, reposição rápida.</p>
+
+                <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+                  <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
+                    <CheckCircle2 className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    Nós garantimos continuidade.
+                  </h3>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Profissionais qualificados, supervisão constante e reposição rápida em qualquer situação.
+                  </p>
+                </div>
+
+                <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+                  <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
+                    <Users className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    Equipe comprometida.
+                  </h3>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Seleção rigorosa, treinamento contínuo e alinhanmento com sua cultura organizacional.
+                  </p>
+                </div>
+
+                <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+                  <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
+                    <Headphones className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    Suporte próximo.
+                  </h3>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Comunicação transparente, relatórios detalhados e gestão proativa de demandas.
+                  </p>
                 </div>
               </div>
             </div>
