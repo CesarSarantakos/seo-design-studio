@@ -89,27 +89,6 @@ function Page() {
             </div>
           </div>
         </section>
-
-        {/* CTA */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
-            <div>
-              <h3 className="text-xl md:text-2xl font-bold text-primary-foreground uppercase tracking-tight">
-                Pronto para transformar sua operação?
-              </h3>
-              <p className="text-primary-foreground/85 mt-1 text-sm md:text-base">
-                Conheça as soluções GS e receba uma proposta sob medida.
-              </p>
-            </div>
-            <Link
-              to="/solicitar-proposta"
-              className="group inline-flex items-center gap-3 bg-background-deep text-white hover:bg-background-deep/90 transition-colors rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shrink-0"
-            >
-              Solicitar Orçamento
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
