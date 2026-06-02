@@ -62,7 +62,7 @@ function Page() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
                 Fazemos o <span className="text-primary">simples</span>
                 <br />
-                <span className="text-primary">bem feito.</span>
+                bem feito.
               </h1>
               <div className="mt-6 sm:mt-8 h-1 w-16 sm:w-20 bg-primary rounded-full" />
               <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-lg text-foreground font-semibold max-w-2xl">
