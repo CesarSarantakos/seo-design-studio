@@ -146,8 +146,8 @@ function Page() {
             <div className="relative order-2 lg:order-1">
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-2xl" />
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-01%20at%2019.10.50-hcrwwemK8xUofW2Tba1pLqQWfjq8UZ.jpeg"
-                alt="Equipe executiva profissional em escritório corporativo moderno"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-29%20at%2010.55.29-6916ubgJxoHY2XRwM1M1CWxFL2lyVe.jpeg"
+                alt="Equipe GS em ação: recepcionista, colaboradora de limpeza, cliente e executivo em ambiente corporativo profissional"
                 width={1024}
                 height={1024}
                 loading="lazy"
