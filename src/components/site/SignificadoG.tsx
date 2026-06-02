@@ -1,5 +1,4 @@
-import gimel from "@/assets/gimel-hands.jpg";
-import handshake from "@/assets/handshake.jpg";
+import significadoG from "@/assets/significado-g.jpg";
 
 export function SignificadoG() {
   return (
@@ -18,18 +17,12 @@ export function SignificadoG() {
       <div className="container relative mx-auto px-6 grid lg:grid-cols-3 gap-8 items-center">
         <div className="relative">
           <img
-            src={gimel}
-            alt="Letra hebraica Gimel sobre mãos"
-            width={1024}
+            src={significadoG}
+            alt="Letra hebraica Gimel sobre mãos e conexão entre pessoas"
+            width={2048}
             height={1024}
             loading="lazy"
             className="w-full h-auto"
-            style={{
-              WebkitMaskImage:
-                "radial-gradient(ellipse at center, #000 45%, rgba(0,0,0,0.6) 70%, transparent 95%)",
-              maskImage:
-                "radial-gradient(ellipse at center, #000 45%, rgba(0,0,0,0.6) 70%, transparent 95%)",
-            }}
           />
         </div>
         <div className="lg:col-span-1">
@@ -48,22 +41,12 @@ export function SignificadoG() {
         </div>
         <div className="hidden lg:block relative">
           <img
-            src={handshake}
-            alt="Aperto de mãos representando parceria"
-            width={1024}
+            src={significadoG}
+            alt="Letra hebraica Gimel sobre mãos e conexão entre pessoas"
+            width={2048}
             height={1024}
             loading="lazy"
             className="w-full h-auto"
-            style={{
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 20%, #000 55%), linear-gradient(to bottom, transparent 0%, #000 25%, #000 75%, transparent 100%)",
-              WebkitMaskComposite: "source-in",
-              maskImage:
-                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 20%, #000 55%), linear-gradient(to bottom, transparent 0%, #000 25%, #000 75%, transparent 100%)",
-              maskComposite: "intersect",
-              opacity: 0.85,
-              mixBlendMode: "screen",
-            }}
           />
         </div>
       </div>
