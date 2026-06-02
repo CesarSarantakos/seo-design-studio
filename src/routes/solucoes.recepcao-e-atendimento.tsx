@@ -172,8 +172,8 @@ function Page() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-2xl" />
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-31%20at%2013.43.31-xWLbGUmLr9xqGzGHAr32sQpiPZ7tpP.jpeg"
-                alt="Recepção profissional com atendentes GS qualificados em ambiente moderno"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-29%20at%2013.01.04-DC4ECBAyaETwN2BjrJpLWJlBqfU0Gq.jpeg"
+                alt="Recepcionista profissional sorridente entregando cartão para cliente em balcão de recepção moderno"
                 width={1024}
                 height={1024}
                 loading="lazy"
