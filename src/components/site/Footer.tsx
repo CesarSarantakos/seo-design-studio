@@ -13,6 +13,7 @@ export function Footer() {
             className="h-14 w-auto mb-4"
             width={200}
             height={70}
+            style={{ mixBlendMode: "screen" }}
           />
           <p className="text-sm text-muted-foreground max-w-sm">
             Terceirização com presença, proteção e compromisso. Pessoas comprometidas, operações organizadas e a responsabilidade de servir com presença.
