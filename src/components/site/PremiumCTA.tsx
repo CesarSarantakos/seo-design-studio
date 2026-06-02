@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export function PremiumCTA() {
   return (
     <section className="py-16 md:py-24 bg-background-deep">
-      <div className="container mx-auto px-6 max-w-4xl">
+      <div className="container mx-auto px-6 max-w-4xl" style={{ boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)" }}>
         {/* Icon + Header */}
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
