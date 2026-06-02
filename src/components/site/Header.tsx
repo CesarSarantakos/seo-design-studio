@@ -37,7 +37,6 @@ export function Header() {
             className="h-14 w-auto"
             width={200}
             height={70}
-            style={{ filter: "brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
           />
         </Link>
         <nav className="hidden lg:flex items-center gap-8" aria-label="Principal">
