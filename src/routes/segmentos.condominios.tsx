@@ -83,6 +83,30 @@ function Page() {
           </div>
         </section>
 
+        {/* Destaques strip */}
+        <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16 max-w-6xl">
+          <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 md:divide-x md:divide-border">
+              <div className="md:px-4 text-center">
+                <Users className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">Profissionais alinhados à sua cultura</h3>
+              </div>
+              <div className="md:px-4 text-center">
+                <ClipboardCheck className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">Supervisão constante da operação</h3>
+              </div>
+              <div className="md:px-4 text-center">
+                <CalendarClock className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">Continuidade operacional garantida</h3>
+              </div>
+              <div className="md:px-4 text-center">
+                <Target className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">Foco no crescimento do seu negócio</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* DIFERENCIAIS PRINCIPAIS */}
         <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
