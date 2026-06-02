@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Paperclip } from "lucide-react";
+import { Paperclip, Calendar } from "lucide-react";
 import { toast } from "sonner";
 
 export function JobApplicationForm() {
@@ -15,7 +15,9 @@ export function JobApplicationForm() {
     nome: "",
     telefone: "",
     email: "",
-    dataNascimento: "",
+    diaNascimento: "",
+    meaNascimento: "",
+    anoNascimento: "",
     mensagem: "",
     regiao: "",
     areaInteresse: "",
@@ -23,6 +25,43 @@ export function JobApplicationForm() {
     disponibilidade: "",
   });
   const fileRef = useRef<HTMLInputElement>(null);
+  const [dateError, setDateError] = useState("");
+
+  const validateDate = () => {
+    const dia = parseInt(form.diaNascimento);
+    const mes = parseInt(form.meaNascimento);
+    const ano = parseInt(form.anoNascimento);
+
+    if (!form.diaNascimento || !form.meaNascimento || !form.anoNascimento) {
+      setDateError("");
+      return true;
+    }
+
+    if (dia < 1 || dia > 31) {
+      setDateError("O dia deve estar entre 1 e 31");
+      return false;
+    }
+    if (mes < 1 || mes > 12) {
+      setDateError("O mês deve estar entre 1 e 12");
+      return false;
+    }
+    if (ano < 1900 || ano > new Date().getFullYear()) {
+      setDateError(`O ano deve estar entre 1900 e ${new Date().getFullYear()}`);
+      return false;
+    }
+
+    setDateError("");
+    return true;
+  };
+
+  const getFullDate = () => {
+    if (!form.diaNascimento || !form.meaNascimento || !form.anoNascimento) {
+      return "";
+    }
+    const dia = String(form.diaNascimento).padStart(2, "0");
+    const mes = String(form.meaNascimento).padStart(2, "0");
+    return `${dia}/${mes}/${form.anoNascimento}`;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +103,12 @@ export function JobApplicationForm() {
       toast.error("Selecione sua disponibilidade");
       return;
     }
+    if (form.diaNascimento || form.meaNascimento || form.anoNascimento) {
+      if (!validateDate()) {
+        toast.error(dateError);
+        return;
+      }
+    }
 
     setLoading(true);
     try {
@@ -71,7 +116,7 @@ export function JobApplicationForm() {
         nome: form.nome,
         telefone: form.telefone,
         email: form.email,
-        dataNascimento: form.dataNascimento,
+        dataNascimento: getFullDate(),
         mensagem: form.mensagem,
         regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
         areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
@@ -98,7 +143,9 @@ export function JobApplicationForm() {
           nome: "",
           telefone: "",
           email: "",
-          dataNascimento: "",
+          diaNascimento: "",
+          meaNascimento: "",
+          anoNascimento: "",
           mensagem: "",
           regiao: "",
           areaInteresse: "",
@@ -137,8 +184,65 @@ export function JobApplicationForm() {
           <Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="Digite seu e-mail completo" required maxLength={255} />
         </div>
         <div>
-          <Label>Data de nascimento</Label>
-          <Input type="date" value={form.dataNascimento} onChange={(e) => setForm({ ...form, dataNascimento: e.target.value })} className="cursor-pointer" />
+          <div>
+            <Label className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-muted-foreground" />
+              Data de nascimento
+            </Label>
+            <p className="text-xs text-muted-foreground mt-1 mb-3">Exemplo: 25 / 03 / 1998</p>
+          </div>
+          <div className="flex gap-2 items-end">
+            <div className="flex-1">
+              <Input
+                type="number"
+                min="1"
+                max="31"
+                placeholder="Dia"
+                value={form.diaNascimento}
+                onChange={(e) => {
+                  let val = e.target.value.slice(0, 2);
+                  if (val && parseInt(val) > 31) val = "31";
+                  setForm({ ...form, diaNascimento: val });
+                  if (form.meaNascimento && form.anoNascimento) validateDate();
+                }}
+                className="text-center"
+              />
+            </div>
+            <span className="text-muted-foreground">/</span>
+            <div className="flex-1">
+              <Input
+                type="number"
+                min="1"
+                max="12"
+                placeholder="Mês"
+                value={form.meaNascimento}
+                onChange={(e) => {
+                  let val = e.target.value.slice(0, 2);
+                  if (val && parseInt(val) > 12) val = "12";
+                  setForm({ ...form, meaNascimento: val });
+                  if (form.diaNascimento && form.anoNascimento) validateDate();
+                }}
+                className="text-center"
+              />
+            </div>
+            <span className="text-muted-foreground">/</span>
+            <div className="flex-1">
+              <Input
+                type="number"
+                min="1900"
+                max={new Date().getFullYear()}
+                placeholder="Ano"
+                value={form.anoNascimento}
+                onChange={(e) => {
+                  let val = e.target.value.slice(0, 4);
+                  setForm({ ...form, anoNascimento: val });
+                  if (form.diaNascimento && form.meaNascimento) validateDate();
+                }}
+                className="text-center"
+              />
+            </div>
+          </div>
+          {dateError && <p className="text-xs text-red-500 mt-2">{dateError}</p>}
         </div>
       </div>
       <div>
