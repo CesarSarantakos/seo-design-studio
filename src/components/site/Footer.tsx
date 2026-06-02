@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Linkedin, Youtube } from "lucide-react";
+import { Instagram, Linkedin, Youtube, Facebook } from "lucide-react";
 import logo from "@/assets/gs-logo.png";
 
 export function Footer() {
@@ -66,6 +66,15 @@ export function Footer() {
               aria-label="Instagram"
             >
               <Instagram size={20} />
+            </a>
+            <a
+              href="https://www.facebook.com/gs.gselite/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook size={20} />
             </a>
             <a
               href="https://www.youtube.com/channel/UCm3KWW5vPY3S4_0XUIFJ2qA"
