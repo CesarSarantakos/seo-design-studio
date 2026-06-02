@@ -1,6 +1,5 @@
 import gimelSymbol from "@/assets/gimel-symbol.jpg";
 import helpingHands from "@/assets/helping-hands.jpg";
-import { Shield, Users, CheckCircle2, Handshake } from "lucide-react";
 
 export function SignificadoG() {
   return (
@@ -10,7 +9,7 @@ export function SignificadoG() {
     >
       <div className="container relative mx-auto px-6 lg:px-12">
         {/* Main content: 3-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr_0.9fr] gap-6 lg:gap-8 items-center mb-16 md:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr_0.9fr] gap-6 lg:gap-8 items-center mb-16 md:mb-24" style={{ backgroundColor: "#011029" }}>
           
           {/* LEFT: Gimel Symbol */}
           <div className="hidden lg:flex items-center justify-center">
@@ -46,9 +45,10 @@ export function SignificadoG() {
             <div>
               <h2 
                 id="significado-g" 
-                className="text-3xl md:text-4xl font-bold leading-tight text-foreground text-center lg:text-left"
+                className="text-3xl md:text-4xl font-bold leading-tight text-center lg:text-left"
+                style={{ color: "#c7821c" }}
               >
-                O significado do <span className="text-primary">&quot;G&quot;</span>
+                O significado do <span style={{ color: "#c7821c" }}>&quot;G&quot;</span>
                 <br />
                 que nos inspira.
               </h2>
@@ -98,59 +98,7 @@ export function SignificadoG() {
           </div>
         </div>
 
-        {/* Bottom section: 4 feature cards with icons */}
-        <div className="border-t border-primary/20 pt-12 md:pt-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-            
-            {/* Card 1: Protection */}
-            <div className="flex items-start gap-4 pb-8 lg:pb-0 lg:border-r lg:border-primary/30 lg:pr-6">
-              <div className="flex-shrink-0">
-                <Shield className="w-8 h-8 text-primary" strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground text-sm md:text-base">
-                  Proteção que<br />gera tranquilidade
-                </p>
-              </div>
-            </div>
 
-            {/* Card 2: People */}
-            <div className="flex items-start gap-4 pb-8 lg:pb-0 lg:border-r lg:border-primary/30 lg:pr-6">
-              <div className="flex-shrink-0">
-                <Users className="w-8 h-8 text-primary" strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground text-sm md:text-base">
-                  Pessoas que<br />fazem acontecer
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3: Process */}
-            <div className="flex items-start gap-4 pb-8 lg:pb-0 lg:border-r lg:border-primary/30 lg:pr-6">
-              <div className="flex-shrink-0">
-                <CheckCircle2 className="w-8 h-8 text-primary" strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground text-sm md:text-base">
-                  Processos que<br />garantem excelência
-                </p>
-              </div>
-            </div>
-
-            {/* Card 4: Partnership */}
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <Handshake className="w-8 h-8 text-primary" strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground text-sm md:text-base">
-                  Parcerias que<br />constroem resultados
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
