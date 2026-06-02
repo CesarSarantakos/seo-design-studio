@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { submitProposal } from "@/lib/api/forms.functions";
 
 const SERVICES = [
   "Controlador de Acesso",
@@ -23,7 +21,6 @@ const SERVICES = [
 ];
 
 export function ProposalSimulator() {
-  const submit = useServerFn(submitProposal);
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
@@ -76,7 +73,16 @@ export function ProposalSimulator() {
     
     setLoading(true);
     try {
-      const result = await submit(data);
+      console.log("[v0] ProposalSimulator submitting data:", data);
+      const response = await fetch("/api/send-proposal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      console.log("[v0] ProposalSimulator response:", result);
+      
       if (result.success) {
         toast.success(result.message || "Proposta enviada com sucesso! Entraremos em contato em breve.");
         setStep(0);
@@ -91,8 +97,11 @@ export function ProposalSimulator() {
           email: "",
           telefone: "",
         });
+      } else {
+        toast.error(result.message || "Erro ao enviar proposta");
       }
     } catch (err: any) {
+      console.error("[v0] ProposalSimulator error:", err);
       const errorMsg = err?.message ?? "Erro ao enviar proposta";
       toast.error(errorMsg);
     } finally {
