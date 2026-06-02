@@ -115,9 +115,9 @@ export function ProposalSimulator() {
     <section className="bg-background py-20" aria-labelledby="simulador">
       <div className="container mx-auto px-6 max-w-3xl text-center">
         <h2 id="simulador" className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-          Vamos conversar sobre sua operação?
+          Se você chegou até aqui, é porque isso importa para você.
         </h2>
-        <p className="text-lg text-foreground/90 font-semibold mt-6">Simule sua proposta</p>
+        <p className="text-lg text-foreground/90 font-semibold mt-6">Vamos simular uma proposta?</p>
         <p className="text-sm text-muted-foreground mb-8">Leva menos de 2 minutos.</p>
 
         <div className="bg-card border border-border rounded-2xl p-6 md:p-8 text-left shadow-xl">

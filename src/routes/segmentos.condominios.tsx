@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { ProposalCTA } from "@/components/site/ProposalCTA";
+import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import {
@@ -191,10 +191,12 @@ function Page() {
           </p>
         </section>
 
-        {/* CTA PARA PROPOSTA */}
+        {/* FORMULÁRIO DE ORÇAMENTO */}
         <section className="py-24 bg-background-deep">
           <div className="container mx-auto px-6 lg:px-12">
-            <ProposalCTA />
+            <div className="max-w-4xl mx-auto">
+              <ProposalSimulator />
+            </div>
           </div>
         </section>
       </main>

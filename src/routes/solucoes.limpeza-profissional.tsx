@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { ProposalCTA } from "@/components/site/ProposalCTA";
+import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 import {
   Sparkles,
   Users,
@@ -295,7 +295,7 @@ function Page() {
         <section className="pt-0 pb-24 bg-background-deep">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="max-w-4xl mx-auto">
-              <ProposalCTA />
+              <ProposalSimulator />
             </div>
           </div>
         </section>
