@@ -4,7 +4,7 @@ import helpingHands from "@/assets/helping-hands.jpg";
 export function SignificadoG() {
   return (
     <section
-      className="relative py-24 md:py-32 overflow-hidden bg-background-deep"
+      className="relative py-0 overflow-hidden bg-background-deep"
       aria-labelledby="significado-g"
     >
       <div className="container relative mx-auto px-6 lg:px-12">
