@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 import {
   Users,
   ShieldCheck,
@@ -189,37 +190,37 @@ function Page() {
         </section>
 
         {/* QUANDO FUNCIONA BEM, NINGUÉM PERCEBE */}
-        <section className="py-24 bg-background-deep relative overflow-hidden">
+        <section className="pt-0 pb-24 bg-background-deep relative overflow-hidden">
           <div
             aria-hidden="true"
             className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-20"
             style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
           />
           <div className="relative container mx-auto px-6 lg:px-12">
-            <div className="mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight max-w-4xl">
-                Quando a operação
-                <br />
-                funciona bem,
-                <br />
-                <span className="text-primary">ninguém percebe.</span>
-              </h2>
-              <div className="h-1 w-20 bg-primary mt-8 rounded-full" />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-              {/* Main content */}
-              <div className="lg:col-span-1">
-                <p className="text-lg text-white/85 leading-relaxed font-light">
-                  E esse é exatamente o ponto. O cuidado profissional não chama atenção — ele sustenta o dia a dia silenciosamente.
-                </p>
-                <p className="text-base text-white/70 leading-relaxed mt-6">
-                  Para que você possa focar no que realmente importa: fazer seu negócio crescer.
-                </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              {/* Left column - Title & Content */}
+              <div>
+                <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-8">
+                  Quando a operação
+                  <br />
+                  funciona bem,
+                  <br />
+                  <span className="text-primary">ninguém percebe.</span>
+                </h2>
+                <div className="h-1 w-20 bg-primary mb-8 rounded-full" />
+                
+                <div className="space-y-6">
+                  <p className="text-lg text-white/85 leading-relaxed font-light">
+                    E esse é exatamente o ponto. O cuidado profissional não chama atenção — ele sustenta o dia a dia silenciosamente.
+                  </p>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Para que você possa focar no que realmente importa: fazer seu negócio crescer.
+                  </p>
+                </div>
               </div>
 
-              {/* Cards Grid */}
-              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Right column - Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
                   <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
                     <Clock className="w-7 h-7 text-primary" strokeWidth={1.5} />
@@ -272,22 +273,20 @@ function Page() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 bg-background border-t border-border">
-          <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Pronto para terceirizar com quem<br />
-                <span className="text-primary">entrega de verdade?</span>
-              </h2>
+        {/* FORMULÁRIO DE ORÇAMENTO */}
+        <section className="pt-0 pb-24 bg-background-deep">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+                  Solicite seu <span className="text-primary">orçamento</span>
+                </h2>
+                <p className="text-lg text-white/70">
+                  Preencha os dados abaixo e nossa equipe entrará em contato para apresentar a melhor solução para sua empresa.
+                </p>
+              </div>
+              <ProposalSimulator />
             </div>
-            <Link
-              to="/solicitar-proposta"
-              className="group inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shadow-lg shadow-primary/20 whitespace-nowrap"
-            >
-              Solicitar Orçamento
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
           </div>
         </section>
       </main>

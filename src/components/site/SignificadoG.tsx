@@ -1,82 +1,86 @@
 import significadoG from "@/assets/significado-g.jpg";
+import gimelMaos from "@/assets/gimel-maos.jpg";
 
 export function SignificadoG() {
   return (
     <section
-      className="relative py-24 lg:py-32 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, oklch(0.17 0.08 262) 0%, oklch(0.14 0.07 262) 50%, oklch(0.17 0.08 262) 100%)",
-      }}
+      className="relative overflow-hidden bg-background-deep py-16 md:py-20 lg:py-24"
       aria-labelledby="significado-g"
     >
-      {/* top & bottom fades to blend with neighboring sections */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[color:var(--background)] to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[color:var(--background)] to-transparent" />
+      {/* top fade */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background to-transparent z-10" />
 
-      {/* decorative elements */}
-      <div
-        aria-hidden="true"
-        className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl opacity-10"
-        style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
-      />
-      <div
-        aria-hidden="true"
-        className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full blur-2xl opacity-8"
-        style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
-      />
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        {/* LAYOUT 3 COLUNAS — imagem G | texto | imagem mãos */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-center">
 
-      <div className="container relative mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* content */}
-          <div className="space-y-8">
-            <div>
-              <h2 id="significado-g" className="text-4xl md:text-5xl lg:text-5xl font-bold text-primary leading-tight mb-8">
-                O significado do "G"<br />que nos inspira.
-              </h2>
-              <div className="h-1 w-24 bg-primary rounded-full" />
-            </div>
-
-            <div className="space-y-6">
-              <p className="text-lg text-foreground/85 leading-relaxed font-light">
-                No hebraico, a letra "G" (Gimel) se conecta ao princípio do servir, do ajudar, do estender a mão a quem precisa.
-              </p>
-              <p className="text-lg text-foreground/85 leading-relaxed font-light">
-                É a essência de quem vai ao encontro do outro para fazer a diferença.
-              </p>
-            </div>
-
-            {/* callouts */}
-            <div className="pt-6 space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="w-1 h-12 bg-primary rounded-full" />
-                <div>
-                  <p className="text-xl font-semibold text-primary">Servir é o que nos move.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-1 h-12 bg-primary rounded-full" />
-                <div>
-                  <p className="text-xl font-semibold text-primary">Cuidar é o que nos define.</p>
-                </div>
-              </div>
+          {/* COLUNA 1: IMAGEM DO G DOURADO */}
+          <div className="flex justify-center">
+            <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+              <img
+                src={significadoG}
+                alt="Letra hebraica Gimel — símbolo de servir e cuidar"
+                width={300}
+                height={300}
+                loading="lazy"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
-          {/* image */}
-          <div className="relative hidden lg:flex items-center justify-center">
-            <div className="absolute -inset-8 bg-gradient-to-br from-primary/15 to-transparent rounded-3xl blur-2xl" />
-            <img
-              src={significadoG}
-              alt="Letra hebraica Gimel sobre mãos e conexão entre pessoas"
-              width={2048}
-              height={1024}
-              loading="lazy"
-              className="relative rounded-2xl shadow-2xl w-full h-auto"
-            />
+          {/* COLUNA 2: TEXTO CENTRAL */}
+          <div className="text-center md:text-left space-y-6">
+            {/* headline */}
+            <h2
+              id="significado-g"
+              className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-foreground leading-tight tracking-tight"
+            >
+              O significado do "G"
+              <br />
+              que nos inspira.
+            </h2>
+
+            {/* descrição */}
+            <div className="space-y-4">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                No hebraico, a letra "G" (Gimel) se conecta ao princípio do servir,
+                do ajudar, do estender a mão a quem precisa.
+              </p>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                É a essência de quem vai ao encontro do outro para fazer
+                a diferença.
+              </p>
+            </div>
+
+            {/* frases em destaque */}
+            <div className="pt-2">
+              <p className="text-base md:text-lg font-bold text-primary leading-snug">
+                Servir é o que nos move.
+              </p>
+              <p className="text-base md:text-lg font-bold text-primary leading-snug">
+                Cuidar é o que nos define.
+              </p>
+            </div>
+          </div>
+
+          {/* COLUNA 3: IMAGEM DAS MÃOS */}
+          <div className="flex justify-center">
+            <div className="relative w-56 h-40 md:w-64 md:h-48 lg:w-80 lg:h-56 overflow-hidden rounded-lg">
+              <img
+                src={gimelMaos}
+                alt="Mãos em gesto de colaboração e parceria"
+                width={400}
+                height={280}
+                loading="lazy"
+                className="w-full h-full object-cover object-right"
+              />
+            </div>
           </div>
         </div>
       </div>
+
+      {/* bottom fade */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent z-10" />
     </section>
   );
 }

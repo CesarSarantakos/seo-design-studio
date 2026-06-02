@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import {
@@ -82,91 +83,25 @@ function Page() {
           </div>
         </section>
 
-        {/* DIFERENCIAIS PRINCIPAIS */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
-            {/* Card 1 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <Users className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Profissionais alinhados à sua cultura
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Selecionados, treinados e preparados para representar sua empresa com profissionalismo e responsabilidade.
-                  </p>
-                </div>
+        {/* Destaques strip */}
+        <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16 max-w-6xl">
+          <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 md:divide-x md:divide-border">
+              <div className="md:px-4 text-center">
+                <Users className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">Profissionais alinhados à sua cultura</h3>
               </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <ClipboardCheck className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Supervisão constante
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Acompanhamento próximo da operação para manter o padrão, a organização e a continuidade dos serviços.
-                  </p>
-                </div>
+              <div className="md:px-4 text-center">
+                <ClipboardCheck className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">Supervisão constante da operação</h3>
               </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <Handshake className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Parceria que gera resultados
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Mais do que fornecer mão de obra, atuamos como parceiros na construção de uma operação eficiente e confiável.
-                  </p>
-                </div>
+              <div className="md:px-4 text-center">
+                <CalendarClock className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">Continuidade operacional garantida</h3>
               </div>
-            </div>
-
-            {/* Card 4 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <CalendarClock className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Continuidade operacional
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Cobertura rápida de faltas, férias e afastamentos para que sua rotina nunca pare.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 5 - Full width */}
-          <div className="bg-[color:var(--background-deep)] rounded-2xl p-6 md:p-8 border border-primary/30">
-            <div className="flex items-start gap-4">
-              <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                <Target className="h-6 w-6 text-primary" strokeWidth={1.5} />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                  Mais tempo para sua gestão
-                </h3>
-                <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                  Deixe a operação com a GS e concentre seus esforços no crescimento do seu negócio.
-                </p>
+              <div className="md:px-4 text-center">
+                <Target className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">Foco no crescimento do seu negócio</h3>
               </div>
             </div>
           </div>
@@ -259,63 +194,11 @@ function Page() {
           </p>
         </section>
 
-        {/* PILARES */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
-          <div className="bg-card/60 rounded-2xl p-6 md:p-10 grid md:grid-cols-4 gap-6 md:gap-8">
-            {[
-              { icon: Handshake, title: "Parceria de verdade", desc: "Relacionamento baseado em confiança, transparência e diálogo." },
-              { icon: Users, title: "Gestão presente", desc: "Liderança próxima, acompanhando e apoiando a operação diariamente." },
-              { icon: Target, title: "Foco em resultado", desc: "Nosso compromisso é com a eficiência e a qualidade do serviço." },
-              { icon: Shield, title: "Tranquilidade para você e seu condomínio", desc: "Menos dor de cabeça, mais segurança e qualidade no dia a dia." },
-            ].map((p) => (
-              <div key={p.title}>
-                <p.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                <h3 className="mt-3 text-sm font-bold text-foreground">{p.title}</h3>
-                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA FINAL */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24 mb-16">
-          <div className="rounded-2xl bg-[color:var(--background-deep)] border border-border p-6 md:p-10">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10">
-              <div className="h-16 w-16 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                <ShieldCheck className="h-8 w-8 text-primary" strokeWidth={1.5} />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                  Seu condomínio merece o <span className="text-primary">melhor.</span>
-                </h2>
-                <p className="mt-2 text-sm md:text-base text-muted-foreground">
-                  Profissionais comprometidos, processos organizados e suporte que você pode contar.
-                </p>
-              </div>
-              <div className="flex flex-col items-stretch md:items-end gap-2">
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Link to="/solicitar-proposta">Solicitar proposta</Link>
-                </Button>
-                <p className="text-xs text-muted-foreground text-center md:text-right">
-                  Atendimento rápido e direto com a gestão.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-border">
-              {[
-                { icon: ShieldCheck, label: "EMPRESA REGULARIZADA E EM CONFORMIDADE" },
-                { icon: Users, label: "SELEÇÃO RIGOROSA E TREINAMENTO" },
-                { icon: ClipboardCheck, label: "SUPERVISÃO CONSTANTE" },
-                { icon: Award, label: "COMPROMISSO COM SEU CONDOMÍNIO" },
-              ].map((t) => (
-                <div key={t.label} className="flex items-center gap-3">
-                  <t.icon className="h-6 w-6 text-primary flex-shrink-0" strokeWidth={1.5} />
-                  <span className="text-[11px] md:text-xs font-semibold text-foreground tracking-wide leading-tight">
-                    {t.label}
-                  </span>
-                </div>
-              ))}
+        {/* FORMULÁRIO DE ORÇAMENTO */}
+        <section className="py-24 bg-background-deep">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <ProposalSimulator />
             </div>
           </div>
         </section>
