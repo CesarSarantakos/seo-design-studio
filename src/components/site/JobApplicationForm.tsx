@@ -137,7 +137,7 @@ export function JobApplicationForm() {
           <Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="Digite seu e-mail completo" required maxLength={255} />
         </div>
         <div>
-          <Label>Data de Nascimento</Label>
+          <Label>dia, mês e ano</Label>
           <Input type="date" value={form.dataNascimento} onChange={(e) => setForm({ ...form, dataNascimento: e.target.value })} className="cursor-pointer" />
         </div>
       </div>
