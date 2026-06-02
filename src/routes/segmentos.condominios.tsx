@@ -26,7 +26,7 @@ import {
   ClipboardCheck,
   Award,
 } from "lucide-react";
-import heroImg from "@/assets/condominio-hero.jpg";
+import heroImg from "@/assets/condominios-hero.jpg";
 
 export const Route = createFileRoute("/segmentos/condominios")({
   head: () => ({
@@ -60,16 +60,13 @@ function Page() {
           <div className="relative container mx-auto px-6 max-w-6xl">
             <div className="max-w-3xl">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
-                Seu tempo importa.
+                Fazemos o <span className="text-primary">simples</span>
                 <br />
-                <span className="text-primary">Sua operação fica com a GS.</span>
+                bem feito.
               </h1>
               <div className="mt-6 sm:mt-8 h-1 w-16 sm:w-20 bg-primary rounded-full" />
               <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-lg text-foreground font-semibold max-w-2xl">
-                Enquanto você cuida do crescimento do negócio, nós cuidamos das pessoas, da rotina operacional e da continuidade dos serviços.
-              </p>
-              <p className="mt-4 sm:mt-6 text-base sm:text-lg text-primary font-bold max-w-2xl leading-relaxed">
-                Mais organização. Mais presença. Menos preocupação.
+                Gestão terceirizada com presença, cobertura e suporte de verdade para seu condomínio.
               </p>
               <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3">
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
