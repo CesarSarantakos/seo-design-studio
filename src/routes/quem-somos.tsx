@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Hero } from "@/components/site/Hero";
-import { MissionVisionValues } from "@/components/site/MissionVisionValues";
 import { SignificadoG } from "@/components/site/SignificadoG";
+import { MissionVisionValues } from "@/components/site/MissionVisionValues";
 import { Pillars } from "@/components/site/Pillars";
 
 export const Route = createFileRoute("/quem-somos")({
