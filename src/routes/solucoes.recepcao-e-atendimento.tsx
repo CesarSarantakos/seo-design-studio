@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 import {
   Users,
   MessageCircle,
@@ -286,6 +287,23 @@ function Page() {
                 loading="lazy"
                 className="relative rounded-2xl object-cover w-full aspect-[4/3] shadow-2xl"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* FORMULÁRIO DE ORÇAMENTO */}
+        <section className="py-24 bg-background-deep">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+                  Solicite seu <span className="text-primary">orçamento</span>
+                </h2>
+                <p className="text-lg text-white/70">
+                  Preencha os dados abaixo e nossa equipe entrará em contato para apresentar a melhor solução para seu negócio.
+                </p>
+              </div>
+              <ProposalSimulator />
             </div>
           </div>
         </section>
