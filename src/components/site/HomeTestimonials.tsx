@@ -29,7 +29,7 @@ export function HomeTestimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-gradient-to-b from-neutral-900 to-neutral-950 py-24 overflow-hidden" aria-labelledby="depoimentos">
+    <section className="bg-gradient-to-b from-blue-950 to-blue-900 py-24 overflow-hidden" aria-labelledby="depoimentos">
       <style>{`
         @keyframes fadeInUp {
           from {
