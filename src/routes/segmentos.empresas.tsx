@@ -251,7 +251,7 @@ function Page() {
                     Equipe comprometida.
                   </h3>
                   <p className="text-base text-white/70 leading-relaxed">
-                    Seleção rigorosa, treinamento contínuo e alinhanmento com sua cultura organizacional.
+                    Seleção rigorosa, treinamento contínuo e alinhamento com sua cultura organizacional.
                   </p>
                 </div>
 
