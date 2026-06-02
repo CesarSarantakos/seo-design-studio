@@ -196,30 +196,30 @@ function Page() {
             style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
           />
           <div className="relative container mx-auto px-6 lg:px-12">
-            <div className="mb-16">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight max-w-4xl">
-                Quando a operação
-                <br />
-                funciona bem,
-                <br />
-                <span className="text-primary">ninguém percebe.</span>
-              </h2>
-              <div className="h-1 w-20 bg-primary mt-8 rounded-full" />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-              {/* Main content */}
-              <div className="lg:col-span-1">
-                <p className="text-lg text-white/85 leading-relaxed font-light">
-                  E esse é exatamente o ponto. O cuidado profissional não chama atenção — ele sustenta o dia a dia silenciosamente.
-                </p>
-                <p className="text-base text-white/70 leading-relaxed mt-6">
-                  Para que você possa focar no que realmente importa: fazer seu negócio crescer.
-                </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              {/* Left column - Title & Content */}
+              <div>
+                <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-8">
+                  Quando a operação
+                  <br />
+                  funciona bem,
+                  <br />
+                  <span className="text-primary">ninguém percebe.</span>
+                </h2>
+                <div className="h-1 w-20 bg-primary mb-8 rounded-full" />
+                
+                <div className="space-y-6">
+                  <p className="text-lg text-white/85 leading-relaxed font-light">
+                    E esse é exatamente o ponto. O cuidado profissional não chama atenção — ele sustenta o dia a dia silenciosamente.
+                  </p>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Para que você possa focar no que realmente importa: fazer seu negócio crescer.
+                  </p>
+                </div>
               </div>
 
-              {/* Cards Grid */}
-              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Right column - Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
                   <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
                     <Clock className="w-7 h-7 text-primary" strokeWidth={1.5} />
