@@ -54,6 +54,8 @@ const COMPROMISSO = [
   "Comunicação rápida e suporte próximo",
 ];
 
+const HERO_IMG = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-31%20at%2013.39.08-fQYpVse6ceeuleRO7EV3aCznKroatc.jpeg";
+
 export const Route = createFileRoute("/solucoes/limpeza-profissional")({
   head: () => ({
     meta: [
@@ -70,8 +72,8 @@ export const Route = createFileRoute("/solucoes/limpeza-profissional")({
           "Mais do que limpeza, entregamos bem-estar, organização e funcionamento para o dia a dia.",
       },
       { property: "og:url", content: "/solucoes/limpeza-profissional" },
-      { property: "og:image", content: heroImg },
-      { name: "twitter:image", content: heroImg },
+      { property: "og:image", content: HERO_IMG },
+      { name: "twitter:image", content: HERO_IMG },
     ],
     links: [{ rel: "canonical", href: "/solucoes/limpeza-profissional" }],
   }),
@@ -86,7 +88,7 @@ function Page() {
         {/* HERO */}
         <section className="relative w-full min-h-[92vh] overflow-hidden bg-background-deep">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-31%20at%2013.39.08-fQYpVse6ceeuleRO7EV3aCznKroatc.jpeg"
+            src={HERO_IMG}
             alt="Equipe profissional GS de limpeza uniformizada em ambiente corporativo moderno"
             width={1920}
             height={1280}
