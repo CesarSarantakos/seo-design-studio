@@ -12,6 +12,7 @@ import {
   Building2,
   Clock,
   TrendingUp,
+  Headphones,
 } from "lucide-react";
 
 const WHATSAPP_URL =
