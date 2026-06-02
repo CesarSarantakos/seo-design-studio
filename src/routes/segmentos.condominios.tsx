@@ -108,90 +108,92 @@ function Page() {
         </section>
 
         {/* DIFERENCIAIS PRINCIPAIS */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
-            {/* Card 1 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <Users className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Profissionais alinhados à sua cultura
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Selecionados, treinados e preparados para representar sua empresa com profissionalismo e responsabilidade.
-                  </p>
+        <section className="py-20 md:py-28">
+          <div className="container mx-auto px-6 lg:px-12 max-w-5xl">
+            <div className="space-y-6">
+              {/* Card 1 */}
+              <div className="group rounded-2xl bg-card/40 border border-border/30 p-8 md:p-10 hover:border-primary/40 hover:bg-card/60 transition-all duration-300">
+                <div className="flex items-start gap-6">
+                  <div className="h-14 w-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
+                    <Users className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                      Profissionais alinhados à sua cultura
+                    </h3>
+                    <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+                      Selecionados, treinados e preparados para representar sua empresa com profissionalismo e responsabilidade.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Card 2 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <ClipboardCheck className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Supervisão constante
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Acompanhamento próximo da operação para manter o padrão, a organização e a continuidade dos serviços.
-                  </p>
+              {/* Card 2 */}
+              <div className="group rounded-2xl bg-card/40 border border-border/30 p-8 md:p-10 hover:border-primary/40 hover:bg-card/60 transition-all duration-300">
+                <div className="flex items-start gap-6">
+                  <div className="h-14 w-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
+                    <ClipboardCheck className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                      Supervisão constante
+                    </h3>
+                    <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+                      Acompanhamento próximo da operação para manter o padrão, a organização e a continuidade dos serviços.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Card 3 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <Handshake className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Parceria que gera resultados
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Mais do que fornecer mão de obra, atuamos como parceiros na construção de uma operação eficiente e confiável.
-                  </p>
+              {/* Card 3 */}
+              <div className="group rounded-2xl bg-card/40 border border-border/30 p-8 md:p-10 hover:border-primary/40 hover:bg-card/60 transition-all duration-300">
+                <div className="flex items-start gap-6">
+                  <div className="h-14 w-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
+                    <Handshake className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                      Parceria que gera resultados
+                    </h3>
+                    <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+                      Mais do que fornecer mão de obra, atuamos como parceiros na construção de uma operação eficiente e confiável.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Card 4 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <CalendarClock className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Continuidade operacional
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Cobertura rápida de faltas, férias e afastamentos para que sua rotina nunca pare.
-                  </p>
+              {/* Card 4 */}
+              <div className="group rounded-2xl bg-card/40 border border-border/30 p-8 md:p-10 hover:border-primary/40 hover:bg-card/60 transition-all duration-300">
+                <div className="flex items-start gap-6">
+                  <div className="h-14 w-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
+                    <CalendarClock className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                      Continuidade operacional
+                    </h3>
+                    <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+                      Cobertura rápida de faltas, férias e afastamentos para que sua rotina nunca pare.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Card 5 - Full width */}
-          <div className="bg-[color:var(--background-deep)] rounded-2xl p-6 md:p-8 border border-primary/30">
-            <div className="flex items-start gap-4">
-              <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                <Target className="h-6 w-6 text-primary" strokeWidth={1.5} />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                  Mais tempo para sua gestão
-                </h3>
-                <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                  Deixe a operação com a GS e concentre seus esforços no crescimento do seu negócio.
-                </p>
+              {/* Card 5 - Premium Featured */}
+              <div className="group rounded-2xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 p-8 md:p-10 hover:border-primary/50 transition-all duration-300">
+                <div className="flex items-start gap-6">
+                  <div className="h-14 w-14 rounded-xl bg-primary/15 border border-primary/40 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/25 transition-colors">
+                    <Target className="h-7 w-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                      Mais tempo para sua gestão
+                    </h3>
+                    <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+                      Deixe a operação com a GS e concentre seus esforços no crescimento do seu negócio.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
