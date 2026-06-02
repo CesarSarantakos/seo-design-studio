@@ -5,8 +5,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Paperclip, Calendar } from "lucide-react";
+import { Paperclip, Calendar, AlertCircle, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import { submitJobApplication } from "@/lib/api/forms.functions";
 
 export function JobApplicationForm() {
   const [loading, setLoading] = useState(false);
@@ -66,7 +67,7 @@ export function JobApplicationForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate required fields
+    // Validate file
     if (!file) {
       toast.error("Anexe seu currículo (PDF ou DOC/DOCX)");
       return;
@@ -75,6 +76,13 @@ export function JobApplicationForm() {
       toast.error("Arquivo maior que 5MB");
       return;
     }
+    const allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Formato inválido. Envie PDF ou DOC/DOCX.");
+      return;
+    }
+
+    // Validate required fields
     if (!form.nome.trim()) {
       toast.error("Por favor, informe seu nome");
       return;
@@ -112,56 +120,58 @@ export function JobApplicationForm() {
 
     setLoading(true);
     try {
-      const payload = {
-        nome: form.nome,
-        telefone: form.telefone,
-        email: form.email,
-        dataNascimento: getFullDate(),
-        mensagem: form.mensagem,
-        regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
-        areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
-        temExperiencia: form.temExperiencia === "sim",
-        disponibilidade: form.disponibilidade as "diurno" | "noturno",
-      };
-      
-      console.log("[v0] Submitting job application via fetch:", payload);
-      
-      const response = await fetch("/api/send-job-application", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      
-      const result = await response.json();
-      console.log("[v0] API response:", result);
-      
-      if (result.success) {
-        toast.success(result.message || "Candidatura enviada com sucesso! Nossa equipe entrará em contato.");
+      // Convert file to base64
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64 = (reader.result as string).split(",")[1];
         
-        // Reset form
-        setForm({
-          nome: "",
-          telefone: "",
-          email: "",
-          diaNascimento: "",
-          meaNascimento: "",
-          anoNascimento: "",
-          mensagem: "",
-          regiao: "",
-          areaInteresse: "",
-          temExperiencia: "",
-          disponibilidade: "",
+        const result = await submitJobApplication({
+          nome: form.nome,
+          telefone: form.telefone,
+          email: form.email,
+          dataNascimento: getFullDate(),
+          mensagem: form.mensagem,
+          regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
+          areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
+          temExperiencia: form.temExperiencia === "sim",
+          disponibilidade: form.disponibilidade as "diurno" | "noturno",
+          resumeBase64: base64,
+          resumeName: file.name,
+          resumeType: file.type,
         });
-        setFile(null);
-        if (fileRef.current) fileRef.current.value = "";
-      } else {
-        toast.error(result.message || "Erro ao enviar candidatura.");
-      }
+
+        if (result.success) {
+          toast.success(result.message || "Candidatura enviada com sucesso!");
+          
+          // Reset form
+          setForm({
+            nome: "",
+            telefone: "",
+            email: "",
+            diaNascimento: "",
+            meaNascimento: "",
+            anoNascimento: "",
+            mensagem: "",
+            regiao: "",
+            areaInteresse: "",
+            temExperiencia: "",
+            disponibilidade: "",
+          });
+          setFile(null);
+          if (fileRef.current) fileRef.current.value = "";
+        } else {
+          toast.error(result.message || "Erro ao enviar candidatura.");
+        }
+      };
+      reader.onerror = () => {
+        toast.error("Erro ao processar o arquivo.");
+        setLoading(false);
+      };
+      reader.readAsDataURL(file);
     } catch (err: any) {
       console.error("[v0] Submit error:", err);
       const errorMsg = err?.message || "Erro ao enviar candidatura";
       toast.error(errorMsg);
-    } finally {
       setLoading(false);
     }
   };

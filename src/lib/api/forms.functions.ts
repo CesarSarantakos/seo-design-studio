@@ -138,8 +138,11 @@ export const submitJobApplication = createServerFn({ method: "POST" })
         throw new Error("Falha ao registrar candidatura.");
       }
 
-      // Send email notification with attachment
+      // Get public URL for the resume
       const resumeUrl = supabaseAdmin.storage.from("resumes").getPublicUrl(path).data.publicUrl;
+
+      // Prepare attachment buffer for Resend
+      const attachmentBuffer = Buffer.from(data.resumeBase64, "base64");
 
       const emailBody = `
 <h2>Nova Candidatura Recebida</h2>
@@ -165,6 +168,12 @@ export const submitJobApplication = createServerFn({ method: "POST" })
         to: "rh@gsservicos.com.br",
         subject: "[GS] Nova Candidatura - " + data.nome,
         html: emailBody,
+        attachments: [
+          {
+            filename: data.resumeName,
+            content: attachmentBuffer,
+          },
+        ],
       });
 
       console.log("[v0] Job application email sent successfully");
