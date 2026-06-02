@@ -278,49 +278,6 @@ function Page() {
           </div>
         </section>
 
-        {/* CTA FINAL */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24 mb-16">
-          <div className="rounded-2xl bg-[color:var(--background-deep)] border border-border p-6 md:p-10">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10">
-              <div className="h-16 w-16 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                <ShieldCheck className="h-8 w-8 text-primary" strokeWidth={1.5} />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                  Seu condomínio merece o <span className="text-primary">melhor.</span>
-                </h2>
-                <p className="mt-2 text-sm md:text-base text-muted-foreground">
-                  Profissionais comprometidos, processos organizados e suporte que você pode contar.
-                </p>
-              </div>
-              <div className="flex flex-col items-stretch md:items-end gap-2">
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Link to="/solicitar-proposta">Solicitar proposta</Link>
-                </Button>
-                <p className="text-xs text-muted-foreground text-center md:text-right">
-                  Atendimento rápido e direto com a gestão.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-border">
-              {[
-                { icon: ShieldCheck, label: "EMPRESA REGULARIZADA E EM CONFORMIDADE" },
-                { icon: Users, label: "SELEÇÃO RIGOROSA E TREINAMENTO" },
-                { icon: ClipboardCheck, label: "SUPERVISÃO CONSTANTE" },
-                { icon: Award, label: "COMPROMISSO COM SEU CONDOMÍNIO" },
-              ].map((t) => (
-                <div key={t.label} className="flex items-center gap-3">
-                  <t.icon className="h-6 w-6 text-primary flex-shrink-0" strokeWidth={1.5} />
-                  <span className="text-[11px] md:text-xs font-semibold text-foreground tracking-wide leading-tight">
-                    {t.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* FORMULÁRIO DE ORÇAMENTO */}
         <section className="py-24 bg-background-deep">
           <div className="container mx-auto px-6 lg:px-12">
