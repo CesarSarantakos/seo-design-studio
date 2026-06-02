@@ -67,7 +67,7 @@ const jobAppSchema = z.object({
   nome: z.string().trim().min(1, "Nome é obrigatório").max(150),
   telefone: z.string().trim().min(6, "Telefone inválido").max(30),
   email: z.string().trim().email("Email inválido").max(255),
-  dataNascimento: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data inválida").optional().default(""),
+  dataNascimento: z.string().max(20).optional().default(""),
   mensagem: z.string().max(2000).optional().default(""),
   regiao: z.enum(["zona_leste", "zona_sul", "zona_norte", "zona_oeste"]),
   areaInteresse: z.enum(["portaria", "recepcao", "limpeza", "apoio_operacional", "zeladoria", "supervisao", "outros"]),
@@ -99,12 +99,12 @@ export const submitJobApplication = createServerFn({ method: "POST" })
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       ];
       if (!allowed.includes(data.resumeType)) {
-        throw new Error("Formato inválido. Envie PDF ou DOC/DOCX.");
+        return { success: false, message: "Formato inválido. Envie PDF ou DOC/DOCX." };
       }
 
       const buf = Buffer.from(data.resumeBase64, "base64");
       if (buf.byteLength > 5 * 1024 * 1024) {
-        throw new Error("Arquivo maior que 5MB.");
+        return { success: false, message: "Arquivo maior que 5MB." };
       }
 
       // Upload resume to storage
@@ -116,7 +116,7 @@ export const submitJobApplication = createServerFn({ method: "POST" })
 
       if (upErr) {
         console.error("[v0] storage upload error:", upErr);
-        throw new Error("Falha ao enviar o currículo.");
+        return { success: false, message: "Falha ao enviar o currículo." };
       }
 
       // Save to database
@@ -135,11 +135,14 @@ export const submitJobApplication = createServerFn({ method: "POST" })
 
       if (dbError) {
         console.error("[v0] job_applications insert error:", dbError);
-        throw new Error("Falha ao registrar candidatura.");
+        return { success: false, message: "Falha ao registrar candidatura." };
       }
 
-      // Send email notification with attachment
+      // Get public URL for the resume
       const resumeUrl = supabaseAdmin.storage.from("resumes").getPublicUrl(path).data.publicUrl;
+
+      // Prepare attachment buffer for Resend
+      const attachmentBuffer = Buffer.from(data.resumeBase64, "base64");
 
       const emailBody = `
 <h2>Nova Candidatura Recebida</h2>
@@ -160,18 +163,31 @@ export const submitJobApplication = createServerFn({ method: "POST" })
 <p><strong>Currículo:</strong> <a href="${resumeUrl}">Baixar currículo</a></p>
       `;
 
-      await resend.emails.send({
-        from: FROM_EMAIL,
-        to: "rh@gsservicos.com.br",
-        subject: "[GS] Nova Candidatura - " + data.nome,
-        html: emailBody,
-      });
+      try {
+        await resend.emails.send({
+          from: FROM_EMAIL,
+          to: "rh@gsservicos.com.br",
+          subject: "[GS] Nova Candidatura - " + data.nome,
+          html: emailBody,
+          attachments: [
+            {
+              filename: data.resumeName,
+              content: attachmentBuffer,
+            },
+          ],
+        });
+        console.log("[v0] Job application email sent successfully");
+      } catch (emailError) {
+        console.warn("[v0] Email send failed but candidate saved:", emailError);
+      }
 
-      console.log("[v0] Job application email sent successfully");
       return { success: true, message: "Candidatura enviada com sucesso! Entraremos em contato em breve." };
     } catch (error) {
       console.error("[v0] submitJobApplication error:", error);
-      throw error instanceof Error ? error : new Error("Erro ao enviar candidatura. Tente novamente.");
+      return { 
+        success: false, 
+        message: error instanceof Error ? error.message : "Erro ao enviar candidatura. Tente novamente."
+      };
     }
   });
 

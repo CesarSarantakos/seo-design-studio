@@ -66,7 +66,7 @@ export function JobApplicationForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate required fields
+    // Validate file
     if (!file) {
       toast.error("Anexe seu currículo (PDF ou DOC/DOCX)");
       return;
@@ -75,6 +75,13 @@ export function JobApplicationForm() {
       toast.error("Arquivo maior que 5MB");
       return;
     }
+    const allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Formato inválido. Envie PDF ou DOC/DOCX.");
+      return;
+    }
+
+    // Validate required fields
     if (!form.nome.trim()) {
       toast.error("Por favor, informe seu nome");
       return;
@@ -111,32 +118,50 @@ export function JobApplicationForm() {
     }
 
     setLoading(true);
+    
+    // Convert file to base64 using Promise wrapper
+    const convertFileToBase64 = (file: File): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64 = (reader.result as string).split(",")[1];
+          resolve(base64);
+        };
+        reader.onerror = () => {
+          reject(new Error("Erro ao processar o arquivo"));
+        };
+        reader.readAsDataURL(file);
+      });
+    };
+
     try {
+      const base64 = await convertFileToBase64(file);
+      
       const payload = {
         nome: form.nome,
         telefone: form.telefone,
         email: form.email,
         dataNascimento: getFullDate(),
         mensagem: form.mensagem,
-        regiao: form.regiao as "zona_leste" | "zona_sul" | "zona_norte" | "zona_oeste",
-        areaInteresse: form.areaInteresse as "portaria" | "recepcao" | "limpeza" | "apoio_operacional" | "zeladoria" | "supervisao" | "outros",
+        regiao: form.regiao,
+        areaInteresse: form.areaInteresse,
         temExperiencia: form.temExperiencia === "sim",
-        disponibilidade: form.disponibilidade as "diurno" | "noturno",
+        disponibilidade: form.disponibilidade,
+        resumeBase64: base64,
+        resumeName: file.name,
+        resumeType: file.type,
       };
-      
-      console.log("[v0] Submitting job application via fetch:", payload);
-      
+
       const response = await fetch("/api/send-job-application", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      
+
       const result = await response.json();
-      console.log("[v0] API response:", result);
-      
+
       if (result.success) {
-        toast.success(result.message || "Candidatura enviada com sucesso! Nossa equipe entrará em contato.");
+        toast.success(result.message || "Candidatura enviada com sucesso!");
         
         // Reset form
         setForm({
