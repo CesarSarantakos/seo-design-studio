@@ -9,7 +9,7 @@ export function MissionVisionValues() {
           <Target className="w-12 h-12 text-primary mx-auto mb-5" strokeWidth={1.5} />
           <h3 className="text-xl font-bold text-primary tracking-widest mb-4">MISSÃO</h3>
           <p className="text-foreground/90 leading-relaxed max-w-xs mx-auto">
-            Servimos pessoas, protegemos patrimônio e cuidamos do que realmente importa.
+            Servir pessoas, proteger patrimônio e cuidar do que realmente importa.
           </p>
           <div className="h-0.5 w-12 bg-primary mx-auto mt-6" />
         </div>
