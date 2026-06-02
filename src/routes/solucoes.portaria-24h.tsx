@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { ProposalSimulator } from "@/components/site/ProposalSimulator";
+import { PremiumCTA } from "@/components/site/PremiumCTA";
 import {
   ShieldCheck,
   Eye,
@@ -295,8 +295,8 @@ function Page() {
           </div>
         </section>
 
-        {/* WHY GS — premium values */}
-        <ProposalSimulator />
+        {/* CTA PARA PROPOSTA */}
+        <PremiumCTA />
       </main>
       <Footer />
     </div>
