@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ProposalSimulator } from "@/components/site/ProposalSimulator";
 import {
   Sparkles,
   Users,
@@ -286,6 +287,15 @@ function Page() {
                 loading="lazy"
                 className="relative rounded-2xl object-cover w-full aspect-[4/3] shadow-2xl"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* FORMULÁRIO DE ORÇAMENTO */}
+        <section className="py-24 bg-background-deep">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <ProposalSimulator />
             </div>
           </div>
         </section>
