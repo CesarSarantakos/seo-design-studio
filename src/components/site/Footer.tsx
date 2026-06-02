@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Linkedin, Youtube, Facebook } from "lucide-react";
-import logo from "@/assets/gs-logo-footer.png";
+import logo from "@/assets/gs-logo.png";
 
 export function Footer() {
   return (
@@ -13,7 +13,7 @@ export function Footer() {
             className="h-14 w-auto mb-4"
             width={200}
             height={70}
-            style={{ mixBlendMode: "screen" }}
+            style={{ filter: "brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
           />
           <p className="text-sm text-muted-foreground max-w-sm">
             Terceirização com presença, proteção e compromisso. Pessoas comprometidas, operações organizadas e a responsabilidade de servir com presença.
