@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck, MessageCircle, Clock, Check } from "lucide-react";
+import { ShieldCheck, MessageCircle, Clock, Check, MessageCircle as WhatsAppIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function PremiumCTA() {
@@ -63,7 +63,7 @@ export function PremiumCTA() {
           </Link>
 
           <a
-            href="https://wa.me/5511999999999"
+            href="https://api.whatsapp.com/send/?phone=5511930494888&text=Ol%C3%A1%21+Vim+pelo+site+e+gostaria+de+solicitar+um+or%C3%A7amento+para+servi%C3%A7os+de+terceiriza%C3%A7%C3%A3o.+Pode+me+ajudar%3F&type=phone_number&app_absent=0"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -71,13 +71,7 @@ export function PremiumCTA() {
               size="lg"
               className="w-full h-16 md:h-14 bg-green-600 hover:bg-green-700 text-white font-bold text-base md:text-lg rounded-xl flex items-center justify-center gap-3"
             >
-              <svg
-                className="w-5 h-5 md:w-6 md:h-6"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.51.857-2.813 2.057-3.842 3.61-.719 1.079-1.262 2.227-1.618 3.426-.162.564-.259 1.131-.288 1.700-.014.568.035 1.135.155 1.69.074.359.146.683.22.974.108.459.217.901.364 1.33.218.623.442 1.22.697 1.794.126.281.234.556.334.827.142.408.288.81.453 1.207.126.27.265.53.415.784.228.382.475.746.74 1.095.265.35.548.68.848.99.3.31.616.6.948.867.346.277.705.53 1.077.764.372.235.754.442 1.144.623.389.18.784.331 1.185.455.401.123.806.217 1.214.285.408.067.816.105 1.223.114h.01c.203 0 .406-.005.608-.017.201-.013.402-.032.602-.06 1.245-.187 2.442-.608 3.496-1.255.872-.533 1.632-1.264 2.228-2.147.596-.883 1.015-1.905 1.255-2.95.239-1.044.305-2.116.198-3.195-.107-1.078-.374-2.145-.8-3.177-.425-1.033-1.007-1.96-1.745-2.756-.738-.795-1.63-1.462-2.664-1.981-1.033-.52-2.202-.891-3.494-1.105-1.292-.215-2.706-.23-4.23.056-.426.078-.846.183-1.26.313m9.127-4.594h1.457l-1.844 1.05-1.42 1.512h-1.494l1.806-2.039-.5-1.506-.001-1.23h1.505l1.491 1.263" />
-              </svg>
+              <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" strokeWidth={2} />
               FALAR NO WHATSAPP
               <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
