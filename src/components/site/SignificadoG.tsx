@@ -1,5 +1,6 @@
 import gimelSymbol from "@/assets/gimel-symbol.jpg";
 import helpingHands from "@/assets/helping-hands.jpg";
+import { Shield, Users, CheckCircle2, Handshake } from "lucide-react";
 
 export function SignificadoG() {
   return (
@@ -98,6 +99,59 @@ export function SignificadoG() {
           </div>
         </div>
 
+        {/* Bottom section: 4 feature cards with icons */}
+        <div className="pt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+            
+            {/* Card 1: Protection */}
+            <div className="flex items-start gap-4 pb-8 lg:pb-0 lg:border-r lg:border-primary/30 lg:pr-6">
+              <div className="flex-shrink-0">
+                <Shield className="w-8 h-8 text-primary" strokeWidth={1.5} />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground text-sm md:text-base">
+                  Proteção que<br />gera tranquilidade
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2: People */}
+            <div className="flex items-start gap-4 pb-8 lg:pb-0 lg:border-r lg:border-primary/30 lg:pr-6">
+              <div className="flex-shrink-0">
+                <Users className="w-8 h-8 text-primary" strokeWidth={1.5} />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground text-sm md:text-base">
+                  Pessoas que<br />fazem acontecer
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3: Process */}
+            <div className="flex items-start gap-4 pb-8 lg:pb-0 lg:border-r lg:border-primary/30 lg:pr-6">
+              <div className="flex-shrink-0">
+                <CheckCircle2 className="w-8 h-8 text-primary" strokeWidth={1.5} />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground text-sm md:text-base">
+                  Processos que<br />garantem excelência
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4: Partnership */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <Handshake className="w-8 h-8 text-primary" strokeWidth={1.5} />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground text-sm md:text-base">
+                  Parcerias que<br />constroem resultados
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>
