@@ -284,24 +284,6 @@ function Page() {
           </p>
         </section>
 
-        {/* PILARES */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
-          <div className="bg-card/60 rounded-2xl p-6 md:p-10 grid md:grid-cols-4 gap-6 md:gap-8">
-            {[
-              { icon: Handshake, title: "Parceria de verdade", desc: "Relacionamento baseado em confiança, transparência e diálogo." },
-              { icon: Users, title: "Gestão presente", desc: "Liderança próxima, acompanhando e apoiando a operação diariamente." },
-              { icon: Target, title: "Foco em resultado", desc: "Nosso compromisso é com a eficiência e a qualidade do serviço." },
-              { icon: Shield, title: "Tranquilidade para você e seu condomínio", desc: "Menos dor de cabeça, mais segurança e qualidade no dia a dia." },
-            ].map((p) => (
-              <div key={p.title}>
-                <p.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                <h3 className="mt-3 text-sm font-bold text-foreground">{p.title}</h3>
-                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* FORMULÁRIO DE ORÇAMENTO */}
         <section className="py-24 bg-background-deep">
           <div className="container mx-auto px-6 lg:px-12">
