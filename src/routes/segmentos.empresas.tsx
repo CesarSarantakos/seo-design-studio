@@ -190,7 +190,7 @@ function Page() {
         </section>
 
         {/* QUANDO FUNCIONA BEM, NINGUÉM PERCEBE */}
-        <section className="py-24 bg-background-deep relative overflow-hidden">
+        <section className="pt-0 pb-24 bg-background-deep relative overflow-hidden">
           <div
             aria-hidden="true"
             className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-20"
@@ -274,7 +274,7 @@ function Page() {
         </section>
 
         {/* FORMULÁRIO DE ORÇAMENTO */}
-        <section className="py-24 bg-background-deep">
+        <section className="pt-0 pb-24 bg-background-deep">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
