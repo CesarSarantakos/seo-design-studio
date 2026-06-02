@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { Link } from "@tanstack/react-router";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -237,6 +238,12 @@ export function ProposalSimulator() {
 
         <p className="text-sm text-muted-foreground mt-6">Fique tranquilo, seus dados estão seguros!</p>
         <p className="text-sm text-foreground font-semibold">LGPD – Lei Geral de Proteção de Dados Pessoais</p>
+        <div className="mt-8 pt-8 border-t border-border">
+          <p className="text-sm text-muted-foreground mb-3">Prefere uma proposta mais detalhada?</p>
+          <Link to="/solicitar-proposta" className="text-primary hover:text-primary/80 font-semibold text-sm transition-colors">
+            Acessar formulário completo →
+          </Link>
+        </div>
       </div>
     </section>
   );
