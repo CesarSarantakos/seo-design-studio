@@ -31,15 +31,6 @@ const IMPACTOS = [
   { icon: Handshake, title: "Mais resultados", desc: "com parceria de verdade." },
 ];
 
-const COMPROMISSO = [
-  "Seleção rigorosa de profissionais",
-  "Treinamento alinhado à sua cultura",
-  "Supervisão diária da operação",
-  "Cobertura rápida de faltas e afastamentos",
-  "Comunicação transparente e próxima",
-  "Relatórios de desempenho e métricas",
-];
-
 const HERO_IMG = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-01%20at%2019.10.50-hcrwwemK8xUofW2Tba1pLqQWfjq8UZ.jpeg";
 
 export const Route = createFileRoute("/segmentos/empresas")({
@@ -228,40 +219,6 @@ function Page() {
                   <p className="text-sm text-white/75">Profissionais qualificados, supervisão constante, reposição rápida.</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* NOSSO COMPROMISSO */}
-        <section className="py-24 bg-background">
-          <div className="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-14 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-                Nosso compromisso
-                <br />
-                <span className="text-primary">é com seus resultados.</span>
-              </h2>
-              <ul className="mt-10 space-y-4">
-                {COMPROMISSO.map((item) => (
-                  <li key={item} className="flex items-start gap-4">
-                    <span className="mt-0.5 w-7 h-7 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0">
-                      <CheckCircle2 className="w-4 h-4 text-primary" strokeWidth={2} />
-                    </span>
-                    <span className="text-base text-foreground/90 leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/15 to-transparent rounded-3xl blur-2xl" />
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-01%20at%2019.10.50-hcrwwemK8xUofW2Tba1pLqQWfjq8UZ.jpeg"
-                alt="Profissional GS em escritório corporativo durante atendimento"
-                width={1024}
-                height={768}
-                loading="lazy"
-                className="relative rounded-2xl object-cover w-full aspect-[4/3] shadow-2xl"
-              />
             </div>
           </div>
         </section>
