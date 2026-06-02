@@ -49,13 +49,13 @@ export function SignificadoG() {
           </div>
 
           {/* COLUNA 2: IMAGEM DAS MÃOS */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-sm h-64 md:h-72 lg:h-80 overflow-hidden rounded-xl">
+          <div className="flex justify-center lg:justify-end h-full">
+            <div className="relative w-full h-96 md:h-[450px] lg:h-[520px] overflow-hidden rounded-2xl border border-border/20">
               <img
                 src={gimelMaos}
                 alt="Mãos em gesto de colaboração e parceria"
-                width={400}
-                height={320}
+                width={520}
+                height={520}
                 loading="lazy"
                 className="w-full h-full object-cover object-[75%_center]"
               />
