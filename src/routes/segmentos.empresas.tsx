@@ -1,41 +1,57 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
-import { HotbarFeatures } from "@/components/site/HotbarFeatures";
 import {
-  Clock,
-  ShieldCheck,
-  TrendingUp,
-  Settings,
-  Handshake,
-  XCircle,
-  CalendarClock,
-  Cog,
-  BarChart3,
-  ShieldHalf,
   Users,
-  ClipboardCheck,
-  Award,
-  UserRound,
-  Brush,
-  Headphones,
-  Fingerprint,
-  Leaf,
-  ClipboardList,
+  ShieldCheck,
+  Handshake,
+  CalendarClock,
+  BarChart3,
   CheckCircle2,
+  ArrowRight,
+  Building2,
+  Clock,
+  TrendingUp,
+  Headphones,
 } from "lucide-react";
-import heroImg from "@/assets/empresa-hero.jpg";
+
+const WHATSAPP_URL =
+  "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20terceiriza%C3%A7%C3%A3o%20de%20empresas.%20Pode%20me%20ajudar%3F";
+
+const DESTAQUES = [
+  { icon: Users, label: "Profissionais alinhados à sua cultura" },
+  { icon: ShieldCheck, label: "Supervisão constante da operação" },
+  { icon: CalendarClock, label: "Continuidade operacional garantida" },
+  { icon: TrendingUp, label: "Foco no crescimento do seu negócio" },
+];
+
+const IMPACTOS = [
+  { icon: Clock, title: "Mais tempo", desc: "para gestão e crescimento." },
+  { icon: BarChart3, title: "Mais eficiência", desc: "menos retrabalho e falhas." },
+  { icon: ShieldCheck, title: "Mais segurança", desc: "operacional e continuidade." },
+  { icon: Handshake, title: "Mais resultados", desc: "com parceria de verdade." },
+];
+
+const HERO_IMG = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-01%20at%2019.09.55-PcOAEpuKKTfamQzf7SGyndRGK9bJBn.jpeg";
 
 export const Route = createFileRoute("/segmentos/empresas")({
   head: () => ({
     meta: [
-      { title: "Empresas — GS" },
-      { name: "description", content: "Soluções de terceirização para empresas: portaria, limpeza, recepção e manutenção com presença e compromisso." },
-      { property: "og:title", content: "Empresas — GS" },
-      { property: "og:description", content: "Serviços de terceirização para empresas com presença e compromisso." },
+      { title: "Empresas — Soluções de Terceirização GS" },
+      {
+        name: "description",
+        content:
+          "Terceirização de serviços para empresas: portaria, limpeza, recepção e manutenção com profissionais qualificados, supervisão constante e resultados comprovados.",
+      },
+      { property: "og:title", content: "Empresas — GS Serviços Terceirizados" },
+      {
+        property: "og:description",
+        content:
+          "Mais tempo para sua gestão. Mais organização na operação. Terceirização que gera resultados.",
+      },
       { property: "og:url", content: "/segmentos/empresas" },
+      { property: "og:image", content: HERO_IMG },
+      { name: "twitter:image", content: HERO_IMG },
     ],
     links: [{ rel: "canonical", href: "/segmentos/empresas" }],
   }),
@@ -46,323 +62,232 @@ function Page() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 bg-background">
+      <main className="flex-1">
         {/* HERO */}
-        <section className="relative pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden">
-          <div className="absolute inset-0">
-            <img
-              src={heroImg}
-              alt="Reunião corporativa premium"
-              className="w-full h-full object-cover opacity-40 md:opacity-70"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/20" />
-          </div>
-          <div className="relative container mx-auto px-6 max-w-6xl">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tight">
-                Seu tempo importa.
-                <br />
-                <span className="text-primary">Terceirize.</span>
-              </h1>
-              <p className="mt-6 text-lg md:text-xl font-semibold text-foreground max-w-2xl">
-                Mais gestão fica com a GS.
-              </p>
-              <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                Enquanto você cuida do crescimento do negócio, nós cuidamos das pessoas, da rotina operacional e da continuidade dos serviços.
-              </p>
-              <p className="mt-6 text-lg md:text-xl font-bold text-primary max-w-2xl leading-relaxed">
-                Mais organização. Mais presença. Menos preocupação.
-              </p>
-
-              <div className="mt-8">
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Link to="/solucoes">Conheça nossas soluções para empresas</Link>
-                </Button>
-              </div>
-            </div>
-
-            <div className="hidden lg:flex absolute right-6 bottom-6 items-center gap-3 bg-card/80 backdrop-blur border border-border rounded-xl px-5 py-3">
-              <Handshake className="h-6 w-6 text-primary" strokeWidth={1.5} />
-              <div className="text-sm">
-                <p className="text-foreground font-semibold">Parceria que gera <span className="text-primary">confiança.</span></p>
-                <p className="text-muted-foreground text-xs">Soluções que geram <span className="text-primary">resultados.</span></p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* HOTBAR */}
-        <section className="pt-0 pb-16 md:pb-24 bg-background">
-          <HotbarFeatures 
-            features={[
-              {
-                icon: Users,
-                title: "Profissionais alinhados à sua cultura",
-              },
-              {
-                icon: ClipboardCheck,
-                title: "Supervisão constante",
-              },
-              {
-                icon: Handshake,
-                title: "Parceria que gera resultados",
-              },
-              {
-                icon: CalendarClock,
-                title: "Continuidade operacional",
-              },
-            ]}
+        <section className="relative w-full min-h-[92vh] overflow-hidden bg-background-deep">
+          <img
+            src={HERO_IMG}
+            alt="Executivo profissional em escritório corporativo moderno com logo GS"
+            width={1920}
+            height={1280}
+            fetchPriority="high"
+            className="absolute inset-0 w-full h-full object-cover object-center md:object-right"
           />
-        </section>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-background-deep via-background-deep/85 to-background-deep/30"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-background-deep/85 via-transparent to-transparent"
+          />
 
-        {/* DIFERENCIAIS PRINCIPAIS */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
-            {/* Card 1 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <Users className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Profissionais alinhados à sua cultura
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Selecionados, treinados e preparados para representar sua empresa com profissionalismo e responsabilidade.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <ClipboardCheck className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Supervisão constante
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Acompanhamento próximo da operação para manter o padrão, a organização e a continuidade dos serviços.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <Handshake className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Parceria que gera resultados
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Mais do que fornecer mão de obra, atuamos como parceiros na construção de uma operação eficiente e confiável.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4 */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <CalendarClock className="h-6 w-6 text-primary" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                    Continuidade operacional
-                  </h3>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Cobertura rápida de faltas, férias e afastamentos para que sua rotina nunca pare.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 5 - Full width */}
-          <div className="bg-[color:var(--background-deep)] rounded-2xl p-6 md:p-8 border border-primary/30">
-            <div className="flex items-start gap-4">
-              <div className="h-12 w-12 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="h-6 w-6 text-primary" strokeWidth={1.5} />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg md:text-xl font-bold text-foreground leading-tight">
-                  Mais tempo para sua gestão
-                </h3>
-                <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                  Deixe a operação com a GS e concentre seus esforços no crescimento do seu negócio.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* DOR + SOLUÇÃO */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {/* PAIN */}
-            <div className="bg-card rounded-2xl p-6 md:p-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
-                Está difícil encontrar profissionais{" "}
-                <span className="text-primary">com vontade e comprometimento?</span>
-              </h2>
-              <ul className="mt-6 space-y-3">
-                {[
-                  "Alta rotatividade e falta de profissionais",
-                  "Dificuldade de encontrar pessoas com vontade de trabalhar",
-                  "Chegam, não se adaptam e pedem para sair",
-                  "Faltas sem aviso e sem reposição",
-                  "Retrabalho, desorganização e perda de produtividade",
-                ].map((p) => (
-                  <li key={p} className="flex gap-3 text-sm text-foreground">
-                    <XCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 pt-6 border-t border-border text-sm text-muted-foreground">
-                Enquanto você perde tempo resolvendo problemas, a{" "}
-                <span className="text-foreground font-semibold">GS cuida da sua operação com seriedade, presença e continuidade.</span>
-              </p>
-            </div>
-
-            {/* SOLUTION */}
-            <div className="bg-[color:var(--background-deep)] border border-border rounded-2xl p-6 md:p-10">
-              <div className="flex items-start gap-4">
-                <div className="h-14 w-14 rounded-full border border-primary/40 flex items-center justify-center flex-shrink-0">
-                  <Clock className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
-                    Tempo é o ativo<br />mais precioso.
-                  </h3>
-                  <p className="mt-3 text-lg md:text-xl font-bold text-primary leading-tight">
-                    Valorize seu tempo.<br />Terceirize com a GS.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-border">
-                {[
-                  { icon: CalendarClock, title: "Você foca no que faz sua empresa crescer." },
-                  { icon: Cog, title: "A GS cuida da operação para você." },
-                  { icon: BarChart3, title: "Mais produtividade, menos problemas, mais resultados." },
-                  { icon: ShieldHalf, title: "Tranquilidade para tomar decisões." },
-                ].map((b) => (
-                  <div key={b.title}>
-                    <b.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                    <p className="mt-3 text-xs text-muted-foreground leading-snug">{b.title}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* GARANTIA */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
-          <div className="bg-card/60 rounded-2xl p-6 md:p-10">
-            <div className="flex items-start md:items-center gap-4 mb-8">
-              <Clock className="h-10 w-10 text-primary flex-shrink-0" strokeWidth={1.5} />
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
-                  Tempo perdido com problemas operacionais custa caro.
-                </h2>
-                <p className="text-lg md:text-xl font-bold text-primary">
-                  A GS garante que sua operação funcione.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pt-6 border-t border-border">
-              {[
-                { icon: Users, title: "Profissionais qualificados", desc: "Selecionamos e treinamos os melhores para entregar desempenho e confiança." },
-                { icon: ClipboardCheck, title: "Processos padronizados", desc: "Rotinas e procedimentos definidos para garantir qualidade todos os dias." },
-                { icon: ShieldCheck, title: "Supervisão constante", desc: "Acompanhamento próximo para manter o padrão e corrigir rapidamente." },
-                { icon: BarChart3, title: "Resultados comprovados", desc: "Menos falhas, mais eficiência e indicadores que mostram a diferença." },
-              ].map((g) => (
-                <div key={g.title}>
-                  <g.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                  <h3 className="mt-3 text-sm font-bold text-foreground">{g.title}</h3>
-                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{g.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SOLUÇÕES */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24">
-          <h2 className="text-center text-2xl md:text-3xl font-bold text-foreground mb-10">
-            Soluções completas <span className="text-primary">para sua empresa</span>
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-6">
-            {[
-              { icon: UserRound, label: "Portaria Empresarial", to: "/solucoes/portaria-24h" },
-              { icon: Brush, label: "Limpeza Corporativa", to: "/solucoes/limpeza-profissional" },
-              { icon: Headphones, label: "Recepção e Apoio", to: "/solucoes/recepcao-e-atendimento" },
-              { icon: Fingerprint, label: "Controle de Acesso", to: "/solucoes" },
-              { icon: Leaf, label: "Zeladoria Operacional", to: "/solucoes" },
-              { icon: ClipboardList, label: "Apoio Administrativo", to: "/solucoes" },
-              { icon: Cog, label: "Manutenção", to: "/solucoes" },
-            ].map((s) => (
-              <Link
-                key={s.label}
-                to={s.to}
-                className="group flex flex-col items-center text-center gap-3 p-3 rounded-xl hover:bg-card transition-colors"
+          <div className="relative container mx-auto px-6 lg:px-12 min-h-[92vh] flex items-center pt-28 pb-16 md:pt-32 md:pb-20">
+            <div className="max-w-2xl">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-6">
+                <span className="h-px w-8 bg-primary" />
+                Segmentos · Empresas
+              </span>
+              <h1
+                className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] text-white tracking-tight"
+                style={{ textShadow: "0 4px 24px rgba(0,0,0,0.5)" }}
               >
-                <div className="h-14 w-14 rounded-full border border-primary/40 flex items-center justify-center group-hover:border-primary transition-colors">
-                  <s.icon className="h-7 w-7 text-primary" strokeWidth={1.5} />
-                </div>
-                <span className="text-sm font-semibold text-foreground leading-tight">{s.label}</span>
-              </Link>
-            ))}
+                Seu tempo
+                <br />
+                <span className="text-primary">importa.</span>
+              </h1>
+              <div className="h-[3px] w-24 bg-primary mt-10 mb-7" />
+              <p
+                className="text-xl md:text-2xl text-white/95 max-w-xl leading-snug font-light"
+                style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}
+              >
+                <span className="text-primary font-medium">Terceirize com a GS.</span> Você cuida do crescimento, nós cuidamos da operação.
+              </p>
+              <p className="text-base md:text-lg text-white/75 max-w-lg mt-6 leading-relaxed">
+                Profissionais qualificados, supervisão constante e continuidade operacional. Mais organização, menos preocupação.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Link
+                  to="/solicitar-proposta"
+                  className="group inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shadow-lg shadow-primary/20"
+                >
+                  Solicitar Orçamento
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 border border-white/20 hover:border-primary/60 text-white hover:text-primary transition-colors rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-wider backdrop-blur-sm"
+                >
+                  Falar no WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* BENEFÍCIOS */}
-        <section className="container mx-auto px-6 max-w-6xl mt-16 md:mt-24 mb-16">
-          <div className="rounded-2xl bg-[color:var(--background-deep)] border border-border p-6 md:p-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-              Benefícios para <span className="text-primary">sua empresa</span>
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-              {[
-                { title: "Mais organização operacional", desc: "Processos alinhados e rotina funcionando como deve ser." },
-                { title: "Redução de falhas e retrabalho", desc: "Mais eficiência e menos prejuízos no dia a dia." },
-                { title: "Continuidade operacional", desc: "Reposição rápida e operação sem interrupções." },
-                { title: "Profissionais alinhados à cultura da empresa", desc: "Selecionados, treinados e preparados para representar sua empresa." },
-                { title: "Supervisão constante", desc: "Acompanhamento próximo para manter o padrão e corrigir rapidamente." },
-                { title: "Parceria que gera resultados", desc: "Relacionamento de longo prazo com foco em eficiência e qualidade." },
-              ].map((b) => (
-                <div key={b.title} className="flex gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-bold text-foreground">{b.title}</h3>
-                    <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{b.desc}</p>
-                  </div>
+        {/* Destaques strip */}
+        <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16">
+          <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-4 md:divide-x md:divide-border">
+              {DESTAQUES.map(({ icon: Icon, label }) => (
+                <div key={label} className="md:px-4 text-center">
+                  <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
+                  <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{label}</h3>
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            <div className="mt-10 pt-8 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                <Award className="h-8 w-8 text-primary" strokeWidth={1.5} />
-                <p className="text-sm md:text-base text-foreground font-semibold">
-                  Pronto para terceirizar com quem entrega de verdade?
+        {/* OPERAÇÃO QUE FUNCIONA. GESTÃO QUE CRESCE. */}
+        <section className="py-24 bg-foreground/[0.03]">
+          <div className="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-14 items-center">
+            <div className="relative order-2 lg:order-1">
+              <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-2xl" />
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-29%20at%2010.55.29-6916ubgJxoHY2XRwM1M1CWxFL2lyVe.jpeg"
+                alt="Equipe GS em ação: recepcionista, colaboradora de limpeza, cliente e executivo em ambiente corporativo profissional"
+                width={1024}
+                height={1024}
+                loading="lazy"
+                className="relative rounded-2xl object-cover w-full aspect-[4/3] shadow-2xl"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
+                Operação que
+                <br />
+                <span className="text-primary">funciona.</span>
+                <br />
+                Gestão que
+                <br />
+                <span className="text-primary">cresce.</span>
+              </h2>
+              <p className="mt-6 text-base text-muted-foreground leading-relaxed max-w-lg">
+                Enquanto você concentra esforços no crescimento do negócio, nós garantimos que a operação funcione com qualidade, consistência e profissionalismo.
+              </p>
+
+              <div className="mt-10 h-px w-full bg-border" />
+
+              <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8">
+                {IMPACTOS.map(({ icon: Icon, title, desc }) => (
+                  <div key={title} className="group">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-1.5">
+                      {title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* QUANDO FUNCIONA BEM, NINGUÉM PERCEBE */}
+        <section className="py-24 bg-background-deep relative overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-20"
+            style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
+          />
+          <div className="relative container mx-auto px-6 lg:px-12">
+            <div className="mb-16">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight max-w-4xl">
+                Quando a operação
+                <br />
+                funciona bem,
+                <br />
+                <span className="text-primary">ninguém percebe.</span>
+              </h2>
+              <div className="h-1 w-20 bg-primary mt-8 rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+              {/* Main content */}
+              <div className="lg:col-span-1">
+                <p className="text-lg text-white/85 leading-relaxed font-light">
+                  E esse é exatamente o ponto. O cuidado profissional não chama atenção — ele sustenta o dia a dia silenciosamente.
+                </p>
+                <p className="text-base text-white/70 leading-relaxed mt-6">
+                  Para que você possa focar no que realmente importa: fazer seu negócio crescer.
                 </p>
               </div>
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link to="/solicitar-proposta">Solicitar proposta</Link>
-              </Button>
+
+              {/* Cards Grid */}
+              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+                  <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
+                    <Clock className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    Você foca no que é importante.
+                  </h3>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Deixe a operação com a GS e concentre seus esforços no crescimento do seu negócio.
+                  </p>
+                </div>
+
+                <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+                  <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
+                    <CheckCircle2 className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    Nós garantimos continuidade.
+                  </h3>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Profissionais qualificados, supervisão constante e reposição rápida em qualquer situação.
+                  </p>
+                </div>
+
+                <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+                  <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
+                    <Users className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    Equipe comprometida.
+                  </h3>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Seleção rigorosa, treinamento contínuo e alinhamento com sua cultura organizacional.
+                  </p>
+                </div>
+
+                <div className="group bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 hover:border-primary/60 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+                  <div className="mb-6 inline-block p-4 bg-primary/15 rounded-xl group-hover:bg-primary/25 transition-colors">
+                    <Headphones className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    Suporte próximo.
+                  </h3>
+                  <p className="text-base text-white/70 leading-relaxed">
+                    Comunicação transparente, relatórios detalhados e gestão proativa de demandas.
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-16 bg-background border-t border-border">
+          <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Pronto para terceirizar com quem<br />
+                <span className="text-primary">entrega de verdade?</span>
+              </h2>
+            </div>
+            <Link
+              to="/solicitar-proposta"
+              className="group inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shadow-lg shadow-primary/20 whitespace-nowrap"
+            >
+              Solicitar Orçamento
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </section>
       </main>

@@ -199,7 +199,7 @@ export function JobApplicationForm() {
         </div>
       </div>
       <div>
-        <Label>Anexar Currículo * (m��x. 5MB)</Label>
+        <Label>Anexar Currículo * (max. 5MB)</Label>
         <label className="mt-1 flex items-center gap-2 border border-dashed border-border rounded-md px-4 py-3 cursor-pointer hover:bg-muted/30 transition-colors">
           <Paperclip className="w-4 h-4 text-muted-foreground" />
           <span className="text-sm text-muted-foreground">

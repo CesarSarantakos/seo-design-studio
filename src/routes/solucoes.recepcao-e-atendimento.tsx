@@ -20,11 +20,11 @@ import {
   ClipboardList,
   Eye,
 } from "lucide-react";
-import heroImg from "@/assets/recepcao-hero.jpg";
-import detailImg from "@/assets/recepcao-detail.jpg";
 
 const WHATSAPP_URL =
   "https://wa.me/5511930494888?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20servi%C3%A7os%20de%20recep%C3%A7%C3%A3o%20e%20atendimento.%20Pode%20me%20ajudar%3F";
+
+const HERO_IMG = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-01%20at%2019.08.31-7DDl4jAJRuEZxRrKWDoJAzjjSbq7u7.jpeg";
 
 const DESTAQUES = [
   { icon: Users, label: "Acolhimento genuíno e cordial" },
@@ -34,27 +34,11 @@ const DESTAQUES = [
   { icon: Phone, label: "Atendimento telefônico preparado" },
 ];
 
-const PILARES = [
-  {
-    icon: Smile,
-    title: "Receber bem",
-    desc: "Cada pessoa que chega é recebida com atenção, respeito e cordialidade.",
-  },
-  {
-    icon: Building2,
-    title: "Organizar fluxos",
-    desc: "Controle de acesso, visitantes, prestadores e correspondências.",
-  },
-  {
-    icon: Headphones,
-    title: "Atender com eficiência",
-    desc: "Atendimento telefônico e informações com clareza e agilidade.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Representar sua empresa",
-    desc: "Profissionais alinhados à cultura e aos valores do seu negócio.",
-  },
+const IMPACTOS = [
+  { icon: Smile, title: "Primeira impressão", desc: "que reflete a qualidade e credibilidade da empresa." },
+  { icon: Building2, title: "Ambiente organizado", desc: "com fluxos bem definidos e controle de acessos." },
+  { icon: Headphones, title: "Comunicação eficiente", desc: "informações claras e atendimento preparado." },
+  { icon: ShieldCheck, title: "Segurança e profissionalismo", desc: "representando os valores e cultura da empresa." },
 ];
 
 const AMBIENTES = [
@@ -67,11 +51,11 @@ const AMBIENTES = [
 ];
 
 const COMPROMISSO = [
-  { icon: Users, label: "Profissionais selecionados e treinados" },
-  { icon: ShieldCheck, label: "Postura, discrição e responsabilidade" },
-  { icon: CalendarCheck, label: "Rotinas e procedimentos bem definidos" },
-  { icon: ClipboardList, label: "Suporte e supervisão contínuos" },
-  { icon: Eye, label: "Foco na excelência do atendimento" },
+  "Profissionais selecionados e treinados",
+  "Postura, discrição e responsabilidade",
+  "Rotinas e procedimentos bem definidos",
+  "Suporte e supervisão contínuos",
+  "Foco na excelência do atendimento",
 ];
 
 export const Route = createFileRoute("/solucoes/recepcao-e-atendimento")({
@@ -90,8 +74,8 @@ export const Route = createFileRoute("/solucoes/recepcao-e-atendimento")({
           "Acolhimento e atendimento para todos. A primeira impressão importa — e a GS está pronta para representar sua empresa.",
       },
       { property: "og:url", content: "/solucoes/recepcao-e-atendimento" },
-      { property: "og:image", content: heroImg },
-      { name: "twitter:image", content: heroImg },
+      { property: "og:image", content: HERO_IMG },
+      { name: "twitter:image", content: HERO_IMG },
     ],
     links: [{ rel: "canonical", href: "/solucoes/recepcao-e-atendimento" }],
   }),
@@ -106,7 +90,7 @@ function Page() {
         {/* HERO */}
         <section className="relative w-full min-h-[92vh] overflow-hidden bg-background-deep">
           <img
-            src={heroImg}
+            src={HERO_IMG}
             alt="Recepcionista GS uniformizada acolhendo visitantes em lobby corporativo premium"
             width={1920}
             height={1280}
@@ -171,9 +155,9 @@ function Page() {
         {/* Destaques strip */}
         <section className="relative z-10 container mx-auto px-6 lg:px-12 -mt-8 md:-mt-16">
           <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-10 shadow-xl shadow-black/10">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-0 gap-y-6 md:gap-y-8 md:divide-x md:divide-border">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-4 md:divide-x md:divide-border">
               {DESTAQUES.map(({ icon: Icon, label }) => (
-                <div key={label} className="md:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
+                <div key={label} className="md:px-4 text-center">
                   <Icon className="mx-auto h-8 w-8 text-primary" strokeWidth={1.5} />
                   <h3 className="mt-3 text-sm font-semibold text-foreground leading-tight">{label}</h3>
                 </div>
@@ -182,235 +166,127 @@ function Page() {
           </div>
         </section>
 
-        {/* ATENDIMENTO TAMBÉM É PRESENÇA */}
+        {/* PRIMEIRO CONTATO. MELHOR IMPRESSÃO. */}
         <section className="py-24 bg-foreground/[0.03]">
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="max-w-3xl mb-14">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-                Atendimento{" "}
-                <span className="text-primary">também é presença.</span>
-              </h2>
-              <p className="mt-6 text-base text-muted-foreground leading-relaxed">
-                Hoje, empresas precisam muito mais do que alguém atrás de um balcão.
-              </p>
-              <p className="mt-2 text-base text-muted-foreground leading-relaxed">
-                Precisam de comunicação, postura, organização e direcionamento para que tudo funcione melhor.
-              </p>
+          <div className="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-14 items-center">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-2xl" />
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-29%20at%2013.01.04-DC4ECBAyaETwN2BjrJpLWJlBqfU0Gq.jpeg"
+                alt="Recepcionista profissional sorridente entregando cartão para cliente em balcão de recepção moderno"
+                width={1024}
+                height={1024}
+                loading="lazy"
+                className="relative rounded-2xl object-cover w-full aspect-[4/3] shadow-2xl"
+              />
             </div>
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
+                Primeiro contato.
+                <br />
+                <span className="text-primary">Melhor impressão.</span>
+              </h2>
+              <p className="mt-6 text-base text-muted-foreground leading-relaxed max-w-lg">
+                A recepção é o coração do seu negócio. Ela transmite confiança, profissionalismo e cuidado a cada pessoa que chega.
+              </p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {PILARES.map(({ icon: Icon, title, desc }) => (
-                <article
-                  key={title}
-                  className="bg-card border border-border rounded-2xl p-8 hover:border-primary/50 transition-colors group"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                    <Icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+              <div className="mt-10 h-px w-full bg-border" />
+
+              <div className="mt-10 grid grid-cols-2 md:grid-cols-2 gap-x-6 gap-y-8">
+                {IMPACTOS.map(({ icon: Icon, title, desc }) => (
+                  <div key={title} className="group">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-1.5">
+                      {title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
                   </div>
-                  <h3 className="text-sm font-bold uppercase tracking-wide text-foreground mb-2">
-                    {title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                </article>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* QUEM CHEGA, PERCEBE */}
+        {/* QUANDO O ATENDIMENTO É IMPECÁVEL */}
         <section className="py-24 bg-background-deep relative overflow-hidden">
           <div
             aria-hidden="true"
             className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-20"
             style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
           />
-          <div className="relative container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-10 items-stretch">
-            <div className="relative rounded-2xl overflow-hidden min-h-[380px] shadow-2xl">
-              <img
-                src={detailImg}
-                alt="Lobby corporativo organizado com recepção profissional GS"
-                width={1024}
-                height={1024}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
+          <div className="relative container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-10">
             <div className="bg-background/40 border border-border rounded-2xl p-10 flex flex-col">
               <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center mb-6">
                 <Eye className="w-7 h-7 text-primary" strokeWidth={1.5} />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
-                Quem chega,
+                Quando o atendimento
                 <br />
-                <span className="text-primary">percebe.</span>
+                é impecável,
+                <br />
+                tudo flui.
               </h2>
-              <p className="mt-6 text-white/85 leading-relaxed">
-                Ambientes organizados e profissionais preparados transmitem confiança, cuidado e credibilidade.
+              <p className="mt-6 text-primary font-semibold text-lg leading-relaxed">
+                E esse é o diferencial.
               </p>
-              <p className="mt-4 text-primary font-semibold">
-                E isso faz toda a diferença.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Values and Commitment Section */}
-        <section className="py-24 bg-background">
-          <style>{`
-            @keyframes slideInUp {
-              from {
-                opacity: 0;
-                transform: translateY(40px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-            
-            @keyframes slideInLeft {
-              from {
-                opacity: 0;
-                transform: translateX(-40px);
-              }
-              to {
-                opacity: 1;
-                transform: translateX(0);
-              }
-            }
-            
-            .section-title {
-              animation: slideInUp 0.7s ease-out;
-            }
-            
-            .card-left {
-              animation: slideInLeft 0.6s ease-out both;
-            }
-            
-            .card-right {
-              animation: slideInUp 0.6s ease-out both;
-            }
-            
-            .card-left:nth-child(1) { animation-delay: 0.1s; }
-            .card-left:nth-child(2) { animation-delay: 0.2s; }
-            .card-left:nth-child(3) { animation-delay: 0.3s; }
-            .card-left:nth-child(4) { animation-delay: 0.4s; }
-            .card-left:nth-child(5) { animation-delay: 0.5s; }
-            .card-left:nth-child(6) { animation-delay: 0.6s; }
-            
-            .card-right:nth-child(1) { animation-delay: 0.15s; }
-            .card-right:nth-child(2) { animation-delay: 0.25s; }
-            .card-right:nth-child(3) { animation-delay: 0.35s; }
-            .card-right:nth-child(4) { animation-delay: 0.45s; }
-            .card-right:nth-child(5) { animation-delay: 0.55s; }
-          `}</style>
-          
-          <div className="container mx-auto px-6 lg:px-12">
-            {/* Header */}
-            <div className="max-w-2xl mx-auto text-center mb-16 section-title">
-              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">
-                Nossa abordagem
-              </span>
-              <h2 className="mt-4 text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                Onde começam
-                <br className="hidden sm:block" />
-                <span className="text-primary">ambientes acolhedores.</span>
-              </h2>
-              <p className="mt-6 text-neutral-300 text-lg leading-relaxed max-w-xl mx-auto">
-                A recepção é o coração do seu ambiente. Transformamos esse espaço em uma experiência de qualidade e cuidado.
+              <p className="mt-6 text-white/75 leading-relaxed">
+                Uma recepção bem organizada e atencioso cria um ambiente acolhedor onde visitantes, clientes e colaboradores se sentem bem-vindos e valorizados.
               </p>
             </div>
 
-            {/* Two Column Grid */}
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-              {/* Left Column - Ambientes */}
-              <div className="space-y-4">
-                <div className="mb-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">Áreas de atuação</p>
-                  <h3 className="text-2xl font-bold text-white">Atuamos em diversos segmentos</h3>
-                </div>
-                
-                <div className="space-y-3">
-                  {AMBIENTES.map(({ icon: Icon, label }, index) => (
-                    <div
-                      key={label}
-                      className="card-left group relative flex items-center gap-4 p-4 rounded-lg border border-neutral-700 hover:border-primary/50 bg-neutral-950/40 hover:bg-neutral-900/60 transition-all duration-300 cursor-pointer"
-                    >
-                      <div className="flex-shrink-0">
-                        <div className="relative w-12 h-12 rounded-lg border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center group-hover:from-primary/20 transition-colors duration-300">
-                          <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
-                        </div>
-                      </div>
-                      <p className="text-sm font-medium text-neutral-100 group-hover:text-white transition-colors">{label}</p>
-                      <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <ArrowRight className="w-4 h-4 text-primary/50" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Column - Compromisso */}
-              <div className="space-y-4">
-                <div className="mb-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">Nosso compromisso</p>
-                  <h3 className="text-2xl font-bold text-white">Qualidade em cada detalhe</h3>
-                </div>
-
-                <div className="space-y-3">
-                  {COMPROMISSO.map(({ icon: Icon, label }, index) => (
-                    <div
-                      key={label}
-                      className="card-right group relative flex items-start gap-4 p-4 rounded-lg border border-neutral-700 hover:border-primary/50 bg-neutral-950/40 hover:bg-neutral-900/60 transition-all duration-300"
-                    >
-                      <div className="flex-shrink-0 mt-0.5">
-                        <div className="relative w-12 h-12 rounded-lg border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center group-hover:from-primary/20 transition-colors duration-300">
-                          <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                        </div>
-                      </div>
-                      <p className="text-sm font-medium text-neutral-100 pt-1 group-hover:text-white transition-colors leading-snug">{label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Highlight Box */}
-                <div className="mt-6 p-6 rounded-lg border border-primary/30 bg-gradient-to-br from-primary/5 to-transparent hover:from-primary/10 transition-colors duration-300 group">
-                  <div className="flex items-start gap-3">
-                    <Heart className="w-5 h-5 text-primary flex-shrink-0 mt-1" strokeWidth={1.5} />
-                    <div>
-                      <p className="font-semibold text-white mb-1">Acolher bem é mais do que atender.</p>
-                      <p className="text-sm text-neutral-300">É cuidar da experiência de cada pessoa que entra no seu ambiente.</p>
-                    </div>
+            <div className="bg-background/40 border border-border rounded-2xl p-10">
+              <h3 className="text-2xl md:text-3xl font-bold text-primary tracking-tight leading-tight">
+                Atuamos em diferentes
+                <br />
+                <span className="text-white">tipos de ambiente.</span>
+              </h3>
+              <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-6">
+                {AMBIENTES.map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex flex-col items-center text-center gap-3 p-4 rounded-xl border border-transparent hover:border-primary/30 hover:bg-foreground/[0.04] transition-colors">
+                    <Icon className="w-10 h-10 text-primary" strokeWidth={1.3} />
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-white/85 leading-tight">
+                      {label}
+                    </span>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA BAND */}
-        <section className="py-16 bg-primary">
-          <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center shrink-0">
-                <Headphones className="w-7 h-7 text-primary-foreground" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-primary-foreground uppercase tracking-tight">
-                  Precisa de um atendimento que representa sua empresa?
-                </h3>
-                <p className="text-primary-foreground/85 mt-1 text-sm md:text-base">
-                  Fale com a GS e solicite uma proposta personalizada para a sua necessidade.
-                </p>
-              </div>
+        {/* NOSSO COMPROMISSO */}
+        <section className="py-24 bg-background">
+          <div className="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-14 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
+                Nosso compromisso
+                <br />
+                <span className="text-primary">é com a excelência.</span>
+              </h2>
+              <ul className="mt-10 space-y-4">
+                {COMPROMISSO.map((item) => (
+                  <li key={item} className="flex items-start gap-4">
+                    <span className="mt-0.5 w-7 h-7 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0">
+                      <CheckCircle2 className="w-4 h-4 text-primary" strokeWidth={2} />
+                    </span>
+                    <span className="text-base text-foreground/90 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <Link
-              to="/solicitar-proposta"
-              className="group inline-flex items-center gap-3 bg-background-deep text-white hover:bg-background-deep/90 transition-colors rounded-full px-8 py-4 text-sm font-bold uppercase tracking-wider shrink-0"
-            >
-              Solicitar Orçamento
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/15 to-transparent rounded-3xl blur-2xl" />
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/smiling-receptionist-at-the-office-desk-TwGvq6r1bJ1Xyb6mgnRK2jMMpQrhxu.webp"
+                alt="Recepcionista profissional e sorridente no balcão de trabalho com computador moderno"
+                width={1024}
+                height={768}
+                loading="lazy"
+                className="relative rounded-2xl object-cover w-full aspect-[4/3] shadow-2xl"
+              />
+            </div>
           </div>
         </section>
       </main>
