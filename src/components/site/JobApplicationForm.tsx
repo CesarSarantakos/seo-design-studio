@@ -45,10 +45,6 @@ export function JobApplicationForm() {
       setDateError("O mês deve estar entre 1 e 12");
       return false;
     }
-    if (ano < 1900 || ano > new Date().getFullYear()) {
-      setDateError(`O ano deve estar entre 1900 e ${new Date().getFullYear()}`);
-      return false;
-    }
 
     setDateError("");
     return true;
