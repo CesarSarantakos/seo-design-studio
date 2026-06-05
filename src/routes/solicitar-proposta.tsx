@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { toast } from "sonner";
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 import {
   Users,
   ShieldCheck,
@@ -20,6 +22,8 @@ import {
   Coffee,
   Leaf,
   ShieldAlert,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export const Route = createFileRoute("/solicitar-proposta")({
@@ -68,16 +72,11 @@ const CHALLENGES = [
   { value: "nao-terceiriza", label: "Ainda não terceirizamos" },
 ] as const;
 
-function StepLabel({ number, label }: { number: number; label: string }) {
-  return (
-    <div className="flex items-center gap-3 mb-6">
-      <div className="w-7 h-7 rounded-full bg-foreground flex items-center justify-center flex-shrink-0">
-        <span className="text-background text-xs font-bold">{number}</span>
-      </div>
-      <span className="text-sm font-semibold text-foreground/60 uppercase tracking-widest">{label}</span>
-    </div>
-  );
-}
+const STEPS = [
+  { id: 1, label: "Profissionais" },
+  { id: 2, label: "Serviço" },
+  { id: 3, label: "Seus Dados" },
+];
 
 function FieldInput({
   label,
@@ -110,6 +109,7 @@ function FieldInput({
 }
 
 function Page() {
+  const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     servicos: [] as string[],
@@ -131,30 +131,46 @@ function Page() {
       servicos: d.servicos.includes(s) ? d.servicos.filter((x) => x !== s) : [...d.servicos, s],
     }));
 
+  const progress = (step / STEPS.length) * 100;
+
+  const validateStep = (currentStep: number): boolean => {
+    if (currentStep === 1) {
+      if (data.servicos.length === 0) {
+        toast.error("Selecione pelo menos um profissional.");
+        return false;
+      }
+    }
+    if (currentStep === 3) {
+      if (!data.seuNome.trim()) {
+        toast.error("Por favor, informe seu nome.");
+        return false;
+      }
+      if (!data.email.trim()) {
+        toast.error("Por favor, informe seu e-mail.");
+        return false;
+      }
+      if (!data.telefone.trim()) {
+        toast.error("Por favor, informe seu telefone.");
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const nextStep = () => {
+    if (validateStep(step)) {
+      setStep((s) => Math.min(s + 1, STEPS.length));
+    }
+  };
+
+  const prevStep = () => {
+    setStep((s) => Math.max(s - 1, 1));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("[v0] Form submit started");
     
-    if (data.servicos.length === 0) { 
-      console.log("[v0] Validation failed: no services selected");
-      toast.error("Selecione pelo menos um profissional."); 
-      return; 
-    }
-    if (!data.seuNome.trim()) { 
-      console.log("[v0] Validation failed: missing name");
-      toast.error("Por favor, informe seu nome."); 
-      return; 
-    }
-    if (!data.email.trim()) { 
-      console.log("[v0] Validation failed: missing email");
-      toast.error("Por favor, informe seu e-mail."); 
-      return; 
-    }
-    if (!data.telefone.trim()) { 
-      console.log("[v0] Validation failed: missing phone");
-      toast.error("Por favor, informe seu telefone."); 
-      return; 
-    }
+    if (!validateStep(3)) return;
 
     setLoading(true);
     try {
@@ -172,8 +188,6 @@ function Page() {
         estado: data.estado,
       };
       
-      console.log("[v0] Submitting payload via fetch:", payload);
-      
       const response = await fetch("/api/send-proposal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -181,7 +195,6 @@ function Page() {
       });
       
       const result = await response.json();
-      console.log("[v0] API response:", result);
       
       if (result.success) {
         toast.success("Proposta enviada! Retorno em até 1 hora útil.");
@@ -190,7 +203,6 @@ function Page() {
         toast.error(result.message || "Erro ao enviar proposta.");
       }
     } catch (err) {
-      console.error("[v0] Submit error:", err);
       const errorMsg = err instanceof Error ? err.message : "Erro ao enviar proposta.";
       toast.error(errorMsg);
     } finally {
@@ -205,7 +217,7 @@ function Page() {
         <div className="container mx-auto px-4 max-w-4xl">
 
           {/* Page heading */}
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
               Solicite sua{" "}
               <span className="text-primary">proposta personalizada</span>
@@ -219,175 +231,220 @@ function Page() {
           <form onSubmit={handleSubmit}>
             <div className="relative border border-primary/25 rounded-2xl bg-card shadow-2xl shadow-black/20 overflow-hidden">
 
-              {/* Left vertical step line */}
-              <div className="hidden md:block absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
-
-              <div className="px-6 md:px-12 py-10 space-y-0">
-
-                {/* ── ETAPA 1 ── */}
-                <section className="pb-10 border-b border-border">
-                  <div className="flex items-start gap-4 mb-2">
-                    <div className="hidden md:flex flex-col items-center gap-1 -ml-6 mr-2 mt-1">
-                      <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
-                        <span className="text-primary-foreground text-[10px] font-bold">1</span>
+              {/* Progress bar header */}
+              <div className="px-6 md:px-12 pt-8 pb-6 border-b border-border">
+                <div className="flex items-center justify-between mb-4">
+                  {STEPS.map((s, idx) => (
+                    <div key={s.id} className="flex items-center">
+                      <div className="flex flex-col items-center">
+                        <div
+                          className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${
+                            step >= s.id
+                              ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
+                              : "bg-muted text-muted-foreground"
+                          }`}
+                        >
+                          {s.id}
+                        </div>
+                        <span
+                          className={`text-xs mt-2 font-medium transition-colors ${
+                            step >= s.id ? "text-foreground" : "text-muted-foreground"
+                          }`}
+                        >
+                          {s.label}
+                        </span>
                       </div>
+                      {idx < STEPS.length - 1 && (
+                        <div
+                          className={`hidden md:block w-20 lg:w-32 h-1 mx-4 rounded-full transition-colors duration-300 ${
+                            step > s.id ? "bg-primary" : "bg-muted"
+                          }`}
+                        />
+                      )}
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Etapa 1</p>
+                  ))}
+                </div>
+                <Progress value={progress} className="h-2" />
+              </div>
+
+              <div className="px-6 md:px-12 py-10">
+
+                {/* Step 1: Profissionais */}
+                {step === 1 && (
+                  <section className="animate-in fade-in slide-in-from-right-4 duration-300">
+                    <div className="mb-6">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-2">Etapa 1 de 3</p>
                       <h2 className="text-xl md:text-2xl font-bold text-foreground">
                         Quais <span className="text-primary">profissionais</span> sua operação precisa?
                       </h2>
                       <p className="text-sm text-muted-foreground mt-1">Selecione uma ou mais opções.</p>
                     </div>
-                  </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 mt-6">
-                    {PROFESSIONALS.map(({ id, label, icon: Icon }) => {
-                      const active = data.servicos.includes(id);
-                      return (
-                        <label
-                          key={id}
-                          className={`group flex items-center gap-2.5 px-3 py-2.5 rounded-lg border cursor-pointer transition-all duration-150 select-none ${
-                            active
-                              ? "border-primary bg-primary/10 shadow-sm"
-                              : "border-border bg-card hover:border-primary/40 hover:bg-muted/30"
-                          }`}
-                        >
-                          <input
-                            type="checkbox"
-                            checked={active}
-                            onChange={() => toggleService(id)}
-                            className="w-3.5 h-3.5 accent-[oklch(0.66_0.135_70)] flex-shrink-0"
-                          />
-                          <Icon
-                            className={`w-4 h-4 flex-shrink-0 transition-colors ${active ? "text-primary" : "text-muted-foreground group-hover:text-primary/60"}`}
-                            strokeWidth={1.75}
-                          />
-                          <span className={`text-xs font-medium leading-tight transition-colors ${active ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}>
-                            {label}
-                          </span>
-                        </label>
-                      );
-                    })}
-                  </div>
-
-                  {data.servicos.length > 0 && (
-                    <p className="mt-4 text-xs text-muted-foreground">
-                      <span className="text-primary font-semibold">{data.servicos.length}</span> selecionado(s): {data.servicos.join(", ")}
-                    </p>
-                  )}
-                </section>
-
-                {/* ── ETAPA 2 ── */}
-                <section className="py-10 border-b border-border">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="hidden md:flex flex-col items-center gap-1 -ml-6 mr-2 mt-1">
-                      <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
-                        <span className="text-primary-foreground text-[10px] font-bold">2</span>
-                      </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+                      {PROFESSIONALS.map(({ id, label, icon: Icon }) => {
+                        const active = data.servicos.includes(id);
+                        return (
+                          <label
+                            key={id}
+                            className={`group flex items-center gap-2.5 px-3 py-2.5 rounded-lg border cursor-pointer transition-all duration-150 select-none ${
+                              active
+                                ? "border-primary bg-primary/10 shadow-sm"
+                                : "border-border bg-card hover:border-primary/40 hover:bg-muted/30"
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={active}
+                              onChange={() => toggleService(id)}
+                              className="w-3.5 h-3.5 accent-[oklch(0.66_0.135_70)] flex-shrink-0"
+                            />
+                            <Icon
+                              className={`w-4 h-4 flex-shrink-0 transition-colors ${active ? "text-primary" : "text-muted-foreground group-hover:text-primary/60"}`}
+                              strokeWidth={1.75}
+                            />
+                            <span className={`text-xs font-medium leading-tight transition-colors ${active ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}>
+                              {label}
+                            </span>
+                          </label>
+                        );
+                      })}
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Etapa 2</p>
+
+                    {data.servicos.length > 0 && (
+                      <p className="mt-4 text-xs text-muted-foreground">
+                        <span className="text-primary font-semibold">{data.servicos.length}</span> selecionado(s): {data.servicos.join(", ")}
+                      </p>
+                    )}
+                  </section>
+                )}
+
+                {/* Step 2: Informações do serviço */}
+                {step === 2 && (
+                  <section className="animate-in fade-in slide-in-from-right-4 duration-300">
+                    <div className="mb-6">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-2">Etapa 2 de 3</p>
                       <h2 className="text-xl md:text-2xl font-bold text-foreground">Informações do serviço</h2>
+                      <p className="text-sm text-muted-foreground mt-1">Conte mais sobre sua operação.</p>
                     </div>
-                  </div>
 
-                  <div className="space-y-4">
-                    <FieldInput
-                      label="Endereço da prestação do serviço"
-                      value={data.endereco}
-                      onChange={(v) => setData({ ...data, endereco: v })}
-                      placeholder="Bairro, cidade ou endereço completo"
-                    />
-
-                    <fieldset className="border border-border rounded-lg px-4 pt-2 pb-3 bg-card hover:border-primary/40 focus-within:border-primary transition-colors duration-200">
-                      <legend className="text-xs text-muted-foreground px-1 select-none">Descreva os detalhes da prestação de serviço</legend>
-                      <textarea
-                        value={data.necessidade}
-                        onChange={(e) => setData({ ...data, necessidade: e.target.value })}
-                        rows={4}
-                        maxLength={600}
-                        placeholder={"Ex.: Temos um condomínio com 2 torres e precisamos de portaria 24h e limpeza diurna.\nEscala 12x36. Início desejado para o próximo mês."}
-                        className="w-full bg-transparent text-foreground text-sm placeholder:text-muted-foreground/50 outline-none resize-none leading-relaxed"
+                    <div className="space-y-4">
+                      <FieldInput
+                        label="Endereço da prestação do serviço"
+                        value={data.endereco}
+                        onChange={(v) => setData({ ...data, endereco: v })}
+                        placeholder="Bairro, cidade ou endereço completo"
                       />
-                      <p className="text-right text-[10px] text-muted-foreground/60 mt-1">{data.necessidade.length}/600</p>
-                    </fieldset>
 
-                    <fieldset className="border border-border rounded-lg px-4 pt-2 pb-3 bg-card hover:border-primary/40 focus-within:border-primary transition-colors duration-200">
-                      <legend className="text-xs text-muted-foreground px-1 select-none">
-                        Qual o principal <span className="text-primary font-semibold">desafio</span> da sua operação hoje?
-                      </legend>
-                      <select
-                        value={data.desafio}
-                        onChange={(e) => setData({ ...data, desafio: e.target.value })}
-                        className="w-full bg-transparent text-foreground text-sm outline-none cursor-pointer py-0.5"
-                      >
-                        {CHALLENGES.map(({ value, label }) => (
-                          <option key={value} value={value} className="bg-card text-foreground">{label}</option>
-                        ))}
-                      </select>
-                    </fieldset>
-                  </div>
-                </section>
+                      <fieldset className="border border-border rounded-lg px-4 pt-2 pb-3 bg-card hover:border-primary/40 focus-within:border-primary transition-colors duration-200">
+                        <legend className="text-xs text-muted-foreground px-1 select-none">Descreva os detalhes da prestação de serviço</legend>
+                        <textarea
+                          value={data.necessidade}
+                          onChange={(e) => setData({ ...data, necessidade: e.target.value })}
+                          rows={4}
+                          maxLength={600}
+                          placeholder={"Ex.: Temos um condomínio com 2 torres e precisamos de portaria 24h e limpeza diurna.\nEscala 12x36. Início desejado para o próximo mês."}
+                          className="w-full bg-transparent text-foreground text-sm placeholder:text-muted-foreground/50 outline-none resize-none leading-relaxed"
+                        />
+                        <p className="text-right text-[10px] text-muted-foreground/60 mt-1">{data.necessidade.length}/600</p>
+                      </fieldset>
 
-                {/* ── ETAPA 3 ── */}
-                <section className="pt-10 pb-2">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="hidden md:flex flex-col items-center gap-1 -ml-6 mr-2 mt-1">
-                      <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
-                        <span className="text-primary-foreground text-[10px] font-bold">3</span>
+                      <fieldset className="border border-border rounded-lg px-4 pt-2 pb-3 bg-card hover:border-primary/40 focus-within:border-primary transition-colors duration-200">
+                        <legend className="text-xs text-muted-foreground px-1 select-none">
+                          Qual o principal <span className="text-primary font-semibold">desafio</span> da sua operação hoje?
+                        </legend>
+                        <select
+                          value={data.desafio}
+                          onChange={(e) => setData({ ...data, desafio: e.target.value })}
+                          className="w-full bg-transparent text-foreground text-sm outline-none cursor-pointer py-0.5"
+                        >
+                          {CHALLENGES.map(({ value, label }) => (
+                            <option key={value} value={value} className="bg-card text-foreground">{label}</option>
+                          ))}
+                        </select>
+                      </fieldset>
+                    </div>
+                  </section>
+                )}
+
+                {/* Step 3: Seus dados */}
+                {step === 3 && (
+                  <section className="animate-in fade-in slide-in-from-right-4 duration-300">
+                    <div className="mb-6">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-2">Etapa 3 de 3</p>
+                      <h2 className="text-xl md:text-2xl font-bold text-foreground">Seus dados</h2>
+                      <p className="text-sm text-muted-foreground mt-1">Finalize para receber seu orçamento.</p>
+                    </div>
+
+                    <div className="space-y-4">
+                      <FieldInput
+                        label="Nome da sua empresa ou condomínio"
+                        value={data.nomeEmpresa}
+                        onChange={(v) => setData({ ...data, nomeEmpresa: v })}
+                        placeholder="Razão social ou nome do condomínio"
+                      />
+                      <FieldInput
+                        label="Seu nome *"
+                        value={data.seuNome}
+                        onChange={(v) => setData({ ...data, seuNome: v })}
+                        placeholder="Digite seu nome..."
+                      />
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <FieldInput
+                          label="E-mail *"
+                          type="email"
+                          value={data.email}
+                          onChange={(v) => setData({ ...data, email: v })}
+                          placeholder="seu@email.com"
+                        />
+                        <FieldInput
+                          label="WhatsApp *"
+                          type="tel"
+                          value={data.telefone}
+                          onChange={(v) => setData({ ...data, telefone: v })}
+                          placeholder="(11) 9 0000-0000"
+                        />
                       </div>
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Etapa 3</p>
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground">Seus dados</h2>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <FieldInput
-                      label="Nome da sua empresa ou condomínio"
-                      value={data.nomeEmpresa}
-                      onChange={(v) => setData({ ...data, nomeEmpresa: v })}
-                      placeholder="Razão social ou nome do condomínio"
-                    />
-                    <FieldInput
-                      label="Seu nome"
-                      value={data.seuNome}
-                      onChange={(v) => setData({ ...data, seuNome: v })}
-                      placeholder="Digite seu nome..."
-                    />
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <FieldInput
-                        label="E-mail"
-                        type="email"
-                        value={data.email}
-                        onChange={(v) => setData({ ...data, email: v })}
-                        placeholder="seu@email.com"
-                      />
-                      <FieldInput
-                        label="WhatsApp"
-                        type="tel"
-                        value={data.telefone}
-                        onChange={(v) => setData({ ...data, telefone: v })}
-                        placeholder="(11) 9 0000-0000"
-                      />
-                    </div>
-                  </div>
-                </section>
+                  </section>
+                )}
 
               </div>
 
-              {/* Submit button — inside the card, full width at the bottom */}
+              {/* Navigation buttons */}
               <div className="px-6 md:px-12 pb-10">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full h-14 rounded-xl bg-primary hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 font-bold text-sm tracking-widest uppercase text-primary-foreground flex items-center justify-center gap-3 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.01] active:scale-[0.99]"
-                >
-                  <Send className="w-4 h-4" strokeWidth={2} />
-                  {loading ? "Enviando..." : "Receber orçamento personalizado"}
-                </button>
+                <div className="flex gap-4">
+                  {step > 1 && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={prevStep}
+                      className="flex-1 h-14 rounded-xl text-sm font-semibold"
+                    >
+                      <ChevronLeft className="w-4 h-4 mr-2" />
+                      Voltar
+                    </Button>
+                  )}
+                  
+                  {step < STEPS.length ? (
+                    <Button
+                      type="button"
+                      onClick={nextStep}
+                      className="flex-1 h-14 rounded-xl bg-primary hover:bg-primary/90 text-sm font-bold tracking-wider uppercase shadow-lg shadow-primary/20"
+                    >
+                      Continuar
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="flex-1 h-14 rounded-xl bg-primary hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 font-bold text-sm tracking-widest uppercase text-primary-foreground flex items-center justify-center gap-3 shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.01] active:scale-[0.99]"
+                    >
+                      <Send className="w-4 h-4" strokeWidth={2} />
+                      {loading ? "Enviando..." : "Receber orçamento personalizado"}
+                    </button>
+                  )}
+                </div>
               </div>
 
             </div>
