@@ -1,74 +1,100 @@
-import { UsersRound, ShieldCheck, Clock } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { Users, RotateCw, AlertTriangle, Calendar, Wrench, Headphones, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function MarketChange() {
   return (
-    <section className="bg-[#F7F5F0] py-16 md:py-24" aria-labelledby="mercado-mudou">
+    <section className="bg-[#F7F5F0] py-16 md:py-24" aria-labelledby="seu-tempo">
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        {/* Coluna esquerda - Texto */}
-        <div className="text-neutral-900 flex flex-col">
-          <div className="border-l-4 border-[var(--gold)] pl-5 mb-6">
+        {/* Coluna esquerda - Texto e CTA */}
+        <div className="flex flex-col">
+          {/* Título com barra lateral */}
+          <div className="border-l-4 border-[var(--gold)] pl-6 mb-10">
             <h2
-              id="mercado-mudou"
-              className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight uppercase"
+              id="seu-tempo"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight uppercase text-neutral-900"
             >
-              O mercado mudou.
+              Seu tempo <br />
+              <span className="text-[var(--gold)]">importa.</span>
             </h2>
           </div>
-          <p className="text-lg text-neutral-700 leading-relaxed max-w-xl">
-            Encontrar profissionais ficou mais difícil. Mas a responsabilidade da
-            operação continua existindo todos os dias.
-          </p>
 
-          {/* Card principal */}
-          <div className="mt-8 bg-[#0B1B3D] text-white rounded-xl p-6 md:p-7 flex gap-4 shadow-xl shadow-[#0B1B3D]/10 max-w-xl">
-            <UsersRound className="w-10 h-10 text-primary shrink-0" strokeWidth={1.5} />
-            <p className="text-sm md:text-[15px] leading-relaxed text-white/90">
-              Na GS, entendemos que qualidade também significa{" "}
-              <span className="text-white">resposta, acompanhamento e continuidade operacional</span>,
-              para <span className="text-primary font-semibold">reduzir ao máximo os impactos do dia a dia.</span>
+          {/* Lista de problemas com ícones */}
+          <div className="space-y-5 mb-10">
+            <div className="flex items-start gap-4">
+              <Users className="w-6 h-6 text-[var(--gold)] flex-shrink-0 mt-1" strokeWidth={2} />
+              <p className="text-lg text-neutral-900 font-medium">Funcionários faltando?</p>
+            </div>
+            <div className="flex items-start gap-4">
+              <RotateCw className="w-6 h-6 text-[var(--gold)] flex-shrink-0 mt-1" strokeWidth={2} />
+              <p className="text-lg text-neutral-900 font-medium">Trocas constantes?</p>
+            </div>
+            <div className="flex items-start gap-4">
+              <AlertTriangle className="w-6 h-6 text-[var(--gold)] flex-shrink-0 mt-1" strokeWidth={2} />
+              <p className="text-lg text-neutral-900 font-medium">Falta de acompanhamento?</p>
+            </div>
+          </div>
+
+          {/* Call-to-action text */}
+          <div className="mb-8">
+            <p className="text-2xl md:text-3xl font-bold text-neutral-900 mb-2">
+              Faz o certo.
+            </p>
+            <p className="text-2xl md:text-3xl font-bold text-neutral-900">
+              <span className="text-[var(--gold)]">Chame a GS.</span>
             </p>
           </div>
 
-          {/* Cards secundários para preencher espaço */}
-          <div className="mt-6 grid grid-cols-2 gap-4 max-w-xl">
-            <div className="bg-white rounded-xl p-5 shadow-md border border-neutral-200/60">
-              <ShieldCheck className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
-              <h3 className="font-semibold text-neutral-900 text-sm mb-1">Equipe qualificada</h3>
-              <p className="text-xs text-neutral-600 leading-relaxed">
-                Profissionais treinados e alinhados à sua operação.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-5 shadow-md border border-neutral-200/60">
-              <Clock className="w-8 h-8 text-primary mb-3" strokeWidth={1.5} />
-              <h3 className="font-semibold text-neutral-900 text-sm mb-1">Cobertura ágil</h3>
-              <p className="text-xs text-neutral-600 leading-relaxed">
-                Reposição rápida em faltas, férias e imprevistos.
-              </p>
-            </div>
-          </div>
+          {/* Button */}
+          <Link to="/solicitar-proposta">
+            <Button
+              size="lg"
+              className="w-full md:w-auto bg-[#0B1B3D] hover:bg-[#0B1B3D]/90 text-white font-bold text-base md:text-lg px-8 py-6 h-auto rounded-xl flex items-center justify-center gap-3 group"
+            >
+              <Calendar className="w-5 h-5 flex-shrink-0" strokeWidth={2} />
+              <span>Vamos simular</span>
+              <br className="hidden" />
+              <span className="text-[var(--gold)]">uma proposta?</span>
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Button>
+          </Link>
         </div>
 
-        {/* Coluna direita - Imagem */}
-        <div className="relative">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-[5/4]">
-            <img
-              src="/desgaste-operacional.jpg"
-              alt="Profissional preocupado com a operação e equipe de limpeza ao fundo"
-              loading="lazy"
-              className="w-full h-full object-cover object-center md:object-left"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#0B1B3D]/40 via-transparent to-transparent" />
+        {/* Coluna direita - Card com quote e serviços */}
+        <div className="flex flex-col gap-8">
+          {/* Quote Card */}
+          <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-neutral-200/60">
+            <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6 leading-tight">
+              Talvez o problema não seja a sua <span className="text-[var(--gold)]">operação.</span>
+            </h3>
+            <p className="text-lg md:text-xl font-bold text-neutral-900 mb-6 leading-tight">
+              Talvez seja a <span className="text-[var(--gold)]">empresa</span> que está por trás dela.
+            </p>
+            <p className="text-neutral-700 text-base md:text-lg leading-relaxed">
+              Conheça uma terceirização feita para trazer <span className="text-[var(--gold)] font-semibold">tranquilidade</span>, não preocupação.
+            </p>
           </div>
-          <div className="absolute -bottom-4 left-6 right-6 md:left-10 md:-bottom-6">
-            <blockquote className="bg-white rounded-xl p-5 md:p-6 shadow-xl border-l-4 border-[var(--gold)]">
-              <p className="text-[var(--gold)] text-2xl leading-none mb-2">"</p>
-              <p className="text-neutral-700 text-sm md:text-base leading-relaxed">
-                A ausência de cobertura gera mais do que falha operacional.{" "}
-                <span className="text-[var(--gold)] font-semibold">
-                  Gera desgaste para quem está na linha de frente.
-                </span>
-              </p>
-            </blockquote>
+
+          {/* Services Grid */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col items-center text-center">
+              <ShieldCheck className="w-10 h-10 text-[var(--gold)] mb-3" strokeWidth={1.5} />
+              <p className="text-sm md:text-base font-semibold text-neutral-900">Portaria</p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <Wrench className="w-10 h-10 text-[var(--gold)] mb-3" strokeWidth={1.5} />
+              <p className="text-sm md:text-base font-semibold text-neutral-900">Limpeza</p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <Headphones className="w-10 h-10 text-[var(--gold)] mb-3" strokeWidth={1.5} />
+              <p className="text-sm md:text-base font-semibold text-neutral-900">Recepção</p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <RotateCw className="w-10 h-10 text-[var(--gold)] mb-3" strokeWidth={1.5} />
+              <p className="text-sm md:text-base font-semibold text-neutral-900">Zeladoria e Apoio Operacional</p>
+            </div>
           </div>
         </div>
       </div>
