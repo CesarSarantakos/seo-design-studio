@@ -140,6 +140,20 @@ function Page() {
         return false;
       }
     }
+    if (currentStep === 2) {
+      if (!data.endereco.trim()) {
+        toast.error("Por favor, informe o endereço da prestação de serviço.");
+        return false;
+      }
+      if (!data.necessidade.trim()) {
+        toast.error("Por favor, descreva os detalhes da prestação de serviço.");
+        return false;
+      }
+      if (!data.desafio.trim()) {
+        toast.error("Por favor, selecione o principal desafio da sua operação.");
+        return false;
+      }
+    }
     if (currentStep === 3) {
       if (!data.seuNome.trim()) {
         toast.error("Por favor, informe seu nome.");
@@ -150,7 +164,13 @@ function Page() {
         return false;
       }
       if (!data.telefone.trim()) {
-        toast.error("Por favor, informe seu telefone.");
+        toast.error("Por favor, informe seu telefone/WhatsApp.");
+        return false;
+      }
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        toast.error("Por favor, informe um e-mail válido.");
         return false;
       }
     }
@@ -170,7 +190,40 @@ function Page() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!validateStep(3)) return;
+    // Final validation of all required fields
+    if (data.servicos.length === 0) {
+      toast.error("Selecione pelo menos um profissional.");
+      return;
+    }
+    if (!data.endereco.trim()) {
+      toast.error("Por favor, informe o endereço da prestação de serviço.");
+      return;
+    }
+    if (!data.necessidade.trim()) {
+      toast.error("Por favor, descreva os detalhes da prestação de serviço.");
+      return;
+    }
+    if (!data.desafio.trim()) {
+      toast.error("Por favor, selecione o principal desafio da sua operação.");
+      return;
+    }
+    if (!data.seuNome.trim()) {
+      toast.error("Por favor, informe seu nome.");
+      return;
+    }
+    if (!data.email.trim()) {
+      toast.error("Por favor, informe seu e-mail.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+      toast.error("Por favor, informe um e-mail válido.");
+      return;
+    }
+    if (!data.telefone.trim()) {
+      toast.error("Por favor, informe seu telefone/WhatsApp.");
+      return;
+    }
 
     setLoading(true);
     try {
@@ -329,14 +382,14 @@ function Page() {
 
                     <div className="space-y-4">
                       <FieldInput
-                        label="Endereço da prestação do serviço"
+                        label="Endereço da prestação do serviço *"
                         value={data.endereco}
                         onChange={(v) => setData({ ...data, endereco: v })}
                         placeholder="Bairro, cidade ou endereço completo"
                       />
 
                       <fieldset className="border border-border rounded-lg px-4 pt-2 pb-3 bg-card hover:border-primary/40 focus-within:border-primary transition-colors duration-200">
-                        <legend className="text-xs text-muted-foreground px-1 select-none">Descreva os detalhes da prestação de serviço</legend>
+                        <legend className="text-xs text-muted-foreground px-1 select-none">Descreva os detalhes da prestação de serviço *</legend>
                         <textarea
                           value={data.necessidade}
                           onChange={(e) => setData({ ...data, necessidade: e.target.value })}
@@ -350,7 +403,7 @@ function Page() {
 
                       <fieldset className="border border-border rounded-lg px-4 pt-2 pb-3 bg-card hover:border-primary/40 focus-within:border-primary transition-colors duration-200">
                         <legend className="text-xs text-muted-foreground px-1 select-none">
-                          Qual o principal <span className="text-primary font-semibold">desafio</span> da sua operação hoje?
+                          Qual o principal <span className="text-primary font-semibold">desafio</span> da sua operação hoje? *
                         </legend>
                         <select
                           value={data.desafio}
