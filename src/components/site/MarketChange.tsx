@@ -87,7 +87,7 @@ export function MarketChange() {
             </div>
 
             {/* Overlay card - positioned at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 mx-4 mb-8 md:mx-6 md:mb-10 bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-white/20">
+            <div className="absolute bottom-0 left-0 right-0 mx-4 mb-8 md:mx-6 md:mb-10 bg-white/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-white/20">
               <div className="space-y-4">
                 {/* First part of quote */}
                 <div>
