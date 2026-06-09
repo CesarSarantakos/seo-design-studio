@@ -9,7 +9,7 @@ export function MarketChange() {
         {/* Main two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-20">
           {/* Left column */}
-          <div className="space-y-8">
+          <div className="space-y-8 bg-white/50 backdrop-blur-sm shadow-lg rounded-2xl p-8 md:p-10">
             {/* Heading with vertical line */}
             <div className="flex gap-6 items-start">
               <div className="w-1.5 h-32 bg-primary flex-shrink-0"></div>
