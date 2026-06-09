@@ -270,16 +270,16 @@ function Page() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      <main className="flex-1 pt-24 pb-20">
-        <div className="container mx-auto px-4 max-w-6xl">
+      <main className="flex-1 pt-24 pb-20" style={{ scrollBehavior: "smooth" }}>
+        <div className="container mx-auto px-4 max-w-7xl">
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-11 gap-6 lg:gap-8 items-start">
 
-            {/* Left column — form (spans 3 of 5) */}
-            <div className="lg:col-span-3">
+            {/* Left column — form (spans 7 of 11) */}
+            <div className="lg:col-span-7 flex flex-col">
 
-              {/* Page heading */}
-              <div className="mb-8">
+              {/* Page heading — flex-grow so it stretches to match sticky panel height on desktop */}
+              <div className="mb-8 lg:flex lg:flex-col lg:justify-start">
                 <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
                   Solicite sua{" "}
                   <span className="text-primary">proposta personalizada</span>
@@ -529,18 +529,19 @@ function Page() {
             </div>
             {/* End left column */}
 
-            {/* Right column — sticky premium message panel (spans 2 of 5) */}
-            <aside className="lg:col-span-2 lg:sticky lg:top-24">
+            {/* Right column — sticky premium message panel (spans 4 of 11) */}
+            <aside className="lg:col-span-4 lg:sticky lg:top-24 overscroll-contain" style={{ scrollBehavior: "smooth" }}>
               <div className="relative rounded-2xl overflow-hidden border border-primary/25 shadow-2xl shadow-black/30 bg-[var(--background-deep)]">
 
-                {/* Photo header */}
-                <div className="relative h-44 md:h-52 overflow-hidden">
+                {/* Photo header — smooth scroll behaviour, premium feel */}
+                <div className="relative h-52 md:h-64 overflow-hidden">
                   <img
                     src="/images/proposta-especialista.jpg"
                     alt="Especialista GS sorrindo e fazendo gesto de aprovação"
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-in-out hover:scale-105"
+                    style={{ scrollBehavior: "smooth" }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--background-deep)] via-[var(--background-deep)]/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--background-deep)] via-[var(--background-deep)]/20 to-transparent" />
                 </div>
 
                 {/* Content */}
