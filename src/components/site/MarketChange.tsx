@@ -76,7 +76,7 @@ export function MarketChange() {
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=800&h=800&fit=crop')`,
+                backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/desgaste-operacional-11aSKjq5GQ63hsazsN5e2TCxvUUhJh.jpg')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
