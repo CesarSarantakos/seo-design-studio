@@ -24,6 +24,10 @@ import {
   ShieldAlert,
   ChevronLeft,
   ChevronRight,
+  Shirt,
+  Handshake,
+  DollarSign,
+  Star,
 } from "lucide-react";
 
 export const Route = createFileRoute("/solicitar-proposta")({
@@ -267,25 +271,30 @@ function Page() {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1 pt-24 pb-20">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-6xl">
 
-          {/* Page heading */}
-          <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-              Solicite sua{" "}
-              <span className="text-primary">proposta personalizada</span>
-            </h1>
-            <p className="text-muted-foreground mt-3 text-base max-w-xl mx-auto leading-relaxed">
-              Preencha abaixo e um especialista GS entrará em contato em até 1 hora útil.
-            </p>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 items-start">
 
-          {/* Main card */}
-          <form onSubmit={handleSubmit}>
+            {/* Left column — form (spans 3 of 5) */}
+            <div className="lg:col-span-3">
+
+              {/* Page heading */}
+              <div className="mb-8">
+                <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+                  Solicite sua{" "}
+                  <span className="text-primary">proposta personalizada</span>
+                </h1>
+                <p className="text-muted-foreground mt-3 text-base leading-relaxed">
+                  Preencha abaixo e um especialista GS entrará em contato em até 1 hora útil.
+                </p>
+              </div>
+
+              {/* Main card */}
+              <form onSubmit={handleSubmit}>
             <div className="relative border border-primary/25 rounded-2xl bg-card shadow-2xl shadow-black/20 overflow-hidden">
 
               {/* Progress bar header */}
-              <div className="px-6 md:px-12 pt-8 pb-6 border-b border-border">
+              <div className="px-6 md:px-8 pt-8 pb-6 border-b border-border">
                 <div className="flex items-center justify-between mb-4">
                   {STEPS.map((s, idx) => (
                     <div key={s.id} className="flex items-center">
@@ -309,7 +318,7 @@ function Page() {
                       </div>
                       {idx < STEPS.length - 1 && (
                         <div
-                          className={`hidden md:block w-20 lg:w-32 h-1 mx-4 rounded-full transition-colors duration-300 ${
+                          className={`hidden sm:block w-12 md:w-20 lg:w-16 xl:w-28 h-1 mx-3 lg:mx-2 xl:mx-4 rounded-full transition-colors duration-300 ${
                             step > s.id ? "bg-primary" : "bg-muted"
                           }`}
                         />
@@ -320,7 +329,7 @@ function Page() {
                 <Progress value={progress} className="h-2" />
               </div>
 
-              <div className="px-6 md:px-12 py-10">
+              <div className="px-6 md:px-8 py-10">
 
                 {/* Step 1: Profissionais */}
                 {step === 1 && (
@@ -333,7 +342,7 @@ function Page() {
                       <p className="text-sm text-muted-foreground mt-1">Selecione uma ou mais opções.</p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {PROFESSIONALS.map(({ id, label, icon: Icon }) => {
                         const active = data.servicos.includes(id);
                         return (
@@ -464,7 +473,7 @@ function Page() {
               </div>
 
               {/* Navigation buttons */}
-              <div className="px-6 md:px-12 pb-10">
+              <div className="px-6 md:px-8 pb-10">
                 <div className="flex gap-4">
                   {step > 1 && (
                     <Button
@@ -504,17 +513,91 @@ function Page() {
           </form>
 
           {/* Guarantees — below card */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              { icon: Clock, title: "Retorno em até 1 hora útil" },
-              { icon: ShieldCheck, title: "Proposta sem compromisso" },
-              { icon: Headphones, title: "Atendimento direto com a gestão GS" },
-            ].map(({ icon: Icon, title }) => (
-              <div key={title} className="flex items-center gap-3 px-5 py-4 rounded-xl border border-border bg-card/50">
-                <Icon className="w-5 h-5 text-primary flex-shrink-0" strokeWidth={1.75} />
-                <p className="text-sm font-medium text-foreground/80 leading-tight">{title}</p>
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {[
+                  { icon: Clock, title: "Retorno em até 1 hora útil" },
+                  { icon: ShieldCheck, title: "Proposta sem compromisso" },
+                  { icon: Headphones, title: "Atendimento direto com a gestão GS" },
+                ].map(({ icon: Icon, title }) => (
+                  <div key={title} className="flex items-center gap-3 px-5 py-4 rounded-xl border border-border bg-card/50">
+                    <Icon className="w-5 h-5 text-primary flex-shrink-0" strokeWidth={1.75} />
+                    <p className="text-sm font-medium text-foreground/80 leading-tight">{title}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+
+            </div>
+            {/* End left column */}
+
+            {/* Right column — sticky premium message panel (spans 2 of 5) */}
+            <aside className="lg:col-span-2 lg:sticky lg:top-24">
+              <div className="relative rounded-2xl overflow-hidden border border-primary/25 shadow-2xl shadow-black/30 bg-[var(--background-deep)]">
+
+                {/* Photo header */}
+                <div className="relative h-44 md:h-52 overflow-hidden">
+                  <img
+                    src="/images/proposta-especialista.jpg"
+                    alt="Especialista GS sorrindo e fazendo gesto de aprovação"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--background-deep)] via-[var(--background-deep)]/30 to-transparent" />
+                </div>
+
+                {/* Content */}
+                <div className="px-6 md:px-8 py-7 -mt-10 relative">
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground leading-snug text-balance">
+                    O que faz uma empresa de terceirização{" "}
+                    <span className="text-primary">ser diferente</span> das outras?
+                  </h2>
+
+                  {/* Differentiators list */}
+                  <ul className="mt-6 space-y-4">
+                    {[
+                      { icon: Shirt, text: "Não é o ", highlight: "uniforme." },
+                      { icon: Handshake, text: "Não é a ", highlight: "promessa." },
+                      { icon: DollarSign, text: "Não é o ", highlight: "preço." },
+                    ].map(({ icon: Icon, text, highlight }) => (
+                      <li key={highlight} className="flex items-center gap-4">
+                        <div className="w-11 h-11 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 border border-border">
+                          <Icon className="w-5 h-5 text-primary" strokeWidth={1.75} />
+                        </div>
+                        <p className="text-base md:text-lg text-foreground/90 leading-tight">
+                          {text}
+                          <span className="text-primary font-semibold">{highlight}</span>
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Divider */}
+                  <div className="my-6 h-px bg-border" />
+
+                  {/* Highlight — star */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-11 h-11 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/30">
+                      <Star className="w-5 h-5 text-primary-foreground" strokeWidth={2} fill="currentColor" />
+                    </div>
+                    <p className="text-base md:text-lg text-foreground font-bold leading-snug">
+                      É o que acontece{" "}
+                      <span className="text-primary">depois da contratação.</span>
+                    </p>
+                  </div>
+
+                  {/* Closing line */}
+                  <div className="mt-6 flex items-start gap-4">
+                    <div className="w-11 h-11 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 border border-border">
+                      <Users className="w-5 h-5 text-primary" strokeWidth={1.75} />
+                    </div>
+                    <p className="text-sm md:text-base text-foreground/80 leading-relaxed">
+                      Descubra por que empresas e condomínios estão{" "}
+                      <span className="text-foreground font-semibold">conhecendo a GS.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+            {/* End right column */}
+
           </div>
 
         </div>
