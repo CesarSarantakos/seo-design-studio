@@ -124,18 +124,18 @@ export function MarketChange() {
           </div>
         </div>
 
-        {/* Services section with border */}
-        <div className="border-t border-foreground/10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 md:pt-20">
+        {/* Services section with improved border and shadow */}
+        <div className="border-t border-foreground/10 shadow-lg rounded-2xl mt-20 px-6 md:px-8 py-12 md:py-16 bg-white/50 backdrop-blur-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {[
               { icon: Users, label: "PORTARIA" },
               { icon: AlertTriangle, label: "LIMPEZA" },
               { icon: RotateCw, label: "RECEPÇÃO" },
-              { icon: Calendar, label: "ZELADORIA E\nAPOIO\nOPERACIONAL" },
+              { icon: Calendar, label: "ZELADORIA E APOIO OPERACIONAL" },
             ].map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center gap-3 text-center">
-                <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary" strokeWidth={1.5} />
-                <p className="text-xs md:text-sm font-bold uppercase tracking-wide leading-tight" style={{ color: "#0b1b3d" }}>
+              <div key={idx} className="flex items-center gap-4 md:gap-5">
+                <item.icon className="w-10 h-10 md:w-12 md:h-12 text-primary flex-shrink-0" strokeWidth={1.5} />
+                <p className="text-sm md:text-base font-bold uppercase tracking-wide leading-tight" style={{ color: "#0b1b3d" }}>
                   {item.label}
                 </p>
               </div>
