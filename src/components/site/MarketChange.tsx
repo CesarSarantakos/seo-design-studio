@@ -14,7 +14,7 @@ export function MarketChange() {
             <div className="flex gap-6 items-start">
               <div className="w-1.5 h-32 bg-primary flex-shrink-0"></div>
               <div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight" style={{ color: "#0b1b3d" }}>
                   SEU TEMPO
                 </h2>
                 <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight">
@@ -27,15 +27,15 @@ export function MarketChange() {
             <div className="space-y-6">
               <div className="flex gap-4 items-center">
                 <Users className="w-7 h-7 text-primary flex-shrink-0" strokeWidth={1.5} />
-                <p className="text-lg md:text-xl text-foreground font-medium">Funcionários faltando?</p>
+                <p className="text-lg md:text-xl font-medium" style={{ color: "#0b1b3d" }}>Funcionários faltando?</p>
               </div>
               <div className="flex gap-4 items-center">
                 <RotateCw className="w-7 h-7 text-primary flex-shrink-0" strokeWidth={1.5} />
-                <p className="text-lg md:text-xl text-foreground font-medium">Trocas constantes?</p>
+                <p className="text-lg md:text-xl font-medium" style={{ color: "#0b1b3d" }}>Trocas constantes?</p>
               </div>
               <div className="flex gap-4 items-center">
                 <AlertTriangle className="w-7 h-7 text-primary flex-shrink-0" strokeWidth={1.5} />
-                <p className="text-lg md:text-xl text-foreground font-medium">Falta de acompanhamento?</p>
+                <p className="text-lg md:text-xl font-medium" style={{ color: "#0b1b3d" }}>Falta de acompanhamento?</p>
               </div>
             </div>
 
@@ -44,7 +44,7 @@ export function MarketChange() {
 
             {/* CTA Text */}
             <div className="space-y-2">
-              <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight" style={{ color: "#0b1b3d" }}>
                 FAZ O CERTO.
               </p>
               <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary tracking-tight">
@@ -56,7 +56,8 @@ export function MarketChange() {
             <Link to="/solicitar-proposta">
               <Button
                 size="lg"
-                className="w-full md:w-auto bg-foreground hover:bg-foreground/90 text-white font-bold text-base md:text-lg px-8 py-5 h-auto rounded-xl flex items-center justify-center gap-3 group transition-all"
+                className="w-full md:w-auto text-white font-bold text-base md:text-lg px-8 py-5 h-auto rounded-xl flex items-center justify-center gap-3 group transition-all"
+                style={{ backgroundColor: "#0b1b3d" }}
               >
                 <Calendar className="w-5 h-5 flex-shrink-0" strokeWidth={2} />
                 <div className="flex flex-col items-start gap-0.5">
@@ -90,10 +91,10 @@ export function MarketChange() {
               <div className="space-y-4">
                 {/* First part of quote */}
                 <div>
-                  <p className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                  <p className="font-bold leading-tight" style={{ color: "#0b1b3d", fontSize: "30px" }}>
                     Talvez o problema
                   </p>
-                  <p className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                  <p className="font-bold leading-tight" style={{ color: "#0b1b3d", fontSize: "30px" }}>
                     não seja a sua{" "}
                     <span className="text-primary">operação.</span>
                   </p>
@@ -104,17 +105,17 @@ export function MarketChange() {
 
                 {/* Second part of quote */}
                 <div>
-                  <p className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                  <p className="font-bold leading-tight" style={{ color: "#0b1b3d", fontSize: "24px" }}>
                     Talvez seja a{" "}
                     <span className="text-primary">empresa</span>
                   </p>
-                  <p className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                  <p className="font-bold leading-tight" style={{ color: "#0b1b3d", fontSize: "24px" }}>
                     que está por trás dela.
                   </p>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed pt-2">
+                <p className="leading-relaxed pt-2 font-medium" style={{ color: "#0b1b3d", fontSize: "20px" }}>
                   Conheça uma terceirização feita para trazer{" "}
                   <span className="text-primary font-semibold">tranquilidade</span>, não preocupação.
                 </p>
@@ -124,8 +125,8 @@ export function MarketChange() {
         </div>
 
         {/* Services section with border */}
-        <div className="border-t border-foreground/10 pt-16 md:pt-20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="border-t border-foreground/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 md:pt-20">
             {[
               { icon: Users, label: "PORTARIA" },
               { icon: AlertTriangle, label: "LIMPEZA" },
@@ -134,7 +135,7 @@ export function MarketChange() {
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col items-center gap-3 text-center">
                 <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary" strokeWidth={1.5} />
-                <p className="text-xs md:text-sm font-bold text-foreground uppercase tracking-wide leading-tight">
+                <p className="text-xs md:text-sm font-bold uppercase tracking-wide leading-tight" style={{ color: "#0b1b3d" }}>
                   {item.label}
                 </p>
               </div>
