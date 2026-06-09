@@ -1,100 +1,144 @@
 import { Link } from "@tanstack/react-router";
-import { Users, RotateCw, AlertTriangle, Calendar, Wrench, Headphones, ShieldCheck } from "lucide-react";
+import { Users, RotateCw, AlertTriangle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function MarketChange() {
   return (
-    <section className="bg-[#F7F5F0] py-16 md:py-24" aria-labelledby="seu-tempo">
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        {/* Coluna esquerda - Texto e CTA */}
-        <div className="flex flex-col">
-          {/* Título com barra lateral */}
-          <div className="border-l-4 border-[var(--gold)] pl-6 mb-10">
-            <h2
-              id="seu-tempo"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight uppercase text-neutral-900"
+    <section className="py-20 md:py-32 bg-[#F7F5F0]">
+      <div className="container mx-auto px-6 lg:px-12">
+        {/* Main two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-20">
+          {/* Left column */}
+          <div className="space-y-8">
+            {/* Heading with vertical line */}
+            <div className="flex gap-6 items-start">
+              <div className="w-1.5 h-32 bg-primary flex-shrink-0"></div>
+              <div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight">
+                  SEU TEMPO
+                </h2>
+                <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight tracking-tight">
+                  IMPORTA.
+                </p>
+              </div>
+            </div>
+
+            {/* Problem items with vertical spacing */}
+            <div className="space-y-6">
+              <div className="flex gap-4 items-center">
+                <Users className="w-7 h-7 text-primary flex-shrink-0" strokeWidth={1.5} />
+                <p className="text-lg md:text-xl text-foreground font-medium">Funcionários faltando?</p>
+              </div>
+              <div className="flex gap-4 items-center">
+                <RotateCw className="w-7 h-7 text-primary flex-shrink-0" strokeWidth={1.5} />
+                <p className="text-lg md:text-xl text-foreground font-medium">Trocas constantes?</p>
+              </div>
+              <div className="flex gap-4 items-center">
+                <AlertTriangle className="w-7 h-7 text-primary flex-shrink-0" strokeWidth={1.5} />
+                <p className="text-lg md:text-xl text-foreground font-medium">Falta de acompanhamento?</p>
+              </div>
+            </div>
+
+            {/* Divider line */}
+            <div className="h-1 w-20 bg-primary"></div>
+
+            {/* CTA Text */}
+            <div className="space-y-2">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+                FAZ O CERTO.
+              </p>
+              <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary tracking-tight">
+                CHAME A GS.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <Link to="/solicitar-proposta">
+              <Button
+                size="lg"
+                className="w-full md:w-auto bg-foreground hover:bg-foreground/90 text-white font-bold text-base md:text-lg px-8 py-5 h-auto rounded-xl flex items-center justify-center gap-3 group transition-all"
+              >
+                <Calendar className="w-5 h-5 flex-shrink-0" strokeWidth={2} />
+                <div className="flex flex-col items-start gap-0.5">
+                  <span className="text-xs md:text-sm leading-none">VAMOS SIMULAR</span>
+                  <span className="text-primary font-bold leading-none">UMA PROPOSTA?</span>
+                </div>
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform ml-auto flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Button>
+            </Link>
+          </div>
+
+          {/* Right column - Image with overlay card */}
+          <div className="relative h-96 md:h-[550px] rounded-2xl overflow-hidden">
+            {/* Background image */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=800&h=800&fit=crop')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
             >
-              Seu tempo <br />
-              <span className="text-[var(--gold)]">importa.</span>
-            </h2>
-          </div>
-
-          {/* Lista de problemas com ícones */}
-          <div className="space-y-5 mb-10">
-            <div className="flex items-start gap-4">
-              <Users className="w-6 h-6 text-[var(--gold)] flex-shrink-0 mt-1" strokeWidth={2} />
-              <p className="text-lg text-neutral-900 font-medium">Funcionários faltando?</p>
+              {/* Overlay for better readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
             </div>
-            <div className="flex items-start gap-4">
-              <RotateCw className="w-6 h-6 text-[var(--gold)] flex-shrink-0 mt-1" strokeWidth={2} />
-              <p className="text-lg text-neutral-900 font-medium">Trocas constantes?</p>
-            </div>
-            <div className="flex items-start gap-4">
-              <AlertTriangle className="w-6 h-6 text-[var(--gold)] flex-shrink-0 mt-1" strokeWidth={2} />
-              <p className="text-lg text-neutral-900 font-medium">Falta de acompanhamento?</p>
+
+            {/* Overlay card - positioned at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 mx-4 mb-8 md:mx-6 md:mb-10 bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-white/20">
+              <div className="space-y-4">
+                {/* First part of quote */}
+                <div>
+                  <p className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                    Talvez o problema
+                  </p>
+                  <p className="text-xl md:text-2xl font-bold text-foreground leading-tight">
+                    não seja a sua{" "}
+                    <span className="text-primary">operação.</span>
+                  </p>
+                </div>
+
+                {/* Gold divider */}
+                <div className="h-1 w-12 bg-primary"></div>
+
+                {/* Second part of quote */}
+                <div>
+                  <p className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                    Talvez seja a{" "}
+                    <span className="text-primary">empresa</span>
+                  </p>
+                  <p className="text-lg md:text-xl font-bold text-foreground leading-tight">
+                    que está por trás dela.
+                  </p>
+                </div>
+
+                {/* Description */}
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed pt-2">
+                  Conheça uma terceirização feita para trazer{" "}
+                  <span className="text-primary font-semibold">tranquilidade</span>, não preocupação.
+                </p>
+              </div>
             </div>
           </div>
-
-          {/* Call-to-action text */}
-          <div className="mb-8">
-            <p className="text-2xl md:text-3xl font-bold text-neutral-900 mb-2">
-              Faz o certo.
-            </p>
-            <p className="text-2xl md:text-3xl font-bold text-neutral-900">
-              <span className="text-[var(--gold)]">Chame a GS.</span>
-            </p>
-          </div>
-
-          {/* Button */}
-          <Link to="/solicitar-proposta">
-            <Button
-              size="lg"
-              className="w-full md:w-auto bg-[#0B1B3D] hover:bg-[#0B1B3D]/90 text-white font-bold text-base md:text-lg px-8 py-6 h-auto rounded-xl flex items-center justify-center gap-3 group"
-            >
-              <Calendar className="w-5 h-5 flex-shrink-0" strokeWidth={2} />
-              <span>Vamos simular</span>
-              <br className="hidden" />
-              <span className="text-[var(--gold)]">uma proposta?</span>
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Button>
-          </Link>
         </div>
 
-        {/* Coluna direita - Card com quote e serviços */}
-        <div className="flex flex-col gap-8">
-          {/* Quote Card */}
-          <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-neutral-200/60">
-            <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6 leading-tight">
-              Talvez o problema não seja a sua <span className="text-[var(--gold)]">operação.</span>
-            </h3>
-            <p className="text-lg md:text-xl font-bold text-neutral-900 mb-6 leading-tight">
-              Talvez seja a <span className="text-[var(--gold)]">empresa</span> que está por trás dela.
-            </p>
-            <p className="text-neutral-700 text-base md:text-lg leading-relaxed">
-              Conheça uma terceirização feita para trazer <span className="text-[var(--gold)] font-semibold">tranquilidade</span>, não preocupação.
-            </p>
-          </div>
-
-          {/* Services Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col items-center text-center">
-              <ShieldCheck className="w-10 h-10 text-[var(--gold)] mb-3" strokeWidth={1.5} />
-              <p className="text-sm md:text-base font-semibold text-neutral-900">Portaria</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <Wrench className="w-10 h-10 text-[var(--gold)] mb-3" strokeWidth={1.5} />
-              <p className="text-sm md:text-base font-semibold text-neutral-900">Limpeza</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <Headphones className="w-10 h-10 text-[var(--gold)] mb-3" strokeWidth={1.5} />
-              <p className="text-sm md:text-base font-semibold text-neutral-900">Recepção</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <RotateCw className="w-10 h-10 text-[var(--gold)] mb-3" strokeWidth={1.5} />
-              <p className="text-sm md:text-base font-semibold text-neutral-900">Zeladoria e Apoio Operacional</p>
-            </div>
+        {/* Services section with border */}
+        <div className="border-t border-foreground/10 pt-16 md:pt-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {[
+              { icon: Users, label: "PORTARIA" },
+              { icon: AlertTriangle, label: "LIMPEZA" },
+              { icon: RotateCw, label: "RECEPÇÃO" },
+              { icon: Calendar, label: "ZELADORIA E\nAPOIO\nOPERACIONAL" },
+            ].map((item, idx) => (
+              <div key={idx} className="flex flex-col items-center gap-3 text-center">
+                <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary" strokeWidth={1.5} />
+                <p className="text-xs md:text-sm font-bold text-foreground uppercase tracking-wide leading-tight">
+                  {item.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
