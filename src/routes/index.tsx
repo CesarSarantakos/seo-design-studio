@@ -6,6 +6,7 @@ import { TrustStrip } from "@/components/site/TrustStrip";
 import { MarketChange } from "@/components/site/MarketChange";
 import { OperationImpact } from "@/components/site/OperationImpact";
 import { HomeBenefits } from "@/components/site/HomeBenefits";
+import { TeamShowcase } from "@/components/site/TeamShowcase";
 import { HomeTestimonials } from "@/components/site/HomeTestimonials";
 import { PremiumCTA } from "@/components/site/PremiumCTA";
 
@@ -33,6 +34,7 @@ function Index() {
         <MarketChange />
         <OperationImpact />
         <HomeBenefits />
+        <TeamShowcase />
         <HomeTestimonials />
         <PremiumCTA />
       </main>
