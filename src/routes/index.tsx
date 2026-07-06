@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { HomeHero } from "@/components/site/HomeHero";
-import { TrustStrip } from "@/components/site/TrustStrip";
 import { OperationImpact } from "@/components/site/OperationImpact";
 import { HomeBenefits } from "@/components/site/HomeBenefits";
 import { TeamShowcase } from "@/components/site/TeamShowcase";
@@ -29,7 +28,6 @@ function Index() {
       <Header />
       <main className="flex-1">
         <HomeHero />
-        <TrustStrip />
         <OperationImpact />
         <HomeBenefits />
         <TeamShowcase />
