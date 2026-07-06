@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function MarketChange() {
   return (
-    <section className="py-20 md:py-32 bg-[#F7F5F0]">
+    <section className="py-20 md:pt-32 md:pb-16 bg-[#F7F5F0]">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Main two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-20">
