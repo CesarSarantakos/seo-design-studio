@@ -15,6 +15,7 @@ const solucoesItems = [
   { to: "/solucoes/portaria-24h", label: "Portaria 24h" },
   { to: "/solucoes/limpeza-profissional", label: "Limpeza Profissional" },
   { to: "/solucoes/recepcao-e-atendimento", label: "Recepção e Atendimento" },
+  { to: "/solucoes/academias", label: "Academias" },
 ] as const;
 
 const segmentosItems = [
