@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { Shield, Sparkles, KeyRound, Users, Wrench, TreePine, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Shield, Sparkles, KeyRound, Users, Wrench, TreePine, Dumbbell, ArrowRight, CheckCircle2 } from "lucide-react";
 import portariaImg from "@/assets/portaria-hero.jpg";
 import limpezaImg from "@/assets/limpeza-hero.jpg";
 import recepcaoImg from "@/assets/recepcao-hero.jpg";
@@ -46,6 +46,16 @@ const SERVICES: Service[] = [
     to: "/solucoes/recepcao-e-atendimento",
     image: recepcaoImg,
     highlights: ["Acolhimento", "Atendimento telefônico", "Organização do fluxo"],
+    available: true,
+  },
+  {
+    icon: Dumbbell,
+    title: "Academias",
+    tagline: "Sua academia vende experiência.",
+    desc: "Limpeza, recepção e apoio operacional para academias que valorizam a experiência dos alunos, todos os dias.",
+    to: "/solucoes/academias",
+    image: "/images/academias-hero.jpg",
+    highlights: ["Continuidade operacional", "Cobertura de ausências", "Supervisão constante"],
     available: true,
   },
 ];

@@ -22,6 +22,7 @@ import { Route as SegmentosIndexRouteImport } from './routes/segmentos.index'
 import { Route as SolucoesRecepcaoEAtendimentoRouteImport } from './routes/solucoes.recepcao-e-atendimento'
 import { Route as SolucoesPortaria24hRouteImport } from './routes/solucoes.portaria-24h'
 import { Route as SolucoesLimpezaProfissionalRouteImport } from './routes/solucoes.limpeza-profissional'
+import { Route as SolucoesAcademiasRouteImport } from './routes/solucoes.academias'
 import { Route as SegmentosEmpresasRouteImport } from './routes/segmentos.empresas'
 import { Route as SegmentosCondominiosRouteImport } from './routes/segmentos.condominios'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
@@ -99,6 +100,11 @@ const SolucoesLimpezaProfissionalRoute =
     path: '/limpeza-profissional',
     getParentRoute: () => SolucoesRoute,
   } as any)
+const SolucoesAcademiasRoute = SolucoesAcademiasRouteImport.update({
+  id: '/academias',
+  path: '/academias',
+  getParentRoute: () => SolucoesRoute,
+} as any)
 const SegmentosEmpresasRoute = SegmentosEmpresasRouteImport.update({
   id: '/empresas',
   path: '/empresas',
@@ -162,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/segmentos/condominios': typeof SegmentosCondominiosRoute
   '/segmentos/empresas': typeof SegmentosEmpresasRoute
+  '/solucoes/academias': typeof SolucoesAcademiasRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
@@ -184,6 +191,7 @@ export interface FileRoutesByTo {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/segmentos/condominios': typeof SegmentosCondominiosRoute
   '/segmentos/empresas': typeof SegmentosEmpresasRoute
+  '/solucoes/academias': typeof SolucoesAcademiasRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
@@ -209,6 +217,7 @@ export interface FileRoutesById {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/segmentos/condominios': typeof SegmentosCondominiosRoute
   '/segmentos/empresas': typeof SegmentosEmpresasRoute
+  '/solucoes/academias': typeof SolucoesAcademiasRoute
   '/solucoes/limpeza-profissional': typeof SolucoesLimpezaProfissionalRoute
   '/solucoes/portaria-24h': typeof SolucoesPortaria24hRoute
   '/solucoes/recepcao-e-atendimento': typeof SolucoesRecepcaoEAtendimentoRoute
@@ -235,6 +244,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/segmentos/condominios'
     | '/segmentos/empresas'
+    | '/solucoes/academias'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
@@ -257,6 +267,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/segmentos/condominios'
     | '/segmentos/empresas'
+    | '/solucoes/academias'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
@@ -281,6 +292,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/segmentos/condominios'
     | '/segmentos/empresas'
+    | '/solucoes/academias'
     | '/solucoes/limpeza-profissional'
     | '/solucoes/portaria-24h'
     | '/solucoes/recepcao-e-atendimento'
@@ -403,6 +415,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolucoesLimpezaProfissionalRouteImport
       parentRoute: typeof SolucoesRoute
     }
+    '/solucoes/academias': {
+      id: '/solucoes/academias'
+      path: '/academias'
+      fullPath: '/solucoes/academias'
+      preLoaderRoute: typeof SolucoesAcademiasRouteImport
+      parentRoute: typeof SolucoesRoute
+    }
     '/segmentos/empresas': {
       id: '/segmentos/empresas'
       path: '/empresas'
@@ -486,6 +505,7 @@ const SegmentosRouteWithChildren = SegmentosRoute._addFileChildren(
 )
 
 interface SolucoesRouteChildren {
+  SolucoesAcademiasRoute: typeof SolucoesAcademiasRoute
   SolucoesLimpezaProfissionalRoute: typeof SolucoesLimpezaProfissionalRoute
   SolucoesPortaria24hRoute: typeof SolucoesPortaria24hRoute
   SolucoesRecepcaoEAtendimentoRoute: typeof SolucoesRecepcaoEAtendimentoRoute
@@ -493,6 +513,7 @@ interface SolucoesRouteChildren {
 }
 
 const SolucoesRouteChildren: SolucoesRouteChildren = {
+  SolucoesAcademiasRoute: SolucoesAcademiasRoute,
   SolucoesLimpezaProfissionalRoute: SolucoesLimpezaProfissionalRoute,
   SolucoesPortaria24hRoute: SolucoesPortaria24hRoute,
   SolucoesRecepcaoEAtendimentoRoute: SolucoesRecepcaoEAtendimentoRoute,
