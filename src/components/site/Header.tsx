@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, ChevronDown, MessageCircle } from "lucide-react";
-import logo from "@/assets/gs-logo.png";
+import logoWhite from "@/assets/gs-logo-white.png";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -33,12 +33,12 @@ export function Header() {
       <div className="container mx-auto flex items-center justify-between px-6 py-5">
         <Link to="/" className="flex items-center gap-2" aria-label="GS - Página inicial">
           <img
-            src={logo}
+            src={logoWhite}
             alt="GS - O que importa, cuidamos."
             className="h-14 w-auto"
             width={200}
             height={70}
-            style={{ filter: "brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
+            style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
           />
         </Link>
         <nav className="hidden lg:flex items-center gap-8" aria-label="Principal">
