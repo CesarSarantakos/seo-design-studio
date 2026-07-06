@@ -196,7 +196,7 @@ function Page() {
         </section>
 
         {/* APOIO OPERACIONAL PARA ACADEMIAS */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-20 md:py-28 bg-background" style={{ fontSize: 0 }}>
           <div className="container mx-auto px-6 lg:px-12">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
