@@ -87,35 +87,35 @@ export function MarketChange() {
             </div>
 
             {/* Overlay card - positioned at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 mx-4 mb-8 md:mx-6 md:mb-10 bg-white/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-white/20">
-              <div className="space-y-4">
+            <div className="absolute bottom-0 left-0 right-0 mx-4 mb-8 md:mx-6 md:mb-10 bg-white/85 backdrop-blur-md rounded-2xl p-7 md:p-10 shadow-2xl border border-white/40">
+              <div className="space-y-6">
                 {/* First part of quote */}
-                <div>
-                  <p className="font-bold leading-tight" style={{ color: "#0b1b3d", fontSize: "30px" }}>
+                <div className="space-y-1">
+                  <p className="font-bold leading-snug" style={{ color: "#0b1b3d", fontSize: "32px" }}>
                     Talvez o problema
                   </p>
-                  <p className="font-bold leading-tight" style={{ color: "#0b1b3d", fontSize: "30px" }}>
+                  <p className="font-bold leading-snug" style={{ color: "#0b1b3d", fontSize: "32px" }}>
                     não seja a sua{" "}
                     <span className="text-primary">operação.</span>
                   </p>
                 </div>
 
                 {/* Gold divider */}
-                <div className="h-1 w-12 bg-primary"></div>
+                <div className="h-1.5 w-14 bg-primary"></div>
 
                 {/* Second part of quote */}
-                <div>
-                  <p className="font-bold leading-tight" style={{ color: "#0b1b3d", fontSize: "24px" }}>
+                <div className="space-y-1">
+                  <p className="font-bold leading-snug" style={{ color: "#0b1b3d", fontSize: "26px" }}>
                     Talvez seja a{" "}
                     <span className="text-primary">empresa</span>
                   </p>
-                  <p className="font-bold leading-tight" style={{ color: "#0b1b3d", fontSize: "24px" }}>
+                  <p className="font-bold leading-snug" style={{ color: "#0b1b3d", fontSize: "26px" }}>
                     que está por trás dela.
                   </p>
                 </div>
 
                 {/* Description */}
-                <p className="leading-relaxed pt-2 font-medium" style={{ color: "#0b1b3d", fontSize: "20px" }}>
+                <p className="leading-relaxed pt-3 font-medium" style={{ color: "#0b1b3d", fontSize: "16px" }}>
                   Conheça uma terceirização feita para trazer{" "}
                   <span className="text-primary font-semibold">tranquilidade</span>, não preocupação.
                 </p>
